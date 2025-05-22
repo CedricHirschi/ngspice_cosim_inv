@@ -1,4 +1,20 @@
 {
     "name": "IIC-OSIC-TOOLS",
-    "image": "hpretl/iic-osic-tools"
+    "image": "hpretl/iic-osic-tools",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "xuanli.spice",
+                "bitwisecook.tcl",
+                "eirikpre.systemverilog",
+                "barakh.vscode-xschem-viewer",
+                "wavetrace.wavetrace"
+            ],
+            "settings": {
+                "files.associations": {
+                    "*.spice": "spice"
+                }
+            }
+        }
+    }
 }
