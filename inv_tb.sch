@@ -11,7 +11,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=0.00011988066
+x1=24e-6
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -27,7 +27,7 @@ in
 out"
 y2=3.5
 digital=0
-x2=0.00012082513
+x2=26e-6
 rainbow=0}
 N -300 20 -300 60 {lab=CLK}
 N -300 20 -220 20 {lab=CLK}
