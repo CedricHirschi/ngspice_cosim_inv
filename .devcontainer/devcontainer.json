@@ -1,6 +1,6 @@
 {
     "name": "IIC-OSIC-TOOLS",
-    "image": "hpretl/iic-osic-tools",
+    "image": "hpretl/iic-osic-tools:next",
     "customizations": {
         "vscode": {
             "extensions": [
