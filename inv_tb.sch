@@ -12,7 +12,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=2.5048e-05
+x1=3.56295e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -29,7 +29,7 @@ out
 out_n"
 y2=3.5
 digital=0
-x2=2.61031e-05
+x2=8.46979e-05
 rainbow=0}
 N -300 20 -300 60 {lab=CLK}
 N -300 20 -220 20 {lab=CLK}
@@ -47,7 +47,7 @@ N -160 20 -80 20 {
 lab=#net2}
 C {./inv.sym} 0 20 0 0 {name=ADUT model=dut
 
-device_model=".model dut d_cosim(in_high='VIH' in_low='VIL') simulation=\\"ivlng\\" sim_args=[\\"inv\\"]"}
+device_model=".model dut d_cosim simulation=\\"ivlng\\" sim_args=[\\"inv\\"]"}
 C {vsource.sym} -300 90 0 0 {name=VCLOCK value="pulse 0 'VCC' 200n 300n 300n 200n 1u" savecurrent=false}
 C {vsource.sym} -460 90 0 0 {name=VTEST value="pulse 0 'VCC' 5100n 50n 50n 4900n 10u" savecurrent=false}
 C {gnd.sym} -300 160 0 0 {name=l1 lab=GND}
@@ -92,8 +92,8 @@ C {simulator_commands_shown.sym} 0 150 0 0 {name=BRIDGE_MODELS
 simulator=ngspice
 only_toplevel=false 
 value="
-.model adc_buff adc_bridge in_low='VIL' in_high='VIH'
-.model dac_buff dac_bridge t_rise='TR' t_fall='TF' out_low=0 out_high='VCC'
+.model adc_buff adc_bridge(in_low = 'VIL' in_high = 'VIH')
+.model dac_buff dac_bridge(t_rise = 'TR' t_fall = 'TF' out_low = 0.0 out_high = 'VCC')
 "}
 C {launcher.sym} 60 250 0 0 {name=h2
 descr="See chapter 8.3 here"
