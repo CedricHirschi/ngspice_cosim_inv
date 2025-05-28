@@ -1,5 +1,4 @@
-v {xschem version=3.4.4 file_version=1.2
-}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
@@ -12,7 +11,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=4.46136e-05
+x1=4.469414e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -29,22 +28,26 @@ out
 out_n"
 y2=3.5
 digital=0
-x2=4.62244e-05
+x2=4.630494e-05
 rainbow=0}
 N -300 20 -300 60 {lab=CLK}
-N -300 20 -220 20 {lab=CLK}
 N -460 -20 -460 60 {lab=IN}
-N -460 -20 -220 -20 {lab=IN}
+N -460 -20 -80 -20 {lab=IN}
 N -300 120 -300 160 {lab=GND}
 N -460 120 -460 160 {lab=GND}
-N 80 -20 160 -20 {lab=OUT_D}
-N 220 -20 270 -20 {lab=OUT}
-N 80 20 160 20 {lab=OUT_ND}
-N 220 20 270 20 {lab=OUT_N}
-N -160 -20 -80 -20 {
-lab=#net1}
-N -160 20 -80 20 {
-lab=#net2}
+N 180 -20 270 -20 {lab=OUT}
+N 240 20 270 20 {lab=OUT_N}
+N 180 100 180 120 {lab=GND}
+N 210 120 240 120 {lab=GND}
+N 240 100 240 120 {lab=GND}
+N 210 120 210 140 {lab=GND}
+N 180 120 210 120 {lab=GND}
+N 240 20 240 40 {lab=OUT_N}
+N 80 20 240 20 {lab=OUT_N}
+N 180 -20 180 40 {lab=OUT}
+N 80 -20 180 -20 {lab=OUT}
+N -140 20 -80 20 {lab=#net1}
+N -300 20 -200 20 {lab=CLK}
 C {./inv.sym} 0 20 0 0 {name=ADUT model=dut
 
 device_model=".model dut d_cosim simulation=\\"ivlng\\" sim_args=[\\"inv\\"]"}
@@ -73,30 +76,40 @@ C {launcher.sym} -80 -140 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/inv_tb.raw tran"
 }
-C {dac_bridge.sym} 190 -20 0 0 {name=A1 dac_bridge_model= dac_buff}
-C {lab_pin.sym} 90 -20 2 0 {name=p5 sig_type=std_logic lab=OUT_D}
 C {simulator_commands_shown.sym} 580 -30 0 0 {name=PARAMS
 simulator=ngspice
 only_toplevel=false 
 value="
 .param VCC=3.3
-.param VIL=1.0
-.param VIH=2.0
-.param TR=10n
-.param TF=10n
 "}
 C {lab_pin.sym} 270 20 2 0 {name=p4 sig_type=std_logic lab=OUT_N}
-C {dac_bridge.sym} 190 20 0 0 {name=A2 dac_bridge_model= dac_buff}
-C {lab_pin.sym} 90 20 2 0 {name=p6 sig_type=std_logic lab=OUT_ND}
-C {adc_bridge.sym} -190 -20 0 0 {name=A3 adc_bridge_model= adc_buff}
-C {adc_bridge.sym} -190 20 0 0 {name=A4 adc_bridge_model= adc_buff}
-C {simulator_commands_shown.sym} 0 150 0 0 {name=BRIDGE_MODELS
+C {simulator_commands_shown.sym} 360 210 0 0 {name=BRIDGE_MODELS
 simulator=ngspice
 only_toplevel=false 
 value="
-.model adc_buff adc_bridge(in_low = 'VIL' in_high = 'VIH')
-.model dac_buff dac_bridge(t_rise = 'TR' t_fall = 'TF' out_low = 0.0 out_high = 'VCC')
+.model adc_buff_clk adc_bridge(in_low = 'VCC/2' in_high = 'VCC/2')
+
+.control
+pre_set auto_bridge_d_out =
++ ( \\".model auto_bridge_out bidi_bridge(direction=0 out_high='%g' t_rise=100n t_fall=100n)\\"
++   \\"auto_bridge_out%d [ %s ] [ %s ] null auto_bridge_out\\" )
+pre_set auto_bridge_d_in =
++ ( \\".model auto_bridge_in bidi_bridge(direction=1 in_low='%g/3' in_high='%g/3*2')\\"
++   \\"auto_bridge_in%d [ %s ] [ %s ] null auto_bridge_in\\" )
+.endc
 "}
-C {launcher.sym} 60 250 0 0 {name=h2
+C {launcher.sym} 60 440 0 0 {name=h2
 descr="See chapter 8.3 here"
 url=https://ngspice.sourceforge.io/docs/ngspice-manual.pdf}
+C {res.sym} 240 70 0 0 {name=R1
+value=1k
+footprint=1206
+device=resistor
+m=1}
+C {res.sym} 180 70 0 0 {name=R2
+value=1k
+footprint=1206
+device=resistor
+m=1}
+C {gnd.sym} 210 140 0 0 {name=l3 lab=GND}
+C {adc_bridge.sym} -170 20 0 0 {name=A1 adc_bridge_model= adc_buff_clk}
