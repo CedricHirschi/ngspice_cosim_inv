@@ -21,7 +21,7 @@ gtkwave: simulation/$(TOP).vcd
 	gtkwave $<
 
 xschem: simulation
-	$(HOOK_LIBVVP) && xschem -o $(PWD)/simulation $(TOP)_tb.sch
+	xschem -o $(PWD)/simulation $(TOP)_tb.sch
 
 install:
 	sudo mkdir /usr/local/lib/ngspice

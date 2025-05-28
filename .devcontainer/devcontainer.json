@@ -8,7 +8,9 @@
                 "bitwisecook.tcl",
                 "eirikpre.systemverilog",
                 "barakh.vscode-xschem-viewer",
-                "wavetrace.wavetrace"
+                "wavetrace.wavetrace",
+                "ms-python.python",
+                "ms-toolsai.jupyter"
             ],
             "settings": {
                 "files.associations": {
