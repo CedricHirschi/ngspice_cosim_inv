@@ -12,7 +12,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=3.56295e-05
+x1=4.46136e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -29,7 +29,7 @@ out
 out_n"
 y2=3.5
 digital=0
-x2=8.46979e-05
+x2=4.62244e-05
 rainbow=0}
 N -300 20 -300 60 {lab=CLK}
 N -300 20 -220 20 {lab=CLK}
@@ -53,12 +53,14 @@ C {vsource.sym} -460 90 0 0 {name=VTEST value="pulse 0 'VCC' 5100n 50n 50n 4900n
 C {gnd.sym} -300 160 0 0 {name=l1 lab=GND}
 C {gnd.sym} -460 160 0 0 {name=l2 lab=GND}
 C {simulator_commands_shown.sym} 360 -30 0 0 {name=COMMANDS only_toplevel=false value="
-.control
-  save all
-  tran 1n 50u
-  remzerovec
-  write inv_tb.raw
-.endc
+*.control
+*  save all
+*  tran 1n 50u
+*  remzerovec
+*  write inv_tb.raw
+*.endc
+.tran 1n 50u
+.save all
 "}
 C {lab_pin.sym} 270 -20 2 0 {name=p1 sig_type=std_logic lab=OUT}
 C {lab_pin.sym} -460 -20 0 0 {name=p2 sig_type=std_logic lab=IN}
@@ -78,10 +80,10 @@ simulator=ngspice
 only_toplevel=false 
 value="
 .param VCC=3.3
-.param VIL=0.5
-.param VIH=2.5
-.param TR=10p
-.param TF=10p
+.param VIL=1.0
+.param VIH=2.0
+.param TR=10n
+.param TF=10n
 "}
 C {lab_pin.sym} 270 20 2 0 {name=p4 sig_type=std_logic lab=OUT_N}
 C {dac_bridge.sym} 190 20 0 0 {name=A2 dac_bridge_model= dac_buff}

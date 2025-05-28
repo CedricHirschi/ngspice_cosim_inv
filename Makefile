@@ -1,14 +1,12 @@
 TOP = inv
 
-HOOK_LIBVVP = export LD_LIBRARY_PATH=/foss/tools/iverilog/lib:$LD_LIBRARY_PATH
-
 all: clean sim
 
 sim: simulation/$(TOP)
-	$(HOOK_LIBVVP) && cd simulation && ngspice -b $(TOP)_tb.spice
+	cd simulation && ngspice -b $(TOP)_tb.spice -r $(TOP)_tb.raw -o $(TOP)_tb.log
 
 simulation/adc.vcd: simulation/adc
-	$(HOOK_LIBVVP) && cd simulation && ngspice -b $(TOP)_tb.spice
+	cd simulation && ngspice -b $(TOP)_tb.spice -r $(TOP)_tb.raw -o $(TOP)_tb.log
 
 simulation:
 	mkdir -p simulation
@@ -24,6 +22,10 @@ gtkwave: simulation/$(TOP).vcd
 
 xschem: simulation
 	$(HOOK_LIBVVP) && xschem -o $(PWD)/simulation $(TOP)_tb.sch
+
+install:
+	sudo mkdir /usr/local/lib/ngspice
+	sudo cp /foss/tools/ngspice/lib/ngspice/ivlng.vpi /usr/local/lib/ngspice
 
 clean:
 	rm -rf simulation
