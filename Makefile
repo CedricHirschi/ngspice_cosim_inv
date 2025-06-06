@@ -24,8 +24,9 @@ xschem: simulation
 	xschem -o $(PWD)/simulation $(TOP)_tb.sch
 
 install:
-	sudo mkdir /usr/local/lib/ngspice
+	sudo mkdir -p /usr/local/lib/ngspice
 	sudo cp /foss/tools/ngspice/lib/ngspice/ivlng.vpi /usr/local/lib/ngspice
+	sudo cp /foss/tools/iverilog/lib/libvvp.so /foss/tools/ngspice/lib/ngspice
 
 clean:
 	rm -rf simulation
