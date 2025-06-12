@@ -1,4 +1,4 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -21,14 +21,14 @@ ylabmag=1.0
 node="clk
 in
 ref
-out1
-out2"
-color="4 5 6 7 8"
+out"
+color="4 5 6 9"
 dataset=-1
 unitx=1
 logx=0
 logy=0
-rawfile=$netlist_dir/comparator_tb.raw}
+rawfile=$netlist_dir/comparator_tb.raw
+digital=0}
 N 0 100 0 120 {lab=vss}
 N 0 -120 0 -100 {lab=vdd}
 N -500 180 -500 200 {lab=vdd}
@@ -39,16 +39,15 @@ N -240 40 -240 60 {lab=ref}
 N -240 40 -100 40 {lab=ref}
 N -540 -40 -540 60 {lab=in}
 N -540 -40 -100 -40 {lab=in}
-N 120 -20 280 -20 {lab=out1}
-N 200 20 280 20 {lab=out2}
-N 200 20 200 60 {lab=out2}
-N 80 20 200 20 {lab=out2}
-N 120 -20 120 60 {lab=out1}
-N 80 -20 120 -20 {lab=out1}
-N 120 120 120 140 {lab=GND}
-N 200 110 200 140 {lab=GND}
+N 80 -20 160 -20 {lab=out1}
+N 440 0 440 40 {lab=out}
+N 440 0 480 0 {lab=out}
+N 240 -20 280 -20 {lab=#net1}
+N 80 20 280 20 {lab=out2}
+N 400 0 440 0 {lab=out}
+N 440 100 440 120 {lab=GND}
 C {comparator.sym} 0 0 0 0 {}
-C {code_shown.sym} 460 90 0 0 {name=MODEL only_toplevel=true
+C {code_shown.sym} 460 170 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
@@ -71,7 +70,7 @@ C {gnd.sym} -500 260 0 0 {name=l3 lab=GND}
 C {gnd.sym} -420 260 0 0 {name=l4 lab=GND}
 C {lab_wire.sym} 0 120 2 0 {name=p1 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 0 -120 0 0 {name=p2 sig_type=std_logic lab=vdd}
-C {vsource.sym} -160 190 0 0 {name=Vclk value="dc 0 ac 0 pulse(0, 1.8, 1n, 100p, 100p, 1n, 2n ) "}
+C {vsource.sym} -160 190 0 0 {name=Vclk value="dc 0 ac 0 pulse(0, 1.8, 250p, 10p, 10p, 250p, 500p)"}
 C {gnd.sym} -160 220 0 0 {name=l1 lab=GND}
 C {lab_wire.sym} -120 0 0 0 {name=p3 sig_type=std_logic lab=clk}
 C {launcher.sym} -10 -340 0 0 {name=h5
@@ -79,22 +78,19 @@ descr="load waves"
 tclcommand="xschem raw_read $netlist_dir/comparator_tb.raw tran"
 }
 C {gnd.sym} -240 120 0 0 {name=l2 lab=GND}
-C {vsource.sym} -540 90 0 0 {name=Vin value="dc 0 ac 0 pulse(0, 1.8, 0, 8n, 8n, 0, 16n ) "}
+C {vsource.sym} -540 90 0 0 {name=Vin value="dc 0 ac 0 pulse(0, 1.8, 0, 3.5n, 3.5n, 1n, 8n)"}
 C {gnd.sym} -540 120 0 0 {name=l5 lab=GND}
 C {lab_wire.sym} -200 40 0 0 {name=p4 sig_type=std_logic lab=ref}
 C {lab_wire.sym} -200 -40 0 0 {name=p5 sig_type=std_logic lab=in}
-C {capa.sym} 120 90 0 0 {name=C1
-m=1
-value=1f
-footprint=1206
-device="ceramic capacitor"}
-C {capa.sym} 200 90 0 0 {name=C2
-m=1
-value=1f
-footprint=1206
-device="ceramic capacitor"}
-C {gnd.sym} 120 140 0 0 {name=l6 lab=GND}
-C {gnd.sym} 200 140 0 0 {name=l7 lab=GND}
-C {lab_wire.sym} 280 -20 0 0 {name=p8 sig_type=std_logic lab=out1}
-C {lab_wire.sym} 280 20 0 0 {name=p9 sig_type=std_logic lab=out2}
+C {lab_wire.sym} 120 -20 0 0 {name=p8 sig_type=std_logic lab=out1}
+C {lab_wire.sym} 120 20 0 0 {name=p9 sig_type=std_logic lab=out2}
 C {vsource.sym} -240 90 0 0 {name=Vref1 value="dc 1"}
+C {sg13g2_stdcells/sg13g2_inv_1.sym} 200 -20 0 0 {name=x1 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_and2_1.sym} 340 0 0 0 {name=x4 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {lab_wire.sym} 480 0 0 0 {name=p10 sig_type=std_logic lab=out}
+C {capa.sym} 440 70 0 0 {name=C3
+m=1
+value=1f
+footprint=1206
+device="ceramic capacitor"}
+C {gnd.sym} 440 120 0 0 {name=l8 lab=GND}
