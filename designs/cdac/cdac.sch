@@ -12,7 +12,7 @@ N 360 80 400 80 {lab=l3}
 N 400 30 400 80 {lab=l3}
 N 560 80 600 80 {lab=l4}
 N 600 30 600 80 {lab=l4}
-N 800 30 800 80 {lab=VSS}
+N 800 30 800 80 {lab=VDD}
 N 800 -80 800 -30 {lab=VIN}
 N 600 -80 800 -80 {lab=VIN}
 N 0 -80 -0 -30 {lab=VIN}
@@ -61,7 +61,6 @@ w=9.076e-6
 l=9.076e-6
 m=1
 spiceprefix=X}
-C {ipin.sym} 800 80 3 0 {name=p1 lab=VSS}
 C {ipin.sym} -160 -80 0 0 {name=p2 lab=VIN}
 C {ipin.sym} -160 270 0 0 {name=p3 lab=CTRL[0..3]}
 C {lab_pin.sym} -160 80 3 0 {name=p4 sig_type=std_logic lab=CTRL0}
@@ -74,4 +73,5 @@ C {lab_pin.sym} 400 60 2 0 {name=p10 sig_type=std_logic lab=l3
 }
 C {lab_pin.sym} 600 60 2 0 {name=p11 sig_type=std_logic lab=l4
 }
-C {ipin.sym} -160 240 0 0 {name=p12 lab=VDD}
+C {ipin.sym} 800 80 3 0 {name=p1 lab=VDD}
+C {ipin.sym} -160 240 0 0 {name=p12 lab=VSS}
