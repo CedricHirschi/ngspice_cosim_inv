@@ -34,15 +34,8 @@ N 260 240 300 240 {lab=comp}
 N 480 160 520 160 {lab=result_o[0..3]}
 N 480 180 520 180 {lab=ready_o}
 N 160 160 200 160 {lab=clk_i}
-N -250 -620 -250 -580 {lab=vdd}
-N -210 -620 -210 -580 {lab=vss}
-N -130 -520 -130 -180 {lab=sample}
-N -170 -520 -130 -520 {lab=sample}
-N -320 -520 -290 -520 {lab=vss}
-N -320 -520 -320 -500 {lab=vss}
 N -400 240 -360 240 {lab=rst_ni}
 N -280 240 -240 240 {lab=rst_i}
-N -230 -460 -230 -420 {lab=rst_i}
 N -230 -120 -230 -80 {lab=sample_o}
 N 480 200 520 200 {lab=sample_o}
 C {/workspaces/ngspice_cosim_inv/designs/tgate/tgate.sym} -230 -180 0 0 {name=x1}
@@ -80,13 +73,8 @@ C {lab_pin.sym} 130 -160 0 0 {name=p17 sig_type=std_logic lab=result_o[0..3]}
 C {opin.sym} 490 -160 0 0 {name=p27 lab=result_o[0..3]}
 C {adc_bridge.sym} 230 160 0 0 {name=A2 adc_bridge_model= adc_buff_clk}
 C {lab_wire.sym} 0 -180 0 0 {name=p28 sig_type=std_logic lab=sample}
-C {/workspaces/ngspice_cosim_inv/designs/tgate/tgate.sym} -230 -520 0 0 {name=x6}
-C {lab_pin.sym} -250 -620 1 0 {name=p29 sig_type=std_logic lab=vdd}
-C {lab_pin.sym} -210 -620 1 0 {name=p30 sig_type=std_logic lab=vss}
-C {lab_pin.sym} -320 -500 3 0 {name=p32 sig_type=std_logic lab=vss}
 C {sg13g2_stdcells/sg13g2_inv_1.sym} -320 240 0 0 {name=x7 VDD=VDD VSS=VSS prefix=sg13g2_ }
 C {lab_pin.sym} -240 240 2 0 {name=p31 sig_type=std_logic lab=rst_i}
-C {lab_pin.sym} -230 -420 3 0 {name=p33 sig_type=std_logic lab=rst_i}
 C {adc_vlog.sym} 380 240 0 0 {name=A1 model=adc
 device_model=".model adc d_cosim simulation=\\"ivlng\\" sim_args=[\\"adc\\"]"}
 C {lab_pin.sym} -230 -80 3 0 {name=p18 sig_type=std_logic lab=sample_o}

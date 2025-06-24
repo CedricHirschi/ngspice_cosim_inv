@@ -118,7 +118,7 @@ tclcommand="execute 1 sh -c \\"cd $netlist_dir; iverilog -g2012 -o adc [abs_sym_
 C {vsource.sym} -130 110 0 0 {name=V1 value="pulse(\{vss\}, \{vdd\}, \{0.5/f\}, 0, 0, \{0.5/f\}, \{1/f\})" savecurrent=false}
 C {vsource.sym} -260 110 0 0 {name=V2 value="pulse(\{vdd\}, \{vss\}, 0, 0, 0, \{1/f\}, \{20/f\})" savecurrent=false}
 C {vsource.sym} -390 110 0 0 {name=V3 value="pulse(\{vss\}, \{vdd\}, \{4/f\}, 0, 0, \{1/f\}, \{20/f\})" savecurrent=false}
-C {vsource.sym} -520 110 0 0 {name=V4 value="pulse(1, 0.5, \{50/f\}, 0, 0, \{50/f\}, \{100/f\})" savecurrent=true}
+C {vsource.sym} -520 110 0 0 {name=V4 value="pulse(1, 0.5, \{25/f\}, 0, 0, \{25/f\}, \{50/f\})" savecurrent=true}
 C {gnd.sym} -130 180 0 0 {name=l1 lab=GND}
 C {gnd.sym} -260 180 0 0 {name=l2 lab=GND}
 C {gnd.sym} -390 180 0 0 {name=l3 lab=GND}
@@ -134,7 +134,7 @@ C {simulator_commands_shown.sym} 780 -40 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.tran \{0.01/f\} \{100/f\}
+.tran \{0.01/f\} \{50/f\}
 .save all
 *.write comparator_tb.raw
 "}
