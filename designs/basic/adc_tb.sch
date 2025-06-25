@@ -12,19 +12,20 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.2505565e-08
-x2=1.2792468e-06
+x1=2.6658821e-08
+x2=4.3781409e-07
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
 node="rst_ni
+clk_i
 start_i
 x1.sample_o
-clk_i
 ready_o
-result_o;result_o0,result_o1,result_o2,result_o3"
-color="4 5 6 7 8 9"
+result_o;result_o0,result_o1,result_o2,result_o3
+dac_o;x1.dac_o0,x1.dac_o1,x1.dac_o2,x1.dac_o3"
+color="4 5 6 7 8 9 10"
 dataset=-1
 unitx=1
 logx=0
@@ -39,8 +40,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.2505565e-08
-x2=1.2792468e-06
+x1=2.6658821e-08
+x2=4.3781409e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -61,8 +62,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.2505565e-08
-x2=1.2792468e-06
+x1=2.6658821e-08
+x2=4.3781409e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -78,6 +79,50 @@ result_o1
 result_o2
 result_o3"
 y2=2}
+B 2 400 -1100 1200 -700 {flags=graph
+y1=-0.25
+y2=1.75
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=2.6658821e-08
+x2=4.3781409e-07
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+dataset=-1
+unitx=1
+logx=0
+logy=0
+digital=0
+color="4 6"
+node="x1.clk_n
+x1.comp"}
+B 2 400 -1500 1200 -1100 {flags=graph
+y1=-0.25
+y2=1.75
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=2.6658821e-08
+x2=4.3781409e-07
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+dataset=-1
+unitx=1
+logx=0
+logy=0
+digital=0
+color="4 6"
+node="x1.out1
+x1.out2"}
 N -130 50 -130 80 {lab=clk_i}
 N -130 50 -90 50 {lab=clk_i}
 N -260 30 -90 30 {lab=rst_ni}
@@ -95,30 +140,26 @@ N -440 300 -440 320 {lab=vss}
 N 10 90 10 130 {lab=vss}
 N 10 -130 10 -90 {lab=vdd}
 N 220 -30 300 -30 {lab=ready_o}
-N 380 100 380 140 {lab=result_o0}
 N 110 -50 300 -50 {lab=result_o[0..3]}
 N 380 340 380 380 {lab=GND}
 N 220 70 220 110 {lab=GND}
-N 440 100 440 140 {lab=result_o1}
 N 440 340 440 380 {lab=GND}
-N 500 100 500 140 {lab=result_o2}
 N 500 340 500 380 {lab=GND}
-N 560 100 560 140 {lab=result_o3}
 N 560 340 560 380 {lab=GND}
 N 220 -30 220 10 {lab=ready_o}
 N 110 -30 220 -30 {lab=ready_o}
-N 560 220 560 280 {lab=#net1}
-N 500 220 500 280 {lab=#net2}
-N 440 220 440 280 {lab=#net3}
-N 380 220 380 280 {lab=#net4}
+N 560 220 560 280 {lab=result_o3}
+N 500 220 500 280 {lab=result_o2}
+N 440 220 440 280 {lab=result_o1}
+N 380 220 380 280 {lab=result_o0}
 C {adc.sym} 10 0 0 0 {name=x1}
 C {launcher.sym} -60 -200 0 0 {name=h1
 descr="Build Icarus Object"
 tclcommand="execute 1 sh -c \\"cd $netlist_dir; iverilog -g2012 -o adc [abs_sym_path adc.sv]\\""}
 C {vsource.sym} -130 110 0 0 {name=V1 value="pulse(\{vss\}, \{vdd\}, \{0.5/f\}, 0, 0, \{0.5/f\}, \{1/f\})" savecurrent=false}
-C {vsource.sym} -260 110 0 0 {name=V2 value="pulse(\{vdd\}, \{vss\}, 0, 0, 0, \{1/f\}, \{20/f\})" savecurrent=false}
-C {vsource.sym} -390 110 0 0 {name=V3 value="pulse(\{vss\}, \{vdd\}, \{4/f\}, 0, 0, \{1/f\}, \{20/f\})" savecurrent=false}
-C {vsource.sym} -520 110 0 0 {name=V4 value="pulse(1, 0.5, \{25/f\}, 0, 0, \{25/f\}, \{50/f\})" savecurrent=true}
+C {vsource.sym} -260 110 0 0 {name=V2 value="pulse(\{vdd\}, \{vss\}, 0, 0, 0, \{1/f\})" savecurrent=false}
+C {vsource.sym} -390 110 0 0 {name=V3 value="pulse(\{vss\}, \{vdd\}, \{4/f\}, 0, 0, \{1/f\}, \{17/f\})" savecurrent=false}
+C {vsource.sym} -520 110 0 0 {name=V4 value="pulse(0.5, 1.4, \{6/f\}, 0, 0, \{17/f\}, \{34/f\})" savecurrent=true}
 C {gnd.sym} -130 180 0 0 {name=l1 lab=GND}
 C {gnd.sym} -260 180 0 0 {name=l2 lab=GND}
 C {gnd.sym} -390 180 0 0 {name=l3 lab=GND}
@@ -134,7 +175,7 @@ C {simulator_commands_shown.sym} 780 -40 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.tran \{0.01/f\} \{50/f\}
+.tran \{0.05/f\} \{34/f\}
 .save all
 *.write comparator_tb.raw
 "}
@@ -196,13 +237,13 @@ value=4f
 footprint=1206
 device="ceramic capacitor"}
 C {gnd.sym} 560 380 0 0 {name=l11 lab=GND}
-C {lab_wire.sym} 380 100 1 0 {name=p11 sig_type=std_logic lab=result_o0
+C {lab_wire.sym} 380 220 1 0 {name=p11 sig_type=std_logic lab=result_o0
 }
-C {lab_wire.sym} 440 100 1 0 {name=p12 sig_type=std_logic lab=result_o1
+C {lab_wire.sym} 440 220 1 0 {name=p12 sig_type=std_logic lab=result_o1
 }
-C {lab_wire.sym} 500 100 1 0 {name=p13 sig_type=std_logic lab=result_o2
+C {lab_wire.sym} 500 220 1 0 {name=p13 sig_type=std_logic lab=result_o2
 }
-C {lab_wire.sym} 560 100 1 0 {name=p14 sig_type=std_logic lab=result_o3
+C {lab_wire.sym} 560 220 1 0 {name=p14 sig_type=std_logic lab=result_o3
 }
 C {simulator_commands_shown.sym} 780 290 0 0 {name=BRIDGE_MODELS
 simulator=ngspice
@@ -219,7 +260,3 @@ pre_set auto_bridge_d_in =
 +   \\"auto_bridge_in%d [ %s ] [ %s ] null auto_bridge_in\\" )
 .endc
 "}
-C {sg13g2_stdcells/sg13g2_buf_1.sym} 380 180 1 0 {name=x2 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_buf_1.sym} 440 180 1 0 {name=x3 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_buf_1.sym} 500 180 1 0 {name=x4 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_buf_1.sym} 560 180 1 0 {name=x5 VDD=VDD VSS=VSS prefix=sg13g2_ }

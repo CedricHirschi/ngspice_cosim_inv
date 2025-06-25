@@ -1,99 +1,85 @@
-`timescale 1ns / 1ps
+`timescale 1ns/1ps
 
 module adc #(
-    parameter RESOLUTION = 4
+    parameter integer RESOLUTION     = 4
 ) (
-    input  logic clk_i,
-    input  logic start_i,
-    input  logic rst_ni,
-    input  logic comp_i,
-    output logic rdy_o,
-    output logic sample_o,
-    output logic [RESOLUTION - 1:0] dac_o
+    input  logic                    clk_i,
+    input  logic                    start_i,   // assert or pulse high to launch conversion
+    input  logic                    rst_ni,
+    input  logic                    comp_i,    // 1 → VIN > VDAC
+    output logic                    rdy_o,     // one cycle at end of conversion
+    output logic                    sample_o,  // high while sampling
+    output logic [RESOLUTION-1:0]   dac_o      // current DAC word
 );
-
-    // State definitions
-    typedef enum logic [1:0] {
-        IDLE,
-        SAMPLE,
-        CONVERT,
-        DONE
-    } state_e;
-
-    // Internal signals
-    state_e state_q, state_d;
-    logic [RESOLUTION - 1:0] mask_q, mask_d;
-    logic [RESOLUTION - 1:0] result_q, result_d;
-    logic [7:0] sample_count_q, sample_count_d;
-
-    always_ff @(posedge clk_i or negedge rst_ni) begin
-        if (!rst_ni) begin
-            state_q  <= IDLE;
-            mask_q   <= '0;
-            result_q <= '0;
-            sample_count_q <= '0;
-        end else begin
-            state_q  <= state_d;
-            mask_q   <= mask_d;
-            result_q <= result_d;
-            sample_count_q <= sample_count_d;
-        end
-    end
-
     initial begin
-        $display("SAR ADC initialized with resolution: %d bits", RESOLUTION);
-        // Dump to VCD file for simulation
         $dumpfile("adc.vcd");
         $dumpvars(0, adc);
     end
 
-    // SAR Conversion Logic
-    always_comb begin
-        // Default assignments to avoid latches
-        state_d  = state_q;
-        mask_d   = mask_q;
-        result_d = result_q;
-        sample_count_d = sample_count_q;
+    typedef enum logic [1:0] { 
+        IDLE,
+        SAMPLE,
+        CONVERT,
+        DONE
+    } state_t;
+    state_t state;
+    logic [RESOLUTION-1:0] sr;
 
-        case (state_q)
-            IDLE: begin
-                if (start_i) begin
-                    state_d  = SAMPLE;
-                    mask_d   = '0;
-                    result_d = '0;
-                    sample_count_d = 0;
-                end
-            end
+    always_ff @(posedge clk_i or negedge rst_ni) begin
+        if (!rst_ni) begin
+            state <= IDLE;
+            sr <= 0;
+            dac_o <= 0;
+        end else begin
+            case (state)
+                SAMPLE: begin
+                    sr[RESOLUTION-1] <= 1;
+                    dac_o <= sr;
 
-            SAMPLE: begin
-                if (sample_count_q < 5) begin
-                    sample_count_d = sample_count_q + 1;
-                end else begin
-                    state_d = CONVERT;
-                    sample_count_d = 0; // Reset sample count after sampling
-                    mask_d  = '1 << (RESOLUTION - 1); // Start with MSB set
-                end
-            end
-
-            CONVERT: begin
-                mask_d = mask_q >> 1;
-                if (!comp_i) begin
-                    result_d = result_q | mask_q;
+                    state <= CONVERT;
                 end
 
-                if (mask_d == '0) begin
-                    state_d = DONE;
-                end
-            end
+                CONVERT: begin
+                    if (sr != 0) begin
+                        if (comp_i) begin
+                            // Below threshold, revert previous bit
+                            dac_o <= (dac_o & ~(sr << 1)) | sr;
+                        end else begin
+                            // Above threshold, keep current bit
+                            dac_o <= dac_o | sr;
+                        end
 
-            DONE: begin
-                state_d = IDLE;
-            end
-        endcase
+                        // Shift right to process next bit
+                        sr <= sr >> 1;
+
+                        if (sr == 1) begin
+                            state <= DONE;
+                        end
+                    end
+                end
+
+                DONE: begin
+                    state <= IDLE;
+                    sr <= 0;
+                    dac_o <= 0;
+                end
+
+                IDLE: begin
+                    if (start_i) begin
+                        state <= SAMPLE;
+                    end
+                end
+
+                default: begin
+                    state <= IDLE;
+                    sr <= 0;
+                    dac_o <= 0;
+                end
+            endcase
+        end
     end
 
-    assign dac_o = result_q | mask_q;
-    assign rdy_o = (state_q == DONE);
-    assign sample_o = (state_q == SAMPLE);
+    assign sample_o = (state == SAMPLE) || (state == IDLE);
+    assign rdy_o = (state == DONE);
 
 endmodule

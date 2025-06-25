@@ -156,7 +156,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -20 430 0 0 {name=M11
 l=0.2u
-w=0.6u
+w=0.8u
 ng=1
 m=1
 model=sg13_lv_nmos
