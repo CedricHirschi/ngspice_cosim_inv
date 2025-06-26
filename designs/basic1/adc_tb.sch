@@ -12,8 +12,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-2.4042087e-06
-x2=6.0494874e-05
+x1=1.4979163e-05
+x2=1.9219009e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -41,8 +41,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-2.4042087e-06
-x2=6.0494874e-05
+x1=1.4979163e-05
+x2=1.9219009e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -57,6 +57,30 @@ node="x1.sample
 in_ai
 vdd
 x1.comp_a"}
+B 2 -400 -1500 400 -1100 {flags=graph
+y1=0
+y2=1.5
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=1.4979163e-05
+x2=1.9219009e-05
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+dataset=-1
+unitx=1
+logx=0
+logy=0
+digital=1
+color="4 5 6 7"
+node="x1.comp_a
+x1.comp_ideal
+clk_comp_i
+clk_digital_i"}
 N -130 50 -130 290 {lab=clk_comp_i}
 N -130 50 -90 50 {lab=clk_comp_i}
 N -260 10 -90 10 {lab=rst_ni}
@@ -112,7 +136,7 @@ C {simulator_commands_shown.sym} 780 -40 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.tran \{0.05/f\} \{52/f\}
+.tran \{0.01/f\} \{52/f\}
 .save all
 *.write comparator_tb.raw
 "}
@@ -197,6 +221,6 @@ pre_set auto_bridge_d_in =
 +   \\"auto_bridge_in%d [ %s ] [ %s ] null auto_bridge_in\\" )
 .endc
 "}
-C {vsource.sym} -130 320 0 0 {name=V5 value="pulse(\{vss\}, \{vdd\}, \{1.2/f\}, 0, 0, \{0.5/f\}, \{1/f\})" savecurrent=false}
+C {vsource.sym} -130 320 0 0 {name=V5 value="pulse(\{vss\}, \{vdd\}, \{0.2/f\}, 0, 0, \{0.5/f\}, \{1/f\})" savecurrent=false}
 C {gnd.sym} -130 390 0 0 {name=l12 lab=GND}
 C {lab_wire.sym} -100 50 0 0 {name=p15 sig_type=std_logic lab=clk_comp_i}

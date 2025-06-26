@@ -140,7 +140,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -100 330 0 0 {name=M9
 l=2u
-w=15u
+w=7u
 ng=2
 m=1
 model=sg13_lv_nmos
@@ -148,7 +148,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 100 330 0 1 {name=M10
 l=2u
-w=15u
+w=7u
 ng=2
 m=1
 model=sg13_lv_nmos
