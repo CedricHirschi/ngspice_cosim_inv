@@ -1,4 +1,4 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
@@ -12,7 +12,7 @@ N 360 80 400 80 {lab=l3}
 N 400 30 400 80 {lab=l3}
 N 560 80 600 80 {lab=l4}
 N 600 30 600 80 {lab=l4}
-N 800 30 800 80 {lab=VDD}
+N 800 30 800 80 {lab=VSS}
 N 800 -80 800 -30 {lab=VIN}
 N 600 -80 800 -80 {lab=VIN}
 N 0 -80 -0 -30 {lab=VIN}
@@ -51,10 +51,6 @@ w=9.076e-6
 l=9.076e-6
 m=1
 spiceprefix=X}
-C {sg13g2_stdcells/sg13g2_inv_1.sym} -80 80 0 0 {name=x1 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_inv_1.sym} 120 80 0 0 {name=x2 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_inv_1.sym} 320 80 0 0 {name=x3 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_inv_1.sym} 520 80 0 0 {name=x4 VDD=VDD VSS=VSS prefix=sg13g2_ }
 C {sg13g2_pr/cap_cmim.sym} 800 0 0 0 {name=C5
 model=cap_cmim
 w=9.076e-6
@@ -73,5 +69,9 @@ C {lab_pin.sym} 400 60 2 0 {name=p10 sig_type=std_logic lab=l3
 }
 C {lab_pin.sym} 600 60 2 0 {name=p11 sig_type=std_logic lab=l4
 }
-C {ipin.sym} 800 80 3 0 {name=p1 lab=VDD}
-C {ipin.sym} -160 240 0 0 {name=p12 lab=VSS}
+C {ipin.sym} 800 80 3 0 {name=p1 lab=VSS}
+C {ipin.sym} -160 240 0 0 {name=p12 lab=VDD}
+C {sg13g2_stdcells/sg13g2_inv_2.sym} -80 80 0 0 {name=x1 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_inv_2.sym} 120 80 0 0 {name=x2 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_inv_2.sym} 320 80 0 0 {name=x3 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_inv_2.sym} 520 80 0 0 {name=x4 VDD=VDD VSS=VSS prefix=sg13g2_ }

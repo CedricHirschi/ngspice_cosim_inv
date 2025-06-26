@@ -8,7 +8,7 @@ N -130 -180 170 -180 {lab=sample}
 N -410 -180 -290 -180 {lab=in_ai}
 N -400 280 -360 280 {lab=clk_i}
 N -280 280 -240 280 {lab=clk_n}
-N -130 60 -90 60 {lab=clk_i}
+N -130 60 -90 60 {lab=clk_n}
 N -130 100 -90 100 {lab=vss}
 N -130 100 -130 200 {lab=vss}
 N -130 200 10 200 {lab=vss}
@@ -35,34 +35,31 @@ N -280 240 -240 240 {lab=rst_i}
 N -230 -120 -230 -80 {lab=sample_o}
 N 480 200 520 200 {lab=sample_o}
 N 90 80 160 80 {lab=out2}
-N 90 40 300 40 {lab=out1}
-N 260 20 300 20 {lab=clk_n}
-N 260 60 300 60 {lab=rst_ni}
-N 480 20 520 20 {lab=comp}
-N 440 -290 460 -290 {lab=rst_ni}
-N 440 -360 440 -290 {lab=rst_ni}
-N 440 -360 460 -360 {lab=rst_ni}
-N 440 -430 440 -360 {lab=rst_ni}
-N 440 -430 460 -430 {lab=rst_ni}
-N 440 -500 440 -430 {lab=rst_ni}
-N 440 -500 460 -500 {lab=rst_ni}
-N 440 -600 440 -500 {lab=rst_ni}
-N 420 -330 460 -330 {lab=#net2}
-N 420 -400 420 -330 {lab=#net2}
-N 420 -400 460 -400 {lab=#net2}
-N 420 -470 420 -400 {lab=#net2}
-N 420 -470 460 -470 {lab=#net2}
-N 420 -540 420 -470 {lab=#net2}
-N 420 -540 460 -540 {lab=#net2}
-N 420 -600 420 -540 {lab=#net2}
-N 380 -520 460 -520 {lab=dac_o0}
-N 380 -450 460 -450 {lab=dac_o1}
-N 380 -380 460 -380 {lab=dac_o2}
-N 380 -310 460 -310 {lab=dac_o3}
-N 640 -540 680 -540 {lab=result_o0}
-N 640 -470 680 -470 {lab=result_o1}
-N 640 -400 680 -400 {lab=result_o2}
-N 640 -330 680 -330 {lab=result_o3}
+N 90 40 130 40 {lab=comp}
+N 680 -290 700 -290 {lab=rst_ni}
+N 680 -360 680 -290 {lab=rst_ni}
+N 680 -360 700 -360 {lab=rst_ni}
+N 680 -430 680 -360 {lab=rst_ni}
+N 680 -430 700 -430 {lab=rst_ni}
+N 680 -500 680 -430 {lab=rst_ni}
+N 680 -500 700 -500 {lab=rst_ni}
+N 680 -600 680 -500 {lab=rst_ni}
+N 660 -330 700 -330 {lab=ready_o}
+N 660 -400 660 -330 {lab=ready_o}
+N 660 -400 700 -400 {lab=ready_o}
+N 660 -470 660 -400 {lab=ready_o}
+N 660 -470 700 -470 {lab=ready_o}
+N 660 -540 660 -470 {lab=ready_o}
+N 660 -540 700 -540 {lab=ready_o}
+N 660 -600 660 -540 {lab=ready_o}
+N 620 -520 700 -520 {lab=dac_o0}
+N 620 -450 700 -450 {lab=dac_o1}
+N 620 -380 700 -380 {lab=dac_o2}
+N 880 -540 920 -540 {lab=result_o0}
+N 880 -470 920 -470 {lab=result_o1}
+N 880 -400 920 -400 {lab=result_o2}
+N 880 -330 920 -330 {lab=result_o3}
+N 620 -310 700 -310 {lab=dac_o3}
 C {/workspaces/ngspice_cosim_inv/designs/tgate/tgate.sym} -230 -180 0 0 {name=x1}
 C {/workspaces/ngspice_cosim_inv/designs/comparator/comparator.sym} 10 60 0 0 {name=x2}
 C {/workspaces/ngspice_cosim_inv/designs/cdac/cdac.sym} 210 -170 0 0 {name=x3}
@@ -79,7 +76,7 @@ C {lab_pin.sym} 10 240 3 0 {name=p10 sig_type=std_logic lab=vss}
 C {lab_pin.sym} 210 -80 3 0 {name=p13 sig_type=std_logic lab=vss}
 C {lab_pin.sym} 210 -260 1 0 {name=p14 sig_type=std_logic lab=vdd}
 C {ipin.sym} -400 240 0 0 {name=p15 lab=rst_ni}
-C {lab_pin.sym} 520 20 2 0 {name=p16 sig_type=std_logic lab=comp}
+C {lab_pin.sym} 130 40 2 0 {name=p16 sig_type=std_logic lab=comp}
 C {lab_pin.sym} 160 160 0 0 {name=p19 sig_type=std_logic lab=clk_i}
 C {lab_pin.sym} 260 180 0 0 {name=p20 sig_type=std_logic lab=rst_ni}
 C {ipin.sym} -400 200 0 0 {name=p21 lab=start_i}
@@ -99,22 +96,18 @@ device_model=".model adc d_cosim simulation=\\"ivlng\\" sim_args=[\\"adc\\"]"}
 C {lab_pin.sym} -230 -80 3 0 {name=p18 sig_type=std_logic lab=sample_o}
 C {lab_pin.sym} 520 200 2 0 {name=p34 sig_type=std_logic lab=sample_o}
 C {lab_wire.sym} 160 80 0 0 {name=p30 sig_type=std_logic lab=out2}
-C {lab_pin.sym} -130 60 0 0 {name=p4 sig_type=std_logic lab=clk_i}
-C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 390 40 0 0 {name=x5 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {lab_wire.sym} 160 40 0 0 {name=p11 sig_type=std_logic lab=out1}
-C {lab_pin.sym} 260 60 0 0 {name=p29 sig_type=std_logic lab=rst_ni}
-C {lab_pin.sym} 260 20 0 0 {name=p12 sig_type=std_logic lab=clk_n}
-C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 550 -520 0 0 {name=x6 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 550 -450 0 0 {name=x8 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 550 -380 0 0 {name=x9 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 550 -310 0 0 {name=x10 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {lab_pin.sym} 440 -600 1 0 {name=p33 sig_type=std_logic lab=rst_ni}
-C {lab_pin.sym} 380 -520 0 0 {name=p35 sig_type=std_logic lab=dac_o0}
-C {lab_pin.sym} 380 -450 0 0 {name=p36 sig_type=std_logic lab=dac_o1}
-C {lab_pin.sym} 380 -380 0 0 {name=p37 sig_type=std_logic lab=dac_o2}
-C {lab_pin.sym} 380 -310 0 0 {name=p38 sig_type=std_logic lab=dac_o3}
-C {lab_pin.sym} 680 -540 2 0 {name=p39 sig_type=std_logic lab=result_o0}
-C {lab_pin.sym} 680 -470 2 0 {name=p40 sig_type=std_logic lab=result_o1}
-C {lab_pin.sym} 680 -400 2 0 {name=p41 sig_type=std_logic lab=result_o2}
-C {lab_pin.sym} 680 -330 2 0 {name=p42 sig_type=std_logic lab=result_o3}
-C {lab_pin.sym} 420 -600 1 0 {name=p32 sig_type=std_logic lab=ready_o}
+C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 790 -520 0 0 {name=x6 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 790 -450 0 0 {name=x8 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 790 -380 0 0 {name=x9 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 790 -310 0 0 {name=x10 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {lab_pin.sym} 680 -600 1 0 {name=p33 sig_type=std_logic lab=rst_ni}
+C {lab_pin.sym} 620 -520 0 0 {name=p35 sig_type=std_logic lab=dac_o0}
+C {lab_pin.sym} 620 -450 0 0 {name=p36 sig_type=std_logic lab=dac_o1}
+C {lab_pin.sym} 620 -380 0 0 {name=p37 sig_type=std_logic lab=dac_o2}
+C {lab_pin.sym} 620 -310 0 0 {name=p38 sig_type=std_logic lab=dac_o3}
+C {lab_pin.sym} 920 -540 2 0 {name=p39 sig_type=std_logic lab=result_o0}
+C {lab_pin.sym} 920 -470 2 0 {name=p40 sig_type=std_logic lab=result_o1}
+C {lab_pin.sym} 920 -400 2 0 {name=p41 sig_type=std_logic lab=result_o2}
+C {lab_pin.sym} 920 -330 2 0 {name=p42 sig_type=std_logic lab=result_o3}
+C {lab_pin.sym} 660 -600 1 0 {name=p32 sig_type=std_logic lab=ready_o}
+C {lab_pin.sym} -130 60 0 0 {name=p4 sig_type=std_logic lab=clk_n}

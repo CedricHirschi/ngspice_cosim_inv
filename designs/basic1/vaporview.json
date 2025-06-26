@@ -1,0 +1,64 @@
+{
+  "extensionVersion": "1.3.4",
+  "fileName": "/workspaces/ngspice_cosim_inv/designs/basic1/simulation/adc.vcd",
+  "markerTime": null,
+  "altMarkerTime": null,
+  "selectedSignal": {
+    "name": "adc.comp_i",
+    "numberFormat": "hexadecimal",
+    "msb": -1,
+    "lsb": -1
+  },
+  "zoomRatio": 0.00012746692453078986,
+  "scrollLeft": 119.49994285965454,
+  "displayedSignals": [
+    {
+      "netlistId": 0,
+      "name": "adc.clk_i",
+      "numberFormat": "binary",
+      "colorIndex": 0,
+      "renderType": "binary",
+      "valueLinkCommand": ""
+    },
+    {
+      "netlistId": 1,
+      "name": "adc.comp_i",
+      "numberFormat": "binary",
+      "colorIndex": 2,
+      "renderType": "binary",
+      "valueLinkCommand": ""
+    },
+    {
+      "netlistId": 10,
+      "name": "adc.dac_q",
+      "numberFormat": "hexadecimal",
+      "colorIndex": 1,
+      "renderType": "multiBit",
+      "valueLinkCommand": ""
+    },
+    {
+      "netlistId": 14,
+      "name": "adc.result_q",
+      "numberFormat": "hexadecimal",
+      "colorIndex": 3,
+      "renderType": "multiBit",
+      "valueLinkCommand": ""
+    },
+    {
+      "netlistId": 15,
+      "name": "adc.state_d",
+      "numberFormat": "hexadecimal",
+      "colorIndex": 0,
+      "renderType": "multiBit",
+      "valueLinkCommand": ""
+    },
+    {
+      "netlistId": 16,
+      "name": "adc.state_q",
+      "numberFormat": "hexadecimal",
+      "colorIndex": 0,
+      "renderType": "multiBit",
+      "valueLinkCommand": ""
+    }
+  ]
+}

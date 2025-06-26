@@ -11,7 +11,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.188201e-11
+x1=-1.2469516e-09
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -28,17 +28,16 @@ digital=0
 rainbow=0
 y2=1.75
 mode=Line
-x2=2.6312494e-08}
+x2=7.883609e-09}
 B 2 -400 -1170 400 -770 {flags=graph
-y1=-2
-y2=2
+y1=-15m
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.188201e-11
-x2=2.6312494e-08
+x1=-1.2469516e-09
+x2=7.883609e-09
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -49,7 +48,7 @@ dataset=-1
 unitx=n
 logx=0
 logy=0
-}
+y2=15m}
 B 2 400 -770 1200 -370 {flags=graph
 y1=-0.5e-04
 y2=3e-4
@@ -58,8 +57,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.188201e-11
-x2=2.6312494e-08
+x1=-1.2469516e-09
+x2=7.883609e-09
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -86,11 +85,10 @@ N 400 0 440 0 {lab=out}
 N 440 100 440 120 {lab=GND}
 N -450 40 -100 40 {lab=in_n}
 N -450 30 -450 40 {lab=in_n}
-N -240 -40 -100 -40 {lab=in_p}
-N -240 -120 -240 -40 {lab=in_p}
-N -450 -120 -240 -120 {lab=in_p}
-N -450 -120 -450 -110 {lab=in_p}
-N -450 -50 -450 -30 {lab=#net2}
+N -450 -50 -450 -30 {lab=in_p}
+N -350 -40 -100 -40 {lab=in_p}
+N -350 -50 -350 -40 {lab=in_p}
+N -450 -50 -350 -50 {lab=in_p}
 C {comparator.sym} 0 0 0 0 {}
 C {code_shown.sym} 600 -170 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
@@ -102,7 +100,7 @@ C {simulator_commands_shown.sym} 600 -30 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.tran 1e-12 \{4/f\}
+.tran \{0.001/f\} \{8/f\}
 .save all
 * .write comparator_tb.raw
 "}
@@ -116,14 +114,14 @@ C {gnd.sym} -500 260 0 0 {name=l3 lab=GND}
 C {gnd.sym} -420 260 0 0 {name=l4 lab=GND}
 C {lab_wire.sym} 0 120 2 0 {name=p1 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 0 -120 0 0 {name=p2 sig_type=std_logic lab=vdd}
-C {vsource.sym} -160 190 0 0 {name=Vclk value="dc 0 ac 0 pulse(\{vss\}, \{vdd\}, \{0.5/f\}, \{0.1/f\}, \{0.1/f\}, \{0.4/f\}, \{1/f\})"}
+C {vsource.sym} -160 190 0 0 {name=Vclk value="dc 0 ac 0 pulse(\{vss\}, \{vdd\}, \{0.5/f\}, 1f, 1f, \{0.5/f\}, \{1/f\})"}
 C {gnd.sym} -160 220 0 0 {name=l1 lab=GND}
 C {lab_wire.sym} -120 0 0 0 {name=p3 sig_type=std_logic lab=clk}
 C {launcher.sym} -10 -340 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/comparator_tb.raw tran"
 }
-C {vsource.sym} -450 0 0 0 {name=Vin value="dc 0 ac 0 pulse(1.5, 1.5, \{1.25/f\}, 1f, 1f, \{1/f\}, \{2/f\})"}
+C {vsource.sym} -450 0 0 0 {name=Vin value="dc 0 ac 0 pulse(-5m, 10m, 1f, \{4/f\}, \{4/f\}, 1f, \{8/f\})"}
 C {lab_wire.sym} -200 40 0 0 {name=p4 sig_type=std_logic lab=in_n}
 C {lab_wire.sym} -200 -40 0 0 {name=p5 sig_type=std_logic lab=in_p
 }
@@ -143,6 +141,5 @@ only_toplevel=false
 value="
 .param vss=0.0
 .param vdd=1.5
-.param f=80Meg
+.param f=500Meg
 "}
-C {vsource.sym} -450 -80 0 0 {name=Vnoise value="trnoise(100m 1e-12)"}
