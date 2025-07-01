@@ -1,7 +1,7 @@
 v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {type=primitive
-format="@name [ @@clk_i @@start_i @@rst_ni @@comp_i ] [ @@rdy_o @@sample_o @@dac_o[0..3] @@result_o[0..3] ] @model"
+format="@name [ @@clk_i @@start_i @@rst_ni @@comp_i ] [ @@rdy_o @@sample_o @@dac_o[0..7] @@result_o[0..7] ] @model"
 template="name=A1 model=adc device_model=\\".model dut d_cosim simulation=\\\\"ivlng\\\\" sim_args=[\\\\"adc\\\\"]\\""
 }
 V {}
@@ -23,20 +23,20 @@ B 5 -82.5 -42.5 -77.5 -37.5 {name=start_i
 dir=inout}
 B 5 -82.5 -2.5 -77.5 2.5 {name=comp_i
 dir=inout}
-B 5 137.5 -62.5 142.5 -57.5 {name=dac_o[0..3]
+B 5 137.5 -62.5 142.5 -57.5 {name=dac_o[0..7]
 dir=inout}
 B 5 137.5 -42.5 142.5 -37.5 {name=rdy_o
 dir=inout}
 B 5 137.5 -22.5 142.5 -17.5 {name=sample_o
 dir=inout}
-B 5 137.5 -82.5 142.5 -77.5 {name=result_o[0..3]
+B 5 137.5 -82.5 142.5 -77.5 {name=result_o[0..7]
 dir=inout}
 P 4 5 -60 -100 -60 20 120 20 120 -100 -60 -100 {}
 T {clk_i} -50 -90 0 0 0.3 0.3 {}
 T {rst_ni} -50 -70 0 0 0.3 0.3 {}
 T {start_i} -50 -50 0 0 0.3 0.3 {}
 T {comp_i} -50 -10 0 0 0.3 0.3 {}
-T {dac_o[0..3]} 30 -70 0 0 0.3 0.3 {}
+T {dac_o[0..7]} 30 -70 0 0 0.3 0.3 {}
 T {rdy_o} 70 -50 0 0 0.3 0.3 {}
 T {sample_o} 40 -30 0 0 0.3 0.3 {}
-T {result_o[0..3]} 10 -90 0 0 0.3 0.3 {}
+T {result_o[0..7]} 10 -90 0 0 0.3 0.3 {}

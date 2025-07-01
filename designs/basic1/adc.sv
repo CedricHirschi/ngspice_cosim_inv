@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 
 module adc #(
-    parameter integer RESOLUTION     = 4
+    parameter integer RESOLUTION     = 8
 ) (
     input  logic                    clk_i,
     input  logic                    start_i,

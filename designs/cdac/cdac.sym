@@ -1,4 +1,4 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {type=subcircuit
 format="@name @pinlist @symname"
@@ -13,7 +13,7 @@ L 4 -40 -50 40 -50 {}
 L 4 -40 -50 -40 50 {}
 B 5 -42.5 -12.5 -37.5 -7.5 {name=VIN
 dir=in}
-B 5 -42.5 7.5 -37.5 12.5 {name=CTRL[0..3]
+B 5 -42.5 7.5 -37.5 12.5 {name=CTRL[0..7]
 dir=in}
 B 5 -2.5 47.5 2.5 52.5 {name=VSS
 dir=in}

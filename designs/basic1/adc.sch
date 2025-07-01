@@ -8,16 +8,16 @@ N -300 -280 -300 -240 {lab=vdd}
 N -260 -280 -260 -240 {lab=vss}
 N 210 -120 210 -80 {lab=vss}
 N 210 -260 210 -220 {lab=vdd}
-N 130 -160 170 -160 {lab=dac_o[0..3]}
+N 130 -160 170 -160 {lab=dac_o[0..7]}
 N 260 160 300 160 {lab=#net1}
 N 260 180 300 180 {lab=rst_ni}
 N 260 200 300 200 {lab=start_i}
-N 260 240 300 240 {lab=comp}
+N 260 240 300 240 {lab=comp_ideal}
 N 160 160 200 160 {lab=clk_digital_i}
 N -280 -120 -280 -80 {lab=sample_o}
 N 100 40 140 40 {lab=comp}
-N 520 160 560 160 {lab=result_o[0..3]}
-N 520 180 560 180 {lab=dac_o[0..3]}
+N 520 160 560 160 {lab=result_o[0..7]}
+N 520 180 560 180 {lab=dac_o[0..7]}
 N 520 200 560 200 {lab=ready_o}
 N 520 220 560 220 {lab=sample_o}
 N -410 -180 -340 -180 {lab=in_ai}
@@ -25,13 +25,13 @@ N -220 -180 170 -180 {lab=sample}
 N 0 40 40 40 {lab="%vd(sample vdd)"}
 N -40 400 -0 400 {lab=clk_comp_i}
 N -40 440 -0 440 {lab=vdd}
-N -40 360 0 360 {lab=sample}
 N 100 500 100 540 {lab=vss}
 N 100 260 100 300 {lab=vdd}
 N 560 400 600 400 {lab=comp_ideal}
 N 180 420 440 420 {lab=comp_ideal_2}
 N 420 380 440 380 {lab=#net2}
 N 180 380 340 380 {lab=comp_ideal_1}
+N -40 360 -0 360 {lab=sample}
 C {/workspaces/ngspice_cosim_inv/designs/tgate/tgate.sym} -280 -180 0 0 {name=x1}
 C {/workspaces/ngspice_cosim_inv/designs/cdac/cdac.sym} 210 -170 0 0 {name=x3}
 C {ipin.sym} -410 -180 0 0 {name=p1 lab=in_ai}
@@ -49,11 +49,11 @@ C {lab_pin.sym} 260 180 0 0 {name=p20 sig_type=std_logic lab=rst_ni}
 C {ipin.sym} -400 200 0 0 {name=p21 lab=start_i}
 C {lab_pin.sym} 260 240 0 0 {name=p22 sig_type=std_logic lab=comp_ideal}
 C {lab_pin.sym} 260 200 0 0 {name=p23 sig_type=std_logic lab=start_i}
-C {lab_pin.sym} 560 180 2 0 {name=p24 sig_type=std_logic lab=dac_o[0..3]}
+C {lab_pin.sym} 560 180 2 0 {name=p24 sig_type=std_logic lab=dac_o[0..7]}
 C {lab_pin.sym} 560 200 2 0 {name=p25 sig_type=std_logic lab=ready_o}
 C {opin.sym} 490 -140 0 0 {name=p26 lab=ready_o}
-C {lab_pin.sym} 130 -160 0 0 {name=p17 sig_type=std_logic lab=dac_o[0..3]}
-C {opin.sym} 490 -160 0 0 {name=p27 lab=result_o[0..3]}
+C {lab_pin.sym} 130 -160 0 0 {name=p17 sig_type=std_logic lab=dac_o[0..7]}
+C {opin.sym} 490 -160 0 0 {name=p27 lab=result_o[0..7]}
 C {adc_bridge.sym} 230 160 0 0 {name=A2 adc_bridge_model= adc_buff_clk}
 C {lab_wire.sym} -130 -180 0 0 {name=p28 sig_type=std_logic lab=sample}
 C {adc_vlog.sym} 380 240 0 0 {name=A1 model=adc
@@ -61,7 +61,7 @@ device_model=".model adc d_cosim simulation=\\"ivlng\\" sim_args=[\\"adc\\"]"}
 C {lab_pin.sym} -280 -80 3 0 {name=p18 sig_type=std_logic lab=sample_o}
 C {lab_pin.sym} 560 220 2 0 {name=p34 sig_type=std_logic lab=sample_o}
 C {ipin.sym} -400 320 0 0 {name=p3 lab=clk_comp_i}
-C {lab_pin.sym} 560 160 2 0 {name=p11 sig_type=std_logic lab=result_o[0..3]}
+C {lab_pin.sym} 560 160 2 0 {name=p11 sig_type=std_logic lab=result_o[0..7]}
 C {adc_bridge.sym} 70 40 0 0 {name=A3 adc_bridge_model=comp
 device_model=".model comp adc_bridge in_low=0 in_high=0"
 }
@@ -75,7 +75,6 @@ C {noconn.sym} 0 40 3 0 {name=l3}
 C {noconn.sym} -400 320 2 0 {name=l1}
 C {/workspaces/ngspice_cosim_inv/designs/comparator/comparator.sym} 100 400 0 0 {name=x2}
 C {lab_pin.sym} -40 400 0 0 {name=p10 sig_type=std_logic lab=clk_comp_i}
-C {lab_pin.sym} -40 360 0 0 {name=p12 sig_type=std_logic lab=sample}
 C {lab_pin.sym} -40 440 0 0 {name=p29 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} 100 260 1 0 {name=p30 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} 100 540 3 0 {name=p31 sig_type=std_logic lab=vss}
@@ -84,3 +83,4 @@ C {sg13g2_stdcells/sg13g2_inv_1.sym} 380 380 0 0 {name=x5 VDD=VDD VSS=VSS prefix
 C {lab_wire.sym} 300 380 0 0 {name=p32 sig_type=std_logic lab=comp_ideal_1}
 C {lab_wire.sym} 300 420 0 0 {name=p33 sig_type=std_logic lab=comp_ideal_2}
 C {lab_pin.sym} 600 400 2 0 {name=p36 sig_type=std_logic lab=comp_ideal}
+C {lab_wire.sym} -40 360 0 0 {name=p12 sig_type=std_logic lab=sample}

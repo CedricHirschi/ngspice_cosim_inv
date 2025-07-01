@@ -12,8 +12,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.4979163e-05
-x2=1.9219009e-05
+x1=-6.7940404e-06
+x2=4.3223798e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -24,8 +24,8 @@ clk_comp_i
 start_i
 x1.sample_o
 ready_o
-result_o;result_o0,result_o1,result_o2,result_o3
-dac_o;x1.dac_o0,x1.dac_o1,x1.dac_o2,x1.dac_o3"
+result_o;result_o0,result_o1,result_o2,result_o3,result_o4,result_o5,result_o6,result_o7
+dac_o;x1.dac_o0,x1.dac_o1,x1.dac_o2,x1.dac_o3,x1.dac_o4,x1.dac_o5,x1.dac_o6,x1.dac_o7"
 color="4 5 6 7 8 9 10 4"
 dataset=-1
 unitx=1
@@ -41,8 +41,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.4979163e-05
-x2=1.9219009e-05
+x1=-6.7940404e-06
+x2=4.3223798e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -65,8 +65,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.4979163e-05
-x2=1.9219009e-05
+x1=-6.7940404e-06
+x2=4.3223798e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -98,29 +98,37 @@ N -440 300 -440 320 {lab=vss}
 N 10 90 10 130 {lab=vss}
 N 10 -130 10 -90 {lab=vdd}
 N 220 -30 300 -30 {lab=ready_o}
-N 110 -50 300 -50 {lab=result_o[0..3]}
-N 380 340 380 380 {lab=GND}
+N 110 -50 300 -50 {lab=result_o[0..7]}
+N 180 380 180 420 {lab=GND}
 N 220 70 220 110 {lab=GND}
-N 440 340 440 380 {lab=GND}
-N 500 340 500 380 {lab=GND}
-N 560 340 560 380 {lab=GND}
+N 240 380 240 420 {lab=GND}
+N 300 380 300 420 {lab=GND}
+N 360 380 360 420 {lab=GND}
 N 220 -30 220 10 {lab=ready_o}
 N 110 -30 220 -30 {lab=ready_o}
-N 560 220 560 280 {lab=result_o3}
-N 500 220 500 280 {lab=result_o2}
-N 440 220 440 280 {lab=result_o1}
-N 380 220 380 280 {lab=result_o0}
+N 360 260 360 320 {lab=result_o3}
+N 300 260 300 320 {lab=result_o2}
+N 240 260 240 320 {lab=result_o1}
+N 180 260 180 320 {lab=result_o0}
 N -200 30 -90 30 {lab=clk_digital_i}
 N -200 30 -200 220 {lab=clk_digital_i}
 N -130 350 -130 390 {lab=GND}
+N 420 380 420 420 {lab=GND}
+N 480 380 480 420 {lab=GND}
+N 540 380 540 420 {lab=GND}
+N 600 380 600 420 {lab=GND}
+N 600 260 600 320 {lab=result_o7}
+N 540 260 540 320 {lab=result_o6}
+N 480 260 480 320 {lab=result_o5}
+N 420 260 420 320 {lab=result_o4}
 C {adc.sym} 10 0 0 0 {name=x1}
 C {launcher.sym} -60 -200 0 0 {name=h1
 descr="Build Icarus Object"
 tclcommand="execute 1 sh -c \\"cd $netlist_dir; iverilog -g2012 -o adc [abs_sym_path adc.sv]\\""}
 C {vsource.sym} -200 250 0 0 {name=V1 value="pulse(\{vss\}, \{vdd\}, \{0.5/f\}, 0, 0, \{0.5/f\}, \{1/f\})" savecurrent=false}
 C {vsource.sym} -260 110 0 0 {name=V2 value="pulse(\{vdd\}, \{vss\}, 0, 0, 0, \{1/f\})" savecurrent=false}
-C {vsource.sym} -390 110 0 0 {name=V3 value="pulse(\{vss\}, \{vdd\}, \{2.5/f\}, 0, 0, \{1/f\}, \{8/f\})" savecurrent=false}
-C {vsource.sym} -520 110 0 0 {name=V4 value="pwl(0 0 \{8/f\} 0 \{8/f\} 0.2 \{16/f\} 0.2 \{16/f\} 0.4 \{24/f\} 0.4 \{24/f\} 0.6 \{32/f\} 0.6 \{32/f\} 0.8 \{40/f\} 0.8 \{40/f\} 1.0 \{52/f\} 1.0)" savecurrent=true}
+C {vsource.sym} -390 110 0 0 {name=V3 value="pulse(\{vss\}, \{vdd\}, \{2.5/f\}, 0, 0, \{1/f\}, \{12/f\})" savecurrent=false}
+C {vsource.sym} -520 110 0 0 {name=V4 value="pwl(0 0 \{9/f\} 0 \{9/f\} 0.2 \{21/f\} 0.2 \{21/f\} 0.4 \{33/f\} 0.4 \{33/f\} 0.6 \{45/f\} 0.6 \{45/f\} 0.8 \{57/f\} 0.8 \{57/f\} 1.0 \{69/f\} 1.0)" savecurrent=true}
 C {gnd.sym} -200 320 0 0 {name=l1 lab=GND}
 C {gnd.sym} -260 180 0 0 {name=l2 lab=GND}
 C {gnd.sym} -390 180 0 0 {name=l3 lab=GND}
@@ -136,7 +144,7 @@ C {simulator_commands_shown.sym} 780 -40 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.tran \{0.01/f\} \{52/f\}
+.tran \{0.005/f\} \{75/f\}
 .save all
 *.write comparator_tb.raw
 "}
@@ -157,7 +165,7 @@ C {gnd.sym} -520 380 0 0 {name=l5 lab=GND}
 C {gnd.sym} -440 380 0 0 {name=l6 lab=GND}
 C {lab_wire.sym} 10 -130 0 0 {name=p1 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 10 130 2 0 {name=p2 sig_type=std_logic lab=vss}
-C {capa.sym} 380 310 0 0 {name=C1
+C {capa.sym} 180 350 0 0 {name=C1
 m=1
 value=4f
 footprint=1206
@@ -167,44 +175,44 @@ m=1
 value=4f
 footprint=1206
 device="ceramic capacitor"}
-C {gnd.sym} 380 380 0 0 {name=l7 lab=GND}
+C {gnd.sym} 180 420 0 0 {name=l7 lab=GND}
 C {gnd.sym} 220 110 0 0 {name=l8 lab=GND}
 C {lab_wire.sym} -150 30 0 0 {name=p3 sig_type=std_logic lab=clk_digital_i}
 C {lab_wire.sym} -260 10 0 0 {name=p4 sig_type=std_logic lab=rst_ni}
 C {lab_wire.sym} -390 -10 0 0 {name=p5 sig_type=std_logic lab=start_i}
 C {lab_wire.sym} -520 -50 0 0 {name=p8 sig_type=std_logic lab=in_ai}
-C {lab_wire.sym} 300 -50 2 0 {name=p9 sig_type=std_logic lab=result_o[0..3]
+C {lab_wire.sym} 300 -50 2 0 {name=p9 sig_type=std_logic lab=result_o[0..7]
 }
 C {lab_wire.sym} 300 -30 2 0 {name=p10 sig_type=std_logic lab=ready_o}
 C {launcher.sym} -60 -250 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/adc_tb.raw tran"
 }
-C {capa.sym} 440 310 0 0 {name=C3
+C {capa.sym} 240 350 0 0 {name=C3
 m=1
 value=4f
 footprint=1206
 device="ceramic capacitor"}
-C {gnd.sym} 440 380 0 0 {name=l9 lab=GND}
-C {capa.sym} 500 310 0 0 {name=C4
+C {gnd.sym} 240 420 0 0 {name=l9 lab=GND}
+C {capa.sym} 300 350 0 0 {name=C4
 m=1
 value=4f
 footprint=1206
 device="ceramic capacitor"}
-C {gnd.sym} 500 380 0 0 {name=l10 lab=GND}
-C {capa.sym} 560 310 0 0 {name=C5
+C {gnd.sym} 300 420 0 0 {name=l10 lab=GND}
+C {capa.sym} 360 350 0 0 {name=C5
 m=1
 value=4f
 footprint=1206
 device="ceramic capacitor"}
-C {gnd.sym} 560 380 0 0 {name=l11 lab=GND}
-C {lab_wire.sym} 380 220 1 0 {name=p11 sig_type=std_logic lab=result_o0
+C {gnd.sym} 360 420 0 0 {name=l11 lab=GND}
+C {lab_wire.sym} 180 260 1 0 {name=p11 sig_type=std_logic lab=result_o0
 }
-C {lab_wire.sym} 440 220 1 0 {name=p12 sig_type=std_logic lab=result_o1
+C {lab_wire.sym} 240 260 1 0 {name=p12 sig_type=std_logic lab=result_o1
 }
-C {lab_wire.sym} 500 220 1 0 {name=p13 sig_type=std_logic lab=result_o2
+C {lab_wire.sym} 300 260 1 0 {name=p13 sig_type=std_logic lab=result_o2
 }
-C {lab_wire.sym} 560 220 1 0 {name=p14 sig_type=std_logic lab=result_o3
+C {lab_wire.sym} 360 260 1 0 {name=p14 sig_type=std_logic lab=result_o3
 }
 C {simulator_commands_shown.sym} 780 290 0 0 {name=BRIDGE_MODELS
 simulator=ngspice
@@ -224,3 +232,35 @@ pre_set auto_bridge_d_in =
 C {vsource.sym} -130 320 0 0 {name=V5 value="pulse(\{vss\}, \{vdd\}, \{0.2/f\}, 0, 0, \{0.5/f\}, \{1/f\})" savecurrent=false}
 C {gnd.sym} -130 390 0 0 {name=l12 lab=GND}
 C {lab_wire.sym} -100 50 0 0 {name=p15 sig_type=std_logic lab=clk_comp_i}
+C {capa.sym} 420 350 0 0 {name=C6
+m=1
+value=4f
+footprint=1206
+device="ceramic capacitor"}
+C {gnd.sym} 420 420 0 0 {name=l13 lab=GND}
+C {capa.sym} 480 350 0 0 {name=C7
+m=1
+value=4f
+footprint=1206
+device="ceramic capacitor"}
+C {gnd.sym} 480 420 0 0 {name=l14 lab=GND}
+C {capa.sym} 540 350 0 0 {name=C8
+m=1
+value=4f
+footprint=1206
+device="ceramic capacitor"}
+C {gnd.sym} 540 420 0 0 {name=l15 lab=GND}
+C {capa.sym} 600 350 0 0 {name=C9
+m=1
+value=4f
+footprint=1206
+device="ceramic capacitor"}
+C {gnd.sym} 600 420 0 0 {name=l16 lab=GND}
+C {lab_wire.sym} 420 260 1 0 {name=p16 sig_type=std_logic lab=result_o4
+}
+C {lab_wire.sym} 480 260 1 0 {name=p17 sig_type=std_logic lab=result_o5
+}
+C {lab_wire.sym} 540 260 1 0 {name=p18 sig_type=std_logic lab=result_o6
+}
+C {lab_wire.sym} 600 260 1 0 {name=p19 sig_type=std_logic lab=result_o7
+}
