@@ -69,7 +69,7 @@ device_model=".model comp adc_bridge in_low=0 in_high=0"
 }
 C {lab_pin.sym} 0 40 0 0 {name=p4 lab="%vd(sample vdd)"}
 C {dac_bridge.sym} 70 80 0 0 {name=A4 dac_bridge_model= dac_buff
-device_model=".model dac_buff dac_bridge input_load=1e-15 t_rise=10n t_fall=10n
+device_model=".model dac_buff dac_bridge input_load=1e-15 t_rise=0.1n t_fall=0.1n
 + out_low=0 out_high=1.5"}
 C {lab_pin.sym} 100 80 0 1 {name=p35 lab=comp_a}
 C {lab_pin.sym} 40 80 0 0 {name=p9 sig_type=std_logic lab=comp}

@@ -102,7 +102,6 @@ N -420 180 -420 200 {lab=vss}
 N -160 -10 -100 -10 {lab=clk}
 N 440 0 440 40 {lab=out}
 N 440 0 480 0 {lab=out}
-N 400 0 440 0 {lab=out}
 N 440 100 440 120 {lab=GND}
 N -520 -40 -520 -20 {lab=in_p}
 N -520 -40 -100 -40 {lab=in_p}
@@ -112,10 +111,9 @@ N -140 110 -100 110 {lab=clk_n}
 N -140 10 -140 110 {lab=clk_n}
 N -140 10 -100 10 {lab=clk_n}
 N -200 40 -100 40 {lab=vdd}
-N 80 20 160 20 {lab=out_n}
-N 80 -20 160 -20 {lab=out_p}
-N 240 -20 280 -20 {lab=pos}
-N 240 20 280 20 {lab=neg}
+N 80 20 180 20 {lab=out_n}
+N 80 -20 180 -20 {lab=out_p}
+N 300 -0 440 0 {lab=out}
 C {comparator.sym} 0 0 0 0 {}
 C {code_shown.sym} 600 -170 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
@@ -173,5 +171,4 @@ C {gnd.sym} -100 190 0 0 {name=l2 lab=GND}
 C {lab_wire.sym} -110 10 0 0 {name=p11 sig_type=std_logic lab=clk_n}
 C {lab_wire.sym} -200 40 0 0 {name=p4 sig_type=std_logic lab=vdd}
 C {gnd.sym} -520 40 0 0 {name=l5 lab=GND}
-C {lab_wire.sym} 280 -20 0 0 {name=p12 sig_type=std_logic lab=pos}
-C {lab_wire.sym} 280 20 0 0 {name=p13 sig_type=std_logic lab=neg}
+C {sg13g2_stdcells/sg13g2_nand2b_1.sym} 240 0 0 0 {name=x1 VDD=VDD VSS=VSS prefix=sg13g2_ }

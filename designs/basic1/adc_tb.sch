@@ -12,8 +12,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-6.7940404e-06
-x2=4.3223798e-05
+x1=6.23583e-08
+x2=8.3350343e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -41,8 +41,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-6.7940404e-06
-x2=4.3223798e-05
+x1=6.23583e-08
+x2=8.3350343e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -52,11 +52,10 @@ unitx=1
 logx=0
 logy=0
 digital=0
-color="4 5 6 7"
+color="4 5 6"
 node="x1.sample
 in_ai
-vdd
-x1.comp_a"}
+vdd"}
 B 2 -400 -1500 400 -1100 {flags=graph
 y1=0
 y2=1.5
@@ -65,8 +64,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-6.7940404e-06
-x2=4.3223798e-05
+x1=6.23583e-08
+x2=8.3350343e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -76,7 +75,7 @@ unitx=1
 logx=0
 logy=0
 digital=1
-color="4 5 6 7 4 4"
+color="4 5 6 7 8 9"
 node="x1.comp_a
 x1.comp_real_pos
 x1.comp_real_neg
@@ -146,7 +145,7 @@ C {simulator_commands_shown.sym} 780 -40 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.tran \{0.01/f\} \{75/f\}
+.tran \{0.05/f\} \{76/f\}
 .save all
 *.write comparator_tb.raw
 "}
@@ -155,7 +154,7 @@ only_toplevel=false
 value="
 .param vss=0.0
 .param vdd=1.5
-.param f=1Meg
+.param f=10Meg
 "}
 C {lab_wire.sym} -520 300 0 0 {name=p6 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} -440 300 0 0 {name=p7 sig_type=std_logic lab=vss}
@@ -224,7 +223,7 @@ value="
 
 .control
 pre_set auto_bridge_d_out =
-+ ( \\".model auto_bridge_out bidi_bridge(direction=0 out_high=1.5 t_rise=1n t_fall=1n)\\"
++ ( \\".model auto_bridge_out bidi_bridge(direction=0 out_high=1.5 t_rise=0.1n t_fall=0.1n)\\"
 +   \\"auto_bridge_out%d [ %s ] [ %s ] null auto_bridge_out\\" )
 pre_set auto_bridge_d_in =
 + ( \\".model auto_bridge_in bidi_bridge(direction=1 in_low=0.5 in_high=1)\\"
