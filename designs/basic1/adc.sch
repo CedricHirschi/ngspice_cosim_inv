@@ -12,7 +12,7 @@ N 130 -160 170 -160 {lab=dac_o[0..7]}
 N 260 160 300 160 {lab=#net1}
 N 260 180 300 180 {lab=rst_ni}
 N 260 200 300 200 {lab=start_i}
-N 260 240 300 240 {lab=comp_ideal}
+N 260 240 300 240 {lab=comp_real}
 N 160 160 200 160 {lab=clk_digital_i}
 N -280 -120 -280 -80 {lab=sample_o}
 N 100 40 140 40 {lab=comp}
@@ -23,15 +23,17 @@ N 520 220 560 220 {lab=sample_o}
 N -410 -180 -340 -180 {lab=in_ai}
 N -220 -180 170 -180 {lab=sample}
 N 0 40 40 40 {lab="%vd(sample vdd)"}
-N -40 400 -0 400 {lab=clk_comp_i}
+N -40 390 0 390 {lab=clk_comp_i}
 N -40 440 -0 440 {lab=vdd}
 N 100 500 100 540 {lab=vss}
 N 100 260 100 300 {lab=vdd}
-N 560 400 600 400 {lab=comp_ideal}
-N 180 420 440 420 {lab=comp_ideal_2}
-N 420 380 440 380 {lab=#net2}
-N 180 380 340 380 {lab=comp_ideal_1}
 N -40 360 -0 360 {lab=sample}
+N -400 320 -360 320 {lab=clk_comp_i}
+N -280 320 -240 320 {lab=clk_comp_ni}
+N -40 410 -0 410 {lab=clk_comp_ni}
+N 180 380 420 380 {lab=comp_real_pos}
+N 180 420 420 420 {lab=comp_real_neg}
+N 540 400 620 400 {lab=comp_real}
 C {/workspaces/ngspice_cosim_inv/designs/tgate/tgate.sym} -280 -180 0 0 {name=x1}
 C {/workspaces/ngspice_cosim_inv/designs/cdac/cdac.sym} 210 -170 0 0 {name=x3}
 C {ipin.sym} -410 -180 0 0 {name=p1 lab=in_ai}
@@ -47,7 +49,7 @@ C {lab_pin.sym} 140 40 2 0 {name=p16 sig_type=std_logic lab=comp}
 C {lab_pin.sym} 160 160 0 0 {name=p19 sig_type=std_logic lab=clk_digital_i}
 C {lab_pin.sym} 260 180 0 0 {name=p20 sig_type=std_logic lab=rst_ni}
 C {ipin.sym} -400 200 0 0 {name=p21 lab=start_i}
-C {lab_pin.sym} 260 240 0 0 {name=p22 sig_type=std_logic lab=comp_ideal}
+C {lab_pin.sym} 260 240 0 0 {name=p22 sig_type=std_logic lab=comp_real}
 C {lab_pin.sym} 260 200 0 0 {name=p23 sig_type=std_logic lab=start_i}
 C {lab_pin.sym} 560 180 2 0 {name=p24 sig_type=std_logic lab=dac_o[0..7]}
 C {lab_pin.sym} 560 200 2 0 {name=p25 sig_type=std_logic lab=ready_o}
@@ -72,15 +74,16 @@ device_model=".model dac_buff dac_bridge input_load=1e-15 t_rise=10n t_fall=10n
 C {lab_pin.sym} 100 80 0 1 {name=p35 lab=comp_a}
 C {lab_pin.sym} 40 80 0 0 {name=p9 sig_type=std_logic lab=comp}
 C {noconn.sym} 0 40 3 0 {name=l3}
-C {noconn.sym} -400 320 2 0 {name=l1}
-C {/workspaces/ngspice_cosim_inv/designs/comparator/comparator.sym} 100 400 0 0 {name=x2}
-C {lab_pin.sym} -40 400 0 0 {name=p10 sig_type=std_logic lab=clk_comp_i}
+C {lab_pin.sym} -40 390 0 0 {name=p10 sig_type=std_logic lab=clk_comp_i}
 C {lab_pin.sym} -40 440 0 0 {name=p29 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} 100 260 1 0 {name=p30 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} 100 540 3 0 {name=p31 sig_type=std_logic lab=vss}
-C {sg13g2_stdcells/sg13g2_and2_1.sym} 500 400 0 0 {name=x4 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_inv_1.sym} 380 380 0 0 {name=x5 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {lab_wire.sym} 300 380 0 0 {name=p32 sig_type=std_logic lab=comp_ideal_1}
-C {lab_wire.sym} 300 420 0 0 {name=p33 sig_type=std_logic lab=comp_ideal_2}
-C {lab_pin.sym} 600 400 2 0 {name=p36 sig_type=std_logic lab=comp_ideal}
+C {lab_wire.sym} 300 380 0 0 {name=p32 sig_type=std_logic lab=comp_real_pos}
+C {lab_wire.sym} 300 420 0 0 {name=p33 sig_type=std_logic lab=comp_real_neg}
+C {lab_pin.sym} 620 400 2 0 {name=p36 sig_type=std_logic lab=comp_real}
 C {lab_wire.sym} -40 360 0 0 {name=p12 sig_type=std_logic lab=sample}
+C {/workspaces/ngspice_cosim_inv/designs/comparator_dt/comparator.sym} 100 400 0 0 {name=x2}
+C {sg13g2_stdcells/sg13g2_inv_1.sym} -320 320 0 0 {name=x4 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {lab_pin.sym} -240 320 2 0 {name=p37 sig_type=std_logic lab=clk_comp_ni}
+C {lab_pin.sym} -40 410 0 0 {name=p38 sig_type=std_logic lab=clk_comp_ni}
+C {sg13g2_stdcells/sg13g2_nand2b_1.sym} 480 400 0 0 {name=x5 VDD=VDD VSS=VSS prefix=sg13g2_ }

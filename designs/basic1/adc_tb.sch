@@ -76,9 +76,11 @@ unitx=1
 logx=0
 logy=0
 digital=1
-color="4 5 6 7"
+color="4 5 6 7 4 4"
 node="x1.comp_a
-x1.comp_ideal
+x1.comp_real_pos
+x1.comp_real_neg
+x1.comp_real
 clk_comp_i
 clk_digital_i"}
 N -130 50 -130 290 {lab=clk_comp_i}
@@ -144,7 +146,7 @@ C {simulator_commands_shown.sym} 780 -40 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.tran \{0.005/f\} \{75/f\}
+.tran \{0.01/f\} \{75/f\}
 .save all
 *.write comparator_tb.raw
 "}
