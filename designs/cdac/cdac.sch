@@ -4,6 +4,9 @@ K {}
 V {}
 S {}
 E {}
+T {Larger inverters for LSB caps} -70 170 0 0 0.4 0.4 {}
+T {Smallest possible CMIM size: 1.5fF
+Starting point, lets try 25fF} 1470 160 0 0 0.4 0.4 {}
 N -40 80 -0 80 {lab=l1}
 N 0 30 -0 80 {lab=l1}
 N 160 80 200 80 {lab=l2}
