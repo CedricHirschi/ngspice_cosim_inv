@@ -95,6 +95,13 @@ unitx=1
 logx=0
 logy=0
 }
+T {Voltage Range: 3/4 Vdd
+-> From 0.2V to Vdd - 0.2V} -160 280 0 0 0.4 0.4 {}
+T {Noise: Check at high CM
+Speed: Check at low CM
+CM:  check at 0.65 to 0.85V (Vdd/2 +-100mV)} -160 360 0 0 0.4 0.4 {}
+T {Start at slow clock and long reset phase
+Vary duty cycle from high amount to low, } -160 460 0 0 0.4 0.4 {}
 N 0 100 0 120 {lab=vss}
 N 0 -120 0 -100 {lab=vdd}
 N -500 180 -500 200 {lab=vdd}
