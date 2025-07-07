@@ -1,4 +1,4 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
@@ -11,7 +11,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.7583963e-08
+x1=2.8960307e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -28,7 +28,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=4.1212678e-08
+x2=3.0224331e-08
 autoload=1}
 B 2 400 -770 1200 -370 {flags=graph
 ypos1=0
@@ -36,8 +36,8 @@ ypos2=2
 divy=5
 subdivy=4
 unity=1
-x1=1.7583963e-08
-x2=4.1212678e-08
+x1=2.8960307e-08
+x2=3.0224331e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -58,7 +58,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.7583963e-08
+x1=2.8960307e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -74,7 +74,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=4.1212678e-08
+x2=3.0224331e-08
 autoload=1}
 B 2 0 640 800 1040 {flags=graph
 y1=-0.25
@@ -83,7 +83,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.7583963e-08
+x1=2.8960307e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -100,7 +100,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=4.1212678e-08
+x2=3.0224331e-08
 autoload=1}
 B 2 0 1040 800 1440 {flags=graph
 y1=-0.25
@@ -109,7 +109,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.7583963e-08
+x1=2.8960307e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -126,7 +126,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=4.1212678e-08
+x2=3.0224331e-08
 autoload=1}
 B 2 -400 -770 400 -370 {flags=graph
 y1=-0.25
@@ -135,7 +135,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.7583963e-08
+x1=2.8960307e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -152,15 +152,8 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=4.1212678e-08
+x2=3.0224331e-08
 autoload=1}
-T {1 sigma at Vcm=vdd/2:
-  -7.15e-9 (no inverters)
-  -1.215e-8 (inverters)
-1 sigma at Vcm=vdd/2-100m:
-  -1.208e-9 (inverters)
-1 sigma at Vcm=vdd/2+100m:
-  no minimum??} -500 -280 0 0 0.4 0.4 {}
 T {Start with input SH
 - Block with 2 tgates (differential)
 - Test with voltages at input right at the headroom limits
@@ -238,6 +231,7 @@ C {code_shown.sym} 600 -170 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
+.lib $::SG13G2_MODELS/cornerCAP.lib cap_typ
 .include $::PDK_ROOT/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
 C {lab_wire.sym} -320 320 0 0 {name=p6 sig_type=std_logic lab=vdd}

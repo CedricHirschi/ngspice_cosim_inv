@@ -1,15 +1,9 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
 S {}
 E {}
-T {Amount of fingers even} 170 190 0 0 0.4 0.4 {}
-T {Add cap. some femto (5) on integration and output nodes
-} 270 310 0 0 0.4 0.4 {}
-T {Reduce current -> thus noise
-balance
-- decreasing M11 width to maybe 16u while increasing length} 100 430 0 0 0.4 0.4 {}
 N -440 0 -440 50 {lab=VDD}
 N 260 0 440 0 {lab=VDD}
 N 440 0 440 50 {lab=VDD}
@@ -57,9 +51,8 @@ N -80 380 -0 380 {lab=#net1}
 N -0 430 0 540 {lab=VSS}
 N 80 280 80 300 {lab=#net2}
 N -80 280 -80 300 {lab=#net3}
-N -160 140 -80 140 {lab=OUT1}
 N -80 100 -80 140 {lab=OUT1}
-N 80 140 160 140 {lab=OUT2}
+N 280 140 320 140 {lab=OUT2}
 N 80 100 80 140 {lab=OUT2}
 N -560 50 -480 50 {lab=CLK}
 N 480 50 560 50 {lab=CLK}
@@ -80,6 +73,17 @@ N 80 230 150 230 {lab=VSS}
 N -150 230 -80 230 {lab=VSS}
 N 120 330 200 330 {lab=IN2}
 N -200 330 -120 330 {lab=IN1}
+N -280 140 -80 140 {lab=OUT1}
+N -280 140 -280 160 {lab=OUT1}
+N -320 140 -280 140 {lab=OUT1}
+N -280 220 -280 240 {lab=VSS}
+N -440 280 -440 300 {lab=#net3}
+N -440 360 -440 380 {lab=VSS}
+N 440 280 440 300 {lab=#net2}
+N 440 360 440 380 {lab=VSS}
+N 280 140 280 160 {lab=OUT2}
+N 280 220 280 240 {lab=VSS}
+N 80 140 280 140 {lab=OUT2}
 C {sg13g2_pr/sg13_lv_pmos.sym} -460 50 0 0 {name=M1
 l=0.13u
 w=2u
@@ -107,7 +111,7 @@ spiceprefix=X
 C {sg13g2_pr/sg13_lv_nmos.sym} -60 230 0 1 {name=M8
 l=0.13u
 w=6u
-ng=3
+ng=2
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -121,9 +125,9 @@ model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -20 430 0 0 {name=M11
-l=0.26u
-w=24u
-ng=12
+l=1u
+w=12u
+ng=8
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -131,8 +135,8 @@ spiceprefix=X
 C {ipin.sym} -120 430 0 0 {name=p3 lab=CLK}
 C {ipin.sym} -200 330 0 0 {name=p4 lab=IN1}
 C {ipin.sym} 200 330 2 0 {name=p5 lab=IN2}
-C {opin.sym} 160 140 0 0 {name=p6 lab=OUT2}
-C {opin.sym} -160 140 2 0 {name=p7 lab=OUT1}
+C {opin.sym} 320 140 0 0 {name=p6 lab=OUT2}
+C {opin.sym} -320 140 2 0 {name=p7 lab=OUT1}
 C {ipin.sym} 0 540 3 0 {name=p8 lab=VSS}
 C {ipin.sym} 0 -80 1 0 {name=p9 lab=VDD}
 C {lab_wire.sym} 20 330 0 0 {name=p10 sig_type=std_logic lab=VSS}
@@ -176,8 +180,36 @@ spiceprefix=X
 C {sg13g2_pr/sg13_lv_nmos.sym} 60 230 0 0 {name=M7
 l=0.13u
 w=6u
-ng=3
+ng=2
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
+C {sg13g2_pr/cap_cmim.sym} -440 330 0 0 {name=C1
+model=cap_cmim
+w=1.8e-6
+l=1.8e-6
+m=1
+spiceprefix=X}
+C {sg13g2_pr/cap_cmim.sym} -280 190 0 0 {name=C2
+model=cap_cmim
+w=1.8e-6
+l=1.8e-6
+m=1
+spiceprefix=X}
+C {lab_wire.sym} -280 240 0 0 {name=p14 sig_type=std_logic lab=VSS}
+C {lab_wire.sym} -440 380 0 0 {name=p15 sig_type=std_logic lab=VSS}
+C {sg13g2_pr/cap_cmim.sym} 440 330 0 0 {name=C3
+model=cap_cmim
+w=1.8e-6
+l=1.8e-6
+m=1
+spiceprefix=X}
+C {lab_wire.sym} 440 380 0 0 {name=p16 sig_type=std_logic lab=VSS}
+C {sg13g2_pr/cap_cmim.sym} 280 190 0 0 {name=C4
+model=cap_cmim
+w=1.8e-6
+l=1.8e-6
+m=1
+spiceprefix=X}
+C {lab_wire.sym} 280 240 0 0 {name=p17 sig_type=std_logic lab=VSS}
