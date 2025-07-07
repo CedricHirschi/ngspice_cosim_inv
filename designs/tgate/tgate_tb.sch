@@ -12,8 +12,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-2.5239647e-06
-x2=1.6526215e-06
+x1=-3.5766096e-07
+x2=3.5321848e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -33,8 +33,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-2.5239647e-06
-x2=1.6526215e-06
+x1=-3.5766096e-07
+x2=3.5321848e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -45,62 +45,120 @@ logx=0
 logy=0
 rawfile=$netlist_dir/tgate_tb.raw
 color="4 5"
-node="in
-out"}
-N -80 240 -80 280 {lab=GND}
-N -20 0 100 -0 {lab=out}
-N -80 60 -80 180 {lab=ctrl}
-N 100 0 100 40 {lab=out}
-N 100 100 100 140 {lab=GND}
-N -540 -20 -540 0 {lab=vdd}
-N -460 -20 -460 0 {lab=vss}
-N -100 -80 -100 -60 {lab=vdd}
-N -60 -80 -60 -60 {lab=vss}
-N -300 0 -300 20 {lab=in}
-N -300 -0 -140 0 {lab=in}
-C {gnd.sym} 100 140 0 0 {name=l1 lab=GND}
-C {vsource.sym} -80 210 0 0 {name=Vin value="dc 0 ac 0 pulse(0, 1.5, 0, 1f, 1f, \{0.5/f\}, \{1/f\}) "}
-C {gnd.sym} -80 280 0 0 {name=l2 lab=GND}
+node="out_n
+in_n"}
+B 2 -400 -1390 400 -990 {flags=graph
+y1=-0.2
+y2=2
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=-3.5766096e-07
+x2=3.5321848e-06
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+dataset=-1
+unitx=1
+logx=0
+logy=0
+rawfile=$netlist_dir/tgate_tb.raw
+color="4 5"
+node="out_p
+in_p"}
+N 60 80 180 80 {lab=out_p}
+N -620 -50 -620 -30 {lab=vdd}
+N -540 -50 -540 -30 {lab=vss}
+N -20 0 -20 20 {lab=vdd}
+N 20 0 20 20 {lab=vss}
+N -240 80 -240 120 {lab=in_p}
+N 60 360 180 360 {lab=out_n}
+N -20 280 -20 300 {lab=vdd}
+N 20 280 20 300 {lab=vss}
+N -460 -50 -460 -30 {lab=ctrl}
+N 0 140 0 180 {lab=ctrl}
+N 0 420 0 460 {lab=#net1}
+N 180 320 180 360 {lab=out_n}
+N 180 80 180 120 {lab=out_p}
+N 180 220 180 260 {lab=GND}
+N 180 220 220 220 {lab=GND}
+N 180 180 180 220 {lab=GND}
+N 220 220 220 240 {lab=GND}
+N 180 360 260 360 {lab=out_n}
+N 180 80 260 80 {lab=out_p}
+N -240 320 -240 360 {lab=in_n}
+N -240 360 -60 360 {lab=in_n}
+N -240 80 -60 80 {lab=in_p}
+N -240 220 -240 260 {lab=GND}
+N -280 220 -240 220 {lab=GND}
+N -240 180 -240 220 {lab=GND}
+N -280 220 -280 240 {lab=GND}
 C {launcher.sym} 60 -130 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/tgate_tb.raw tran"
 }
-C {simulator_commands_shown.sym} 260 40 0 0 {name=COMMANDS
+C {simulator_commands_shown.sym} 480 190 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.param f=40e6
+.param f=80e6
+.param N=256
+.param base_harmonic=3
 
-.tran 0.1n \{511/f\}
+.param fsignal=\{f/N*base_harmonic\}
+
+.tran 0.1n \{(N-1)/f\}
 .save all
 * .write tgate_tb.raw
 "}
-C {lab_wire.sym} 100 0 0 0 {name=p2 sig_type=std_logic lab=out}
+C {lab_wire.sym} 260 80 0 0 {name=p2 sig_type=std_logic lab=out_p}
 C {code_shown.sym} 480 30 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
 .include $::PDK_ROOT/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
-C {lab_wire.sym} -80 140 0 0 {name=p1 sig_type=std_logic lab=ctrl}
-C {lab_wire.sym} -540 -20 0 0 {name=p6 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} -460 -20 0 0 {name=p7 sig_type=std_logic lab=vss}
-C {vsource.sym} -540 30 0 0 {name=Vdd value=1.5}
-C {vsource.sym} -460 30 0 0 {name=Vss value=0
+C {lab_wire.sym} 0 180 0 0 {name=p1 sig_type=std_logic lab=ctrl}
+C {lab_wire.sym} -620 -50 0 0 {name=p6 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} -540 -50 0 0 {name=p7 sig_type=std_logic lab=vss}
+C {vsource.sym} -620 0 0 0 {name=Vdd value=1.5}
+C {vsource.sym} -540 0 0 0 {name=Vss value=0
 }
-C {gnd.sym} -540 60 0 0 {name=l3 lab=GND}
-C {gnd.sym} -460 60 0 0 {name=l4 lab=GND}
-C {tgate.sym} -80 0 0 0 {name=x1
+C {gnd.sym} -620 30 0 0 {name=l3 lab=GND}
+C {gnd.sym} -540 30 0 0 {name=l4 lab=GND}
+C {tgate.sym} 0 80 0 0 {name=x1
 tclcommand="xschem new_schematic create \{\} tgate.sch"
 }
-C {lab_wire.sym} -100 -80 0 0 {name=p4 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} -60 -80 0 0 {name=p5 sig_type=std_logic lab=vss}
-C {capa.sym} 100 70 0 0 {name=C1
+C {lab_wire.sym} -20 0 0 0 {name=p4 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} 20 0 0 0 {name=p5 sig_type=std_logic lab=vss}
+C {capa.sym} 180 150 0 0 {name=C1
 m=1
 value=8f
 footprint=1206
 device="ceramic capacitor"}
-C {lab_wire.sym} -300 0 0 0 {name=p3 sig_type=std_logic lab=in}
-C {vsource.sym} -300 50 0 0 {name=Vin1 value="sine(0.75 0.55 234.375k)"
+C {lab_wire.sym} -200 80 0 0 {name=p3 sig_type=std_logic lab=in_p}
+C {vsource.sym} -240 150 0 0 {name=Vinp value="sine(0.75 0.275 \{fsignal\})"
 }
-C {gnd.sym} -300 80 0 0 {name=l5 lab=GND}
+C {gnd.sym} 220 240 0 0 {name=l5 lab=GND}
+C {lab_wire.sym} 260 360 0 0 {name=p8 sig_type=std_logic lab=out_n}
+C {tgate.sym} 0 360 0 0 {name=x2
+tclcommand="xschem new_schematic create \{\} tgate.sch"
+}
+C {lab_wire.sym} -20 280 0 0 {name=p10 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} 20 280 0 0 {name=p11 sig_type=std_logic lab=vss}
+C {capa.sym} 180 290 0 0 {name=C2
+m=1
+value=8f
+footprint=1206
+device="ceramic capacitor"}
+C {lab_wire.sym} -200 360 0 0 {name=p12 sig_type=std_logic lab=in_n}
+C {vsource.sym} -240 290 0 0 {name=Vinn value="sine(0.75 -0.275 \{fsignal\})"
+}
+C {vsource.sym} -460 0 0 0 {name=Vctrl value="dc 0 ac 0 pulse(0, 1.5, 0, 1f, 1f, \{0.5/f\}, \{1/f\}) "}
+C {gnd.sym} -460 30 0 0 {name=l2 lab=GND}
+C {lab_wire.sym} -460 -50 0 0 {name=p13 sig_type=std_logic lab=ctrl}
+C {lab_wire.sym} 0 460 0 0 {name=p9 sig_type=std_logic lab=ctrl}
+C {gnd.sym} -280 240 0 0 {name=l1 lab=GND}
