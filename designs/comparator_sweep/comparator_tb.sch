@@ -11,54 +11,31 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.7583963e-08
+x1=-1.2912377e-08
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
-node="out1
-out2"
-color="4 5"
+node=out2
+color=4
 dataset=-1
 unitx=1
 logx=0
 logy=0
-rawfile=$netlist_dir/comparator_tb.raw
 digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=4.1212678e-08
+x2=6.0249012e-08
 autoload=1}
-B 2 400 -770 1200 -370 {flags=graph
-ypos1=0
-ypos2=2
-divy=5
-subdivy=4
-unity=1
-x1=1.7583963e-08
-x2=4.1212678e-08
-divx=5
-subdivx=1
-xlabmag=1.0
-ylabmag=1.0
-dataset=-1
-unitx=u
-logx=0
-logy=0
-color=4
-node="in_p in_n -"
-rainbow=1
-y1=-5m
-y2=1.2}
-B 2 -400 -1170 400 -770 {flags=graph
+B 2 -400 -1570 400 -1170 {flags=graph
 y1=-0.25
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.7583963e-08
+x1=-1.2912377e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -74,7 +51,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=4.1212678e-08
+x2=6.0249012e-08
 autoload=1}
 B 2 0 640 800 1040 {flags=graph
 y1=-0.25
@@ -83,7 +60,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.7583963e-08
+x1=-1.2912377e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -100,7 +77,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=4.1212678e-08
+x2=6.0249012e-08
 autoload=1}
 B 2 0 1040 800 1440 {flags=graph
 y1=-0.25
@@ -109,7 +86,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.7583963e-08
+x1=-1.2912377e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -126,34 +103,54 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=4.1212678e-08
+x2=6.0249012e-08
 autoload=1}
-B 2 -400 -770 400 -370 {flags=graph
+B 2 -400 -1170 400 -770 {flags=graph
 y1=-0.25
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.7583963e-08
+x1=-1.2912377e-08
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
-node="out1
-out2"
-color="4 5"
+node=out1
+color=4
 dataset=-1
 unitx=1
 logx=0
 logy=0
-rawfile=$netlist_dir/comparator_tb.raw
 digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=4.1212678e-08
+x2=6.0249012e-08
 autoload=1}
+B 2 400 -770 1200 -370 {flags=graph
+y1=-12
+ypos1=0
+ypos2=2
+divy=5
+subdivy=8
+unity=1
+x1=-1.2912377e-08
+x2=6.0249012e-08
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+node="in_n in_p -"
+color=4
+dataset=-1
+unitx=1
+logx=0
+logy=1
+rawfile=$netlist_dir/comparator_tb.raw
+rainbow=1
+y2=0}
 T {1 sigma at Vcm=vdd/2:
   -7.15e-9 (no inverters)
   -1.215e-8 (inverters)
@@ -161,22 +158,17 @@ T {1 sigma at Vcm=vdd/2:
   -1.208e-9 (inverters)
 1 sigma at Vcm=vdd/2+100m:
   no minimum??} -500 -280 0 0 0.4 0.4 {}
-T {Start with input SH
-- Block with 2 tgates (differential)
-- Test with voltages at input right at the headroom limits
-- Sample 1 clock cycle
-- Let open switch settle for some cycles
-- Take sample
--> These samples can be analyzed for linearity
--> Add generous capacitance on output which matches real circuit
--> Settling in 4th of LSB
-- Maybe tgate is enough, but could be too much non-linear} 1020 80 0 0 0.4 0.4 {}
 N 0 100 0 120 {lab=vss}
 N 0 -120 0 -100 {lab=vdd}
-N -320 320 -320 340 {lab=vdd}
-N -240 320 -240 340 {lab=vss}
+N -500 180 -500 200 {lab=vdd}
+N -420 180 -420 200 {lab=vss}
 N -160 -0 -160 160 {lab=clk}
 N -160 -0 -100 0 {lab=clk}
+N -450 40 -100 40 {lab=in_n}
+N -450 30 -450 40 {lab=in_n}
+N -450 -40 -450 -30 {lab=in_p}
+N -450 -40 -100 -40 {lab=in_p}
+N -450 40 -450 60 {lab=in_n}
 N 80 -20 120 -20 {lab=out1}
 N 80 20 120 20 {lab=out2}
 N 0 420 0 440 {lab=out1_dup}
@@ -221,18 +213,6 @@ N 500 320 500 370 {lab=vdd}
 N 500 420 500 440 {lab=out2_dup_inv}
 N 500 400 500 420 {lab=out2_dup_inv}
 N 500 470 500 520 {lab=vss}
-N -560 0 -560 40 {lab=#net1}
-N -560 0 -480 -0 {lab=#net1}
-N -480 -10 -480 0 {lab=#net1}
-N -480 -0 -480 10 {lab=#net1}
-N -480 70 -480 90 {lab=in_n}
-N -480 90 -220 90 {lab=in_n}
-N -220 40 -220 90 {lab=in_n}
-N -220 40 -100 40 {lab=in_n}
-N -220 -40 -100 -40 {lab=in_p}
-N -220 -90 -220 -40 {lab=in_p}
-N -480 -90 -220 -90 {lab=in_p}
-N -480 -90 -480 -70 {lab=in_p}
 C {comparator.sym} 0 0 0 0 {}
 C {code_shown.sym} 600 -170 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
@@ -240,14 +220,14 @@ value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
 .include $::PDK_ROOT/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
-C {lab_wire.sym} -320 320 0 0 {name=p6 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} -240 320 0 0 {name=p7 sig_type=std_logic lab=vss}
-C {vsource.sym} -320 370 0 0 {name=Vdd value=\{vdd\}
+C {lab_wire.sym} -500 180 0 0 {name=p6 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} -420 180 0 0 {name=p7 sig_type=std_logic lab=vss}
+C {vsource.sym} -500 230 0 0 {name=Vdd value=\{vdd\}
 }
-C {vsource.sym} -240 370 0 0 {name=Vss value=\{vss\}
+C {vsource.sym} -420 230 0 0 {name=Vss value=\{vss\}
 }
-C {gnd.sym} -320 400 0 0 {name=l3 lab=GND}
-C {gnd.sym} -240 400 0 0 {name=l4 lab=GND}
+C {gnd.sym} -500 260 0 0 {name=l3 lab=GND}
+C {gnd.sym} -420 260 0 0 {name=l4 lab=GND}
 C {lab_wire.sym} 0 120 2 0 {name=p1 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 0 -120 0 0 {name=p2 sig_type=std_logic lab=vdd}
 C {vsource.sym} -160 190 0 0 {name=Vclk value="dc 0 ac 0 pulse(\{vss\}, \{vdd\}, \{0.9/f\}, 1f, 1f, \{0.1/f\}, \{1/f\})"}
@@ -257,15 +237,15 @@ C {launcher.sym} -10 -340 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/comparator_tb.raw tran"
 }
-C {vsource.sym} -480 -40 0 0 {name=Vdiff value="pulse(\{vhigh/2\}, \{vlow/2\}, \{0.75/f\}, 1f, 1f, \{1/f\}, \{2/f\})"}
+C {vsource.sym} -450 0 0 0 {name=Vdiff value="pulse(1.1, \{vlow\}, \{0.75/f\}, 1f, 1f, \{1/f\}, \{2/f\})"}
 C {lab_wire.sym} -200 40 0 0 {name=p4 sig_type=std_logic lab=in_n}
 C {lab_wire.sym} -200 -40 0 0 {name=p5 sig_type=std_logic lab=in_p
 }
 C {lab_wire.sym} 120 -20 0 0 {name=p8 sig_type=std_logic lab=out1}
 C {lab_wire.sym} 120 20 0 0 {name=p9 sig_type=std_logic lab=out2}
-C {vsource.sym} -560 70 0 0 {name=Vcm value=\{vdd/2\}}
-C {gnd.sym} -560 100 0 0 {name=l2 lab=GND}
-C {simulator_commands_shown.sym} 600 90 0 0 {name=SWEEPS
+C {vsource.sym} -450 90 0 0 {name=Vcm value=\{vdd/2\}}
+C {gnd.sym} -450 120 0 0 {name=l2 lab=GND}
+C {simulator_commands_shown.sym} 740 70 0 0 {name=SWEEPS
 simulator=ngspice
 only_toplevel=false 
 value="
@@ -273,10 +253,27 @@ value="
 .param vdd=1.5
 .param f=100Meg
 
-.param vhigh=1.1
-.param vlow=-2m
+.param vlow=-4e-3
 
-.tran 0.01n \{4.5/f\}
+.control
+save all
+
+set wr_singlescale
+set wr_vecnames
+set appendwrite
+
+compose vlow_vec values 1u 100n 10n 1n 100p 10p 1p
+
+foreach vlow_var $&vlow_vec
+  echo 'Vlow = -$vlow_var'
+  alterparam vlow=-$vlow_var
+  tran 0.01n 45n
+  reset
+  wrdata sweep.csv V(out1) V(out2)
+  write comparator_tb.raw
+end
+
+.endc
 "}
 C {gnd.sym} 0 500 0 0 {name=l5 lab=GND}
 C {lab_wire.sym} 80 420 0 0 {name=p10 sig_type=std_logic lab=out1_dup}
@@ -366,4 +363,3 @@ spiceprefix=X
 }
 C {lab_wire.sym} 500 320 0 0 {name=p12 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 500 520 2 0 {name=p17 sig_type=std_logic lab=vss}
-C {vsource.sym} -480 40 0 0 {name=Vdiff1 value="pulse(\{vhigh/2\}, \{vlow/2\}, \{0.75/f\}, 1f, 1f, \{1/f\}, \{2/f\})"}

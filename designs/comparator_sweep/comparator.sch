@@ -1,15 +1,9 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
 S {}
 E {}
-T {Amount of fingers even} 170 190 0 0 0.4 0.4 {}
-T {Add cap. some femto (5) on integration and output nodes
-} 270 310 0 0 0.4 0.4 {}
-T {Reduce current -> thus noise
-balance
-- decreasing M11 width to maybe 16u while increasing length} 100 430 0 0 0.4 0.4 {}
 N -440 0 -440 50 {lab=VDD}
 N 260 0 440 0 {lab=VDD}
 N 440 0 440 50 {lab=VDD}
