@@ -29,16 +29,16 @@ C {iopin.sym} 100 0 0 0 {name=p2 lab=B}
 C {iopin.sym} -90 0 2 0 {name=p3 lab=A}
 C {sg13g2_pr/sg13_lv_nmos.sym} 0 -120 1 0 {name=M3
 l=0.13u
-w=24u
-ng=12
+w=1.14u
+ng=1
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} 0 120 1 1 {name=M1
 l=0.13u
-w=48u
-ng=24
+w=2.94u
+ng=1
 m=1
 model=sg13_lv_pmos
 spiceprefix=X

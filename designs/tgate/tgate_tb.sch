@@ -12,8 +12,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.7231951e-07
-x2=3.233643e-06
+x1=-1.7428917e-06
+x2=1.9167155e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -33,8 +33,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.7231951e-07
-x2=3.233643e-06
+x1=-1.7428917e-06
+x2=1.9167155e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -55,8 +55,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.7231951e-07
-x2=3.233643e-06
+x1=-1.7428917e-06
+x2=1.9167155e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -107,10 +107,14 @@ value="
 .param f=80e6
 .param N=128
 .param base_harmonic=3
+.param conv_cycles=9
 
-.param fsignal=\{f/N*base_harmonic\}
+.param f_sampling=\{f/conv_cycles\}
+.param f_nyq=\{f_sampling/2\}
 
-.tran 0.1n \{N/f\}
+.param fsignal=\{base_harmonic*f_sampling/N\}
+
+.tran 0.1n \{N*conv_cycles/f\}
 .save all
 * .write tgate_tb.raw
 "}
@@ -136,7 +140,7 @@ C {lab_wire.sym} -20 0 0 0 {name=p4 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 20 0 0 0 {name=p5 sig_type=std_logic lab=vss}
 C {capa.sym} 180 150 0 0 {name=C1
 m=1
-value=8p
+value=2.7p
 footprint=1206
 device="ceramic capacitor"}
 C {lab_wire.sym} -200 80 0 0 {name=p3 sig_type=std_logic lab=in_p}
@@ -151,13 +155,13 @@ C {lab_wire.sym} -20 280 0 0 {name=p10 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 20 280 0 0 {name=p11 sig_type=std_logic lab=vss}
 C {capa.sym} 180 290 0 0 {name=C2
 m=1
-value=8p
+value=2.7p
 footprint=1206
 device="ceramic capacitor"}
 C {lab_wire.sym} -200 360 0 0 {name=p12 sig_type=std_logic lab=in_n}
 C {vsource.sym} -240 290 2 0 {name=Vinn value="sine(0.75 -0.55 \{fsignal\} 0 0 90)"
 }
-C {vsource.sym} -460 0 0 0 {name=Vctrl value="dc 0 ac 0 pulse(0, 1.5, 0, 1f, 1f, \{0.5/f\}, \{1/f\}) "}
+C {vsource.sym} -460 0 0 0 {name=Vctrl value="dc 0 ac 0 pulse(0, 1.5, 0, 1f, 1f, \{1/f\}, \{conv_cycles/f\}) "}
 C {gnd.sym} -460 30 0 0 {name=l2 lab=GND}
 C {lab_wire.sym} -460 -50 0 0 {name=p13 sig_type=std_logic lab=ctrl}
 C {lab_wire.sym} 0 460 0 0 {name=p9 sig_type=std_logic lab=ctrl}
