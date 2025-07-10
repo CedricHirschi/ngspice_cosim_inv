@@ -4,6 +4,8 @@ K {}
 V {}
 S {}
 E {}
+T {Try without
+Try with half the size} 150 110 0 0 0.4 0.4 {}
 N -50 100 -30 100 {lab=A}
 N -50 -0 -50 100 {lab=A}
 N 30 -100 50 -100 {lab=B}
