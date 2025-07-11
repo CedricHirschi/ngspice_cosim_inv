@@ -1,0 +1,53 @@
+# A more detailed description of the manifest format `Bender.yml` can be found here:
+# https://github.com/pulp-platform/bender#manifest-format-benderyml
+
+package:
+  name: diff_sar_adc
+  authors:
+    - "Cedric Hirschi <cehirschi@ethz.ch>"
+
+dependencies:
+  common_cells:        { git: "https://github.com/pulp-platform/common_cells.git",        version: 1.37.0 }
+  common_verification: { git: "https://github.com/pulp-platform/common_verification.git", version: 0.2.5  }
+  register_interface:  { git: "https://github.com/pulp-platform/register_interface.git",  version: 0.4.1  }
+
+sources:
+  # Source files grouped in levels. Files in level 0 have no dependencies on files in this
+  # package. Files in level 1 only depend on files in level 0, files in level 2 on files in
+  # levels 1 and 0, etc. Files within a level are ordered alphabetically.
+  # Level 0
+  - rtl/adc.sv
+
+vendor_package:
+  - name: common_cells
+    target_dir: rtl/common_cells
+    upstream: { git: "https://github.com/pulp-platform/common_cells.git", rev: "9afda9abb565971649c2aa0985639c096f351171" } # v1.38.0
+    # patch_dir: "rtl/patches/common_cells"
+    exclude_from_upstream:
+      - "src/deprecated"
+    mapping:
+      - { from: 'src/',                      to: ''                      }
+      - { from: 'include/common_cells/',     to: 'include/common_cells/' }
+      - { from: 'README.md',                 to: 'README.md'             }
+      - { from: 'Bender.yml',                to: 'Bender.yml'            }
+
+  - name: common_verification
+    target_dir: rtl/common_verification
+    upstream: { git: "https://github.com/pulp-platform/common_verification.git", rev: "fb1885f48ea46164a10568aeff51884389f67ae3" } # branch verilator-fix
+    # patch_dir: "rtl/patches/common_verification"
+    mapping:
+      - { from: 'src/clk_rst_gen.sv', to: 'clk_rst_gen.sv' }
+      - { from: 'Bender.yml',         to: 'Bender.yml'     }
+  
+  - name: register_interface
+    target_dir: rtl/register_interface
+    upstream: { git: "https://github.com/pulp-platform/register_interface.git", rev: "3b2bf592100b769977c76e51812c55cd742882f6" } # v0.4.1
+    # patch_dir: "rtl/patches/register_interface"
+    mapping:
+      - { from: 'src/periph_to_reg.sv',         to: 'periph_to_reg.sv'            }
+      - { from: 'src/reg_intf.sv',              to: 'reg_intf.sv'                 }
+      - { from: 'src/reg_to_apb.sv',            to: 'reg_to_apb.sv'               }
+      - { from: 'include/register_interface/',  to: 'include/register_interface/' }
+      - { from: 'vendor/lowrisc_opentitan/src', to: 'lowrisc_opentitan'           }
+      - { from: 'Bender.yml',                   to: 'Bender.yml'                  }
+      - { from: 'README.md',                    to: 'README.md'                   }
