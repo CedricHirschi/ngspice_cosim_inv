@@ -111,7 +111,7 @@ module adc #(
         end
 
         // Update result based on comparator output
-        result_d |= (comp ? mask_q : 0);
+        result_d = result_q | (comp ? mask_q : 0);
 
         // Shift mask for next bit
         mask_d >>= 1;
