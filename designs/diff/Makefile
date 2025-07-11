@@ -1,5 +1,8 @@
 TOP = adc
 
+SIM_DIR = xschem/simulation
+OBJ_DIR = verilator/obj_dir
+
 VERILATOR_ARGS  = --binary -j 0 -Wno-fatal
 VERILATOR_ARGS += -Wno-style -Wno-WIDTHEXPAND
 VERILATOR_ARGS += --timing --autoflush --trace --trace-structs
@@ -9,43 +12,48 @@ VERILOG_SRCS = $(wildcard rtl/*.sv)
 
 all: clean sim
 
-sim: xschem/simulation/$(TOP)
-	cd xschem/simulation && ngspice -b $(TOP)_tb.spice -r $(TOP)_tb.raw -o $(TOP)_tb.log
+sim: $(SIM_DIR)/$(TOP)
+	cd $(SIM_DIR) && ngspice -b $(TOP)_tb.spice -r $(TOP)_tb.raw -o $(TOP)_tb.log
 
-sim_rtl: verilator/obj_dir/$(TOP)_tb.vcd
+sim_rtl: $(OBJ_DIR)/$(TOP)_tb.vcd
 
-xschem/simulation/adc.vcd: xschem/simulation/$(TOP)
-	cd xschem/simulation && ngspice -b $(TOP)_tb.spice -r $(TOP)_tb.raw -o $(TOP)_tb.log
+$(SIM_DIR)/adc.vcd: $(SIM_DIR)/$(TOP)
+	cd $(SIM_DIR) && ngspice -b $(TOP)_tb.spice -r $(TOP)_tb.raw -o $(TOP)_tb.log
 
-verilator/obj_dir/$(TOP)_tb.vcd: $(VERILOG_SRCS)
+$(OBJ_DIR)/$(TOP)_tb.vcd: $(VERILOG_SRCS) lib
 	cd verilator && verilator $(VERILATOR_ARGS) -O3 -CFLAGS "-O1 -march=native" --top adc_tb -f files.f
-	cd verilator/obj_dir && ./V$(TOP)_tb
+	cd $(OBJ_DIR) && ./V$(TOP)_tb
 
-xschem/simulation:
+$(SIM_DIR):
 	mkdir -p $@
 
-xschem/simulation/$(TOP)_tb.spice: xschem/simulation
-	cd xschem && xschem -x -q -n $(TOP)_tb.sch -o simulation
+$(SIM_DIR)/$(TOP)_tb.spice: $(SIM_DIR) lib
+	cd xschem && xschem -x -q -n $(TOP)_tb.sch -o $(PWD)/$(SIM_DIR)
 
-xschem/simulation/$(TOP): xschem/simulation/$(TOP)_tb.spice
+$(SIM_DIR)/$(TOP): $(SIM_DIR)/$(TOP)_tb.spice
 	iverilog -g2012 -o $@ rtl/$(TOP).sv
 
-gtkwave: xschem/simulation/$(TOP).vcd
+gtkwave: $(SIM_DIR)/$(TOP).vcd
 	gtkwave $<
 
-gtkwave_rtl: verilator/obj_dir/$(TOP)_tb.vcd
+gtkwave_rtl: $(OBJ_DIR)/$(TOP)_tb.vcd
 	gtkwave $<
 
-xschem: xschem/simulation
-	cd xschem && xschem -o $(PWD)/simulation $(TOP)_tb.sch
+xschem: $(SIM_DIR) lib
+	cd xschem && xschem -o $(PWD)/$(SIM_DIR) $(TOP)_tb.sch
 
 install:
+	bender vendor init
 	sudo mkdir -p /usr/local/lib/ngspice
 	sudo cp /foss/tools/ngspice/lib/ngspice/ivlng.vpi /usr/local/lib/ngspice
 	sudo cp /foss/tools/iverilog/lib/libvvp.so /foss/tools/ngspice/lib/ngspice
 
+lib: rtl/common_cells
+
+rtl/common_cells: install
+
 clean:
-	rm -rf xschem/simulation
-	rm -rf verilator/obj_dir
+	rm -rf $(SIM_DIR)
+	rm -rf $(OBJ_DIR)
 
 .PHONY: all gtkwave gtkwave_rtl xschem clean sim_rtl

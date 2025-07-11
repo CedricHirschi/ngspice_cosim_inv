@@ -66,7 +66,7 @@ N 500 -280 540 -280 {lab=comp_n}
 N 500 -300 500 -280 {lab=comp_n}
 N 500 -600 540 -600 {lab=comp_p}
 N 500 -620 500 -600 {lab=comp_p}
-C {/workspaces/ngspice_cosim_inv/designs/tgate/tgate.sym} -260 -950 0 0 {name=x1}
+C {../../tgate/tgate.sym} -260 -950 0 0 {name=x1}
 C {ipin.sym} -390 -950 0 0 {name=p1 lab=pos_ai}
 C {ipin.sym} -260 -50 0 0 {name=p2 lab=clk_digital_i}
 C {ipin.sym} -400 160 0 0 {name=p5 lab=VSS}
@@ -92,15 +92,15 @@ device_model=".model dac_buff dac_bridge input_load=1e-15 t_rise=0.1n t_fall=0.1
 C {lab_pin.sym} 70 260 0 1 {name=p35 lab=comp_a}
 C {lab_pin.sym} -70 260 0 0 {name=p9 sig_type=std_logic lab=comp}
 C {noconn.sym} -70 220 3 0 {name=l3}
-C {/workspaces/ngspice_cosim_inv/designs/comparator/comparator.sym} 40 -440 0 0 {name=x2}
+C {../../comparator/comparator.sym} 40 -440 0 0 {name=x2}
 C {lab_pin.sym} -280 -1030 1 0 {name=p7 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} -240 -1030 1 0 {name=p8 sig_type=std_logic lab=VSS}
-C {/workspaces/ngspice_cosim_inv/designs/tgate/tgate.sym} -260 -650 0 0 {name=x3}
+C {../../tgate/tgate.sym} -260 -650 0 0 {name=x3}
 C {ipin.sym} -390 -650 0 0 {name=p13 lab=neg_ai}
 C {lab_pin.sym} -260 -570 3 0 {name=p14 sig_type=std_logic lab=sample}
 C {lab_pin.sym} -280 -730 1 0 {name=p17 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} -240 -730 1 0 {name=p28 sig_type=std_logic lab=VSS}
-C {/workspaces/ngspice_cosim_inv/designs/cdac_diff/cdac.sym} 40 -800 0 0 {name=x4}
+C {../../cdac_diff/cdac.sym} 40 -800 0 0 {name=x4}
 C {lab_pin.sym} 40 -720 3 0 {name=p37 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} 40 -880 1 0 {name=p38 sig_type=std_logic lab=VDD}
 C {lab_wire.sym} -60 -820 0 0 {name=p12 sig_type=std_logic lab=pos}
