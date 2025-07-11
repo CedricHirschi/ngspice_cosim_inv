@@ -41,10 +41,13 @@ module adc #(
   data_t dac_n_q, dac_n_d;
   data_t mask_q, mask_d;
   data_t result_q, result_d;
+  data_t result_o_q, result_o_d;
 
   // Comparator logic (redundant)
   logic comp;
   assign comp = comp_p_i & ~comp_n_i; // high when vip > vin
+
+  logic rdy_q, rdy_d;
 
   // Flip-flops for state and data registers
   `FF(state_q, state_d, IDLE);
@@ -52,6 +55,8 @@ module adc #(
   `FF(dac_n_q, dac_n_d, {RESOLUTION{1'b0}});
   `FF(mask_q, mask_d, {RESOLUTION{1'b0}});
   `FF(result_q, result_d, {RESOLUTION{1'b0}});
+  `FF(result_o_q, result_o_d, {RESOLUTION{1'b0}});
+  `FF(rdy_q, rdy_d, 1'b0);
 
   always_comb
   begin: combinational_sar_logic
@@ -60,6 +65,8 @@ module adc #(
     dac_n_d = dac_n_q;
     mask_d = mask_q;
     result_d = result_q;
+    result_o_d = result_o_q;
+    rdy_d = rdy_q;
 
     case (state_q)
       IDLE:
@@ -81,6 +88,7 @@ module adc #(
         mask_d = (1 << (RESOLUTION - 1));
         dac_p_d = 0;
         dac_n_d = 0;
+        rdy_d = 0;
       end
 
       CONVERT:
@@ -97,9 +105,21 @@ module adc #(
         result_d |= (comp ? mask_q : 0);
 
         mask_d >>= 1;
-        if (mask_d == 0)
+        if (mask_q == 1)
         begin
-          state_d = IDLE;
+          result_o_d = result_d;
+          rdy_d = 1; // Set ready signal when conversion is complete
+
+          if (start_i)
+          begin
+            state_d = SAMPLE;
+            dac_p_d = 0;
+            dac_n_d = 0;
+            mask_d  = '0;
+            result_d = 0;
+          end
+          else
+            state_d = IDLE;
         end
       end
 
@@ -114,9 +134,9 @@ module adc #(
   end
 
   assign sample_o = (state_q == SAMPLE);
-  assign rdy_o = (state_q == IDLE);
+  assign rdy_o = rdy_q;
   assign dac_p_o = dac_p_q;
   assign dac_n_o = dac_n_q;
-  assign result_o = result_q;
+  assign result_o = result_o_q;
 
 endmodule
