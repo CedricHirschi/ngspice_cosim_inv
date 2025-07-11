@@ -7,13 +7,13 @@ E {}
 B 2 -400 -700 400 -300 {flags=graph
 y1=0
 y2=1.5
-ypos1=0
-ypos2=2
+ypos1=-0.10519639
+ypos2=1.5116291
 divy=5
 subdivy=1
 unity=1
-x1=-1.9243643e-08
-x2=2.2779394e-07
+x1=-1.504759e-08
+x2=1.9762979e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -33,15 +33,15 @@ logy=0
 rawfile=$netlist_dir/adc_tb.raw
 digital=1}
 B 2 -400 -1100 400 -700 {flags=graph
-y1=-1
-y2=2
+y1=0.20021648
+y2=1.4290165
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.9243643e-08
-x2=2.2779394e-07
+x1=-1.504759e-08
+x2=1.9762979e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -51,19 +51,20 @@ unitx=1
 logx=0
 logy=0
 digital=0
-color="4 5"
-node="x1.pos
+color="14 7 12"
+node="vdd 2 /
+x1.pos
 x1.neg"}
 B 2 -400 -1500 400 -1100 {flags=graph
 y1=0
 y2=1.5
-ypos1=0
-ypos2=2
+ypos1=-0.48019282
+ypos2=1.0635002
 divy=5
 subdivy=1
 unity=1
-x1=-1.9243643e-08
-x2=2.2779394e-07
+x1=-1.504759e-08
+x2=1.9762979e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -119,7 +120,7 @@ descr="Build Icarus Object"
 tclcommand="execute 1 sh -c \\"cd $netlist_dir; iverilog -g2012 -o adc [abs_sym_path ../rtl/adc.sv]\\""}
 C {vsource.sym} -560 700 0 1 {name=Vclkdig value="pulse(\{vss\}, \{vdd\}, \{0.5/f\}, 0, 0, \{0.5/f\}, \{1/f\})" savecurrent=false}
 C {vsource.sym} -540 310 0 0 {name=Vrst value="pulse(\{vdd\}, \{vss\}, 0, 0, 0, \{1/f\})" savecurrent=false}
-C {vsource.sym} -580 310 0 1 {name=Vstart value="pulse(\{vss\}, \{vdd\}, \{2.5/f\}, 0, 0, \{1/f\}, \{12/f\})" savecurrent=false}
+C {vsource.sym} -580 310 0 1 {name=Vstart value="pulse(\{vss\}, \{vdd\}, \{2.4/f\}, 0, 0, \{1/f\}, \{12/f\})" savecurrent=false}
 C {vsource.sym} -580 110 0 1 {name=Vpos value=0.8 savecurrent=true}
 C {gnd.sym} -560 730 0 1 {name=l1 lab=GND}
 C {gnd.sym} -540 340 0 0 {name=l2 lab=GND}
