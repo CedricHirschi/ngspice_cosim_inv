@@ -1,4 +1,4 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
@@ -12,8 +12,8 @@ ypos2=1.5116291
 divy=5
 subdivy=1
 unity=1
-x1=-1.504759e-08
-x2=1.9762979e-07
+x1=-2.3180321e-08
+x2=1.2209116e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -40,8 +40,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.504759e-08
-x2=1.9762979e-07
+x1=-2.3180321e-08
+x2=1.2209116e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -63,8 +63,8 @@ ypos2=1.0635002
 divy=5
 subdivy=1
 unity=1
-x1=-1.504759e-08
-x2=1.9762979e-07
+x1=-2.3180321e-08
+x2=1.2209116e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -77,6 +77,26 @@ digital=1
 color="4 5"
 node="x1.dac_p;x1.dac_p0,x1.dac_p1,x1.dac_p2,x1.dac_p3,x1.dac_p4,x1.dac_p5,x1.dac_p6,x1.dac_p7
 x1.dac_n;x1.dac_n0,x1.dac_n1,x1.dac_n2,x1.dac_n3,x1.dac_n4,x1.dac_n5,x1.dac_n6,x1.dac_n7"}
+B 2 400 -1500 1200 -1100 {flags=graph
+y1=0
+y2=1.5
+ypos1=-0.48019282
+ypos2=1.0635002
+divy=5
+subdivy=1
+unity=1
+x1=-2.3180321e-08
+x2=1.2209116e-07
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+dataset=-1
+unitx=1
+logx=0
+logy=0
+digital=1
+}
 N -560 870 -560 890 {lab=VDD}
 N -520 870 -520 890 {lab=VSS}
 N 230 -10 310 -10 {lab=ready_o}

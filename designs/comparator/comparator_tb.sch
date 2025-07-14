@@ -1,4 +1,4 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
@@ -11,7 +11,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=2.8960307e-08
+x1=0.9983438e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -28,7 +28,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=3.0224331e-08
+x2=1.0226277e-08
 autoload=1}
 B 2 400 -770 1200 -370 {flags=graph
 ypos1=0
@@ -36,21 +36,23 @@ ypos2=2
 divy=5
 subdivy=4
 unity=1
-x1=2.8960307e-08
-x2=3.0224331e-08
+x1=1.9983438e-08
+x2=2.0226277e-08
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
 dataset=-1
-unitx=u
+unitx=1
 logx=0
 logy=0
-color=4
-node="in_p in_n -"
+color="4 5 6"
+node="in_p in_n -
+in_p
+in_n"
 rainbow=1
-y1=-5m
-y2=1.2}
+y1=-2.3208116
+y2=2.2632527}
 B 2 -400 -1170 400 -770 {flags=graph
 y1=-0.25
 ypos1=0
@@ -58,7 +60,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=2.8960307e-08
+x1=1.9983438e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -74,7 +76,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=3.0224331e-08
+x2=2.0226277e-08
 autoload=1}
 B 2 0 640 800 1040 {flags=graph
 y1=-0.25
@@ -83,7 +85,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=2.8960307e-08
+x1=1.9983438e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -100,7 +102,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=3.0224331e-08
+x2=2.0226277e-08
 autoload=1}
 B 2 0 1040 800 1440 {flags=graph
 y1=-0.25
@@ -109,7 +111,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=2.8960307e-08
+x1=1.9983438e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -126,7 +128,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=3.0224331e-08
+x2=2.0226277e-08
 autoload=1}
 B 2 -400 -770 400 -370 {flags=graph
 y1=-0.25
@@ -135,7 +137,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=2.8960307e-08
+x1=1.9983438e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -152,7 +154,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=3.0224331e-08
+x2=2.0226277e-08
 autoload=1}
 T {Start with input SH
 - Block with 2 tgates (differential)
@@ -163,7 +165,7 @@ T {Start with input SH
 -> These samples can be analyzed for linearity
 -> Add generous capacitance on output which matches real circuit
 -> Settling in 4th of LSB
-- Maybe tgate is enough, but could be too much non-linear} 1020 80 0 0 0.4 0.4 {}
+- Maybe tgate is enough, but could be too much non-linear} 1200 0 0 0 0.4 0.4 {}
 N 0 100 0 120 {lab=vss}
 N 0 -120 0 -100 {lab=vdd}
 N -320 320 -320 340 {lab=vdd}
@@ -226,7 +228,7 @@ N -220 -40 -100 -40 {lab=in_p}
 N -220 -90 -220 -40 {lab=in_p}
 N -480 -90 -220 -90 {lab=in_p}
 N -480 -90 -480 -70 {lab=in_p}
-C {comparator.sym} 0 0 0 0 {}
+C {comparator.sym} 0 0 0 0 {name=x1}
 C {code_shown.sym} 600 -170 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value="
@@ -244,7 +246,7 @@ C {gnd.sym} -320 400 0 0 {name=l3 lab=GND}
 C {gnd.sym} -240 400 0 0 {name=l4 lab=GND}
 C {lab_wire.sym} 0 120 2 0 {name=p1 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 0 -120 0 0 {name=p2 sig_type=std_logic lab=vdd}
-C {vsource.sym} -160 190 0 0 {name=Vclk value="dc 0 ac 0 pulse(\{vss\}, \{vdd\}, \{0.9/f\}, 1f, 1f, \{0.1/f\}, \{1/f\})"}
+C {vsource.sym} -160 190 0 0 {name=Vclk value="pulse(\{vdd\}, \{vss\}, \{0.9/f\}, 1f, 1f, \{0.1/f\}, \{1/f\})"}
 C {gnd.sym} -160 220 0 0 {name=l1 lab=GND}
 C {lab_wire.sym} -120 0 0 0 {name=p3 sig_type=std_logic lab=clk}
 C {launcher.sym} -10 -340 0 0 {name=h5
@@ -259,7 +261,7 @@ C {lab_wire.sym} 120 -20 0 0 {name=p8 sig_type=std_logic lab=out1}
 C {lab_wire.sym} 120 20 0 0 {name=p9 sig_type=std_logic lab=out2}
 C {vsource.sym} -560 70 0 0 {name=Vcm value=\{vdd/2\}}
 C {gnd.sym} -560 100 0 0 {name=l2 lab=GND}
-C {simulator_commands_shown.sym} 600 90 0 0 {name=SWEEPS
+C {simulator_commands_shown.sym} 600 10 0 0 {name=SWEEPS
 simulator=ngspice
 only_toplevel=false 
 value="
@@ -267,10 +269,20 @@ value="
 .param vdd=1.5
 .param f=100Meg
 
-.param vhigh=1.1
-.param vlow=-2m
+.param vhigh=1.5
+.param vlow=-1.5
 
 .tran 0.01n \{4.5/f\}
+
+.save all
+*.control
+*	save all
+*	op
+*	print @n.x1.xm7.nsg13_lv_nmos[gm]
+*	print @n.x1.xm8.nsg13_lv_nmos[gm]
+*	print @n.x1.xm9.nsg13_lv_nmos[gm]
+*	print @n.x1.xm10.nsg13_lv_nmos[gm]
+*.endc
 "}
 C {gnd.sym} 0 500 0 0 {name=l5 lab=GND}
 C {lab_wire.sym} 80 420 0 0 {name=p10 sig_type=std_logic lab=out1_dup}
