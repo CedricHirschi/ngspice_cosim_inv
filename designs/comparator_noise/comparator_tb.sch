@@ -1,4 +1,4 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
@@ -118,31 +118,8 @@ N 20 0 80 0 {lab=VSS}
 N -80 0 -20 0 {lab=VSS}
 N 120 0 200 0 {lab=VCM}
 N -200 0 -120 0 {lab=VCM}
-N 0 -190 80 -190 {lab=VDD}
-N 0 -220 0 -190 {lab=VDD}
-N -80 -190 0 -190 {lab=VDD}
-N -80 -150 -80 -130 {lab=VDD}
-N 80 -150 80 -130 {lab=VDD}
-N -40 -100 -20 -100 {lab=VDD}
-N -20 -100 30 -150 {lab=VDD}
-N 30 -150 80 -150 {lab=VDD}
-N 20 -100 40 -100 {lab=VDD}
-N -30 -150 20 -100 {lab=VDD}
-N -80 -150 -30 -150 {lab=VDD}
-N 80 -100 150 -100 {lab=VSS}
-N -150 -100 -80 -100 {lab=VSS}
-N -80 -190 -80 -150 {lab=VDD}
-N 80 -190 80 -150 {lab=VDD}
 N 80 -50 80 -30 {lab=#net2}
 N -80 -50 -80 -30 {lab=#net2}
-N -80 -70 -80 -50 {lab=#net2}
-N -360 -50 -360 -30 {lab=#net2}
-N -360 30 -360 50 {lab=VSS}
-N -360 -50 -80 -50 {lab=#net2}
-N 360 -50 360 -30 {lab=#net2}
-N 360 30 360 50 {lab=VSS}
-N 80 -50 360 -50 {lab=#net2}
-N 80 -70 80 -50 {lab=#net2}
 N -80 -50 80 -50 {lab=#net2}
 C {code_shown.sym} 720 -110 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
@@ -228,40 +205,7 @@ spiceprefix=X
 }
 C {lab_wire.sym} 0 210 3 0 {name=p18 sig_type=std_logic lab=VSS}
 C {lab_wire.sym} -120 100 0 0 {name=p15 sig_type=std_logic lab=VDD}
-C {lab_wire.sym} 0 -220 1 0 {name=p21 sig_type=std_logic lab=VDD}
 C {lab_wire.sym} -700 -10 1 0 {name=p16 sig_type=std_logic lab=VCM}
 C {lab_wire.sym} -200 0 0 0 {name=p17 sig_type=std_logic lab=VCM}
 C {lab_wire.sym} 200 0 2 0 {name=p22 sig_type=std_logic lab=VCM}
-C {sg13g2_pr/sg13_lv_nmos.sym} -60 -100 0 1 {name=M8
-l=0.13u
-w=6u
-ng=2
-m=1
-model=sg13_lv_nmos
-spiceprefix=X
-}
-C {lab_wire.sym} -150 -100 0 0 {name=p11 sig_type=std_logic lab=VSS}
-C {lab_wire.sym} 150 -100 2 0 {name=p13 sig_type=std_logic lab=VSS}
-C {sg13g2_pr/sg13_lv_nmos.sym} 60 -100 0 0 {name=M7
-l=0.13u
-w=6u
-ng=2
-m=1
-model=sg13_lv_nmos
-spiceprefix=X
-}
-C {sg13g2_pr/cap_cmim.sym} -360 0 0 0 {name=C3
-model=cap_cmim
-w=1.8e-6
-l=1.8e-6
-m=1
-spiceprefix=X}
-C {lab_wire.sym} -360 50 3 0 {name=p1 sig_type=std_logic lab=VSS}
-C {sg13g2_pr/cap_cmim.sym} 360 0 0 1 {name=C1
-model=cap_cmim
-w=1.8e-6
-l=1.8e-6
-m=1
-spiceprefix=X}
-C {lab_wire.sym} 360 50 1 1 {name=p2 sig_type=std_logic lab=VSS}
-C {lab_wire.sym} 0 -50 1 0 {name=p3 sig_type=std_logic lab=VDD}
+C {lab_wire.sym} 20 -50 0 0 {name=p3 sig_type=std_logic lab=VDD}

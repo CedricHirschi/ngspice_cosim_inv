@@ -1,7 +1,5 @@
 `timescale 1ns/1ps
 
-`include "/workspaces/ngspice_cosim_inv/designs/diff/rtl/common_cells/include/common_cells/registers.svh"
-
 module adc #(
     parameter integer RESOLUTION     = 8 //! ADC resolution in bits
   ) (
@@ -49,18 +47,65 @@ module adc #(
 
   logic rdy_q, rdy_d; //! Ready signal indicating conversion is complete
 
-  // Flip-flops for state and data registers
-  `FF(state_q, state_d, IDLE);
-  `FF(dac_p_q, dac_p_d, {RESOLUTION{1'b0}});
-  `FF(dac_n_q, dac_n_d, {RESOLUTION{1'b0}});
-  `FF(mask_q, mask_d, {RESOLUTION{1'b0}});
-  `FF(result_q, result_d, {RESOLUTION{1'b0}});
-  `FF(result_o_q, result_o_d, {RESOLUTION{1'b0}});
-  `FF(rdy_q, rdy_d, 1'b0);
+  always_ff @(posedge clk_i or negedge rst_ni) //! Registers for state and data
+  begin: regs
+    if (!rst_ni)
+    begin
+      state_q <= IDLE;
+      dac_p_q <= {RESOLUTION{1'b0}};
+      dac_n_q <= {RESOLUTION{1'b0}};
+      mask_q <= {RESOLUTION{1'b0}};
+      result_q <= {RESOLUTION{1'b0}};
+      result_o_q <= {RESOLUTION{1'b0}};
+      rdy_q <= 1'b0;
+    end
+    else
+    begin
+      state_q <= state_d;
+      dac_p_q <= dac_p_d;
+      dac_n_q <= dac_n_d;
+      mask_q <= mask_d;
+      result_q <= result_d;
+      result_o_q <= result_o_d;
+      rdy_q <= rdy_d;
+    end
+  end
 
-  always_comb //! Combinational logic for SAR ADC
-  begin: combinational_sar_logic
+  always_comb //! Combinational logic for the state machine
+  begin: fsm_logic
     state_d = state_q;
+
+    case (state_q)
+      IDLE:
+        if (start_i)
+        begin
+          // Transition to SAMPLE state on start signal
+          state_d = SAMPLE;
+        end
+
+      SAMPLE:
+        state_d = CONVERT;
+
+      CONVERT:
+        if (mask_q == 1)
+        begin
+          if (start_i)
+          begin
+            // If start signal is asserted again, reset and go back to SAMPLE state
+            state_d = SAMPLE;
+          end
+          else
+            // Otherwise, go back to IDLE state
+            state_d = IDLE;
+        end
+
+      default:
+        state_d = IDLE;
+    endcase
+  end
+
+  always_comb //! Combinational logic for the SAR logic
+  begin: sar_logic
     dac_p_d = dac_p_q;
     dac_n_d = dac_n_q;
     mask_d = mask_q;
@@ -72,27 +117,27 @@ module adc #(
       IDLE:
       begin
         // Keep outputs low in IDLE state
-        dac_p_d = 0;
-        dac_n_d = 0;
-        mask_d  = '0;
-        result_d = 0;
-        
-        if (start_i)
-        begin
-          // Transition to SAMPLE state on start signal
-          state_d = SAMPLE;
-        end
+        dac_p_d = {RESOLUTION{1'b0}}; // Reset DAC outputs
+        dac_n_d = {RESOLUTION{1'b0}};
       end
 
       SAMPLE:
       begin
-        // In SAMPLE state, prepare for conversion
-        state_d = CONVERT;
-        mask_d = (1 << (RESOLUTION - 1));
+        // Check comparator output and flip DAC outputs accordingly
+        result_d = 0;
+        mask_d = (1 << (RESOLUTION - 2));
 
-        // Make sure DAC outputs are reset
-        dac_p_d = 0;
-        dac_n_d = 0;
+        if (comp)
+        begin
+          dac_p_d = (1 << (RESOLUTION - 1));
+        end
+        else
+        begin
+          dac_n_d = (1 << (RESOLUTION - 1));
+        end
+
+        // Update result based on comparator output
+        result_d = (comp ? (1 << (RESOLUTION - 1)) : 0);
 
         // Reset ready signal
         rdy_d = 0;
@@ -115,34 +160,16 @@ module adc #(
 
         // Shift mask for next bit
         mask_d >>= 1;
+
+        // Check for last bit
         if (mask_q == 1)
         begin
           // If mask is at last bit, transition to next state
           result_o_d = result_d;
           rdy_d = 1;
-
-          if (start_i)
-          begin
-            // If start signal is asserted again, reset and go back to SAMPLE state
-            state_d = SAMPLE;
-            dac_p_d = 0;
-            dac_n_d = 0;
-            mask_d  = '0;
-            result_d = 0;
-          end
-          else
-            // Otherwise, go back to IDLE state
-            state_d = IDLE;
+          dac_p_d = {RESOLUTION{1'b0}}; // Reset DAC outputs
+          dac_n_d = {RESOLUTION{1'b0}};
         end
-      end
-
-      default:
-      begin
-        // Default case to handle unexpected states
-        state_d = IDLE;
-        dac_p_d = 0;
-        dac_n_d = 0;
-        mask_d  = '0;
       end
     endcase
   end
