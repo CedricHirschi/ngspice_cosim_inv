@@ -7,13 +7,13 @@ E {}
 B 2 -400 -700 400 -300 {flags=graph
 y1=0
 y2=1.5
-ypos1=-0.10519639
-ypos2=1.5116291
+ypos1=-0.090820265
+ypos2=1.6303444
 divy=5
 subdivy=1
 unity=1
-x1=-2.3180321e-08
-x2=1.2209116e-07
+x1=7.5034802e-07
+x2=1.1168976e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -24,8 +24,10 @@ clk_comp
 start
 x1.sample
 ready_o
-result_o;result_o0,result_o1,result_o2,result_o3,result_o4,result_o5,result_o6,result_o7"
-color="4 5 6 7 8 9 10"
+result_o;result_o0,result_o1,result_o2,result_o3,result_o4,result_o5,result_o6,result_o7
+x1.dac_p;x1.dac_p0,x1.dac_p1,x1.dac_p2,x1.dac_p3,x1.dac_p4,x1.dac_p5,x1.dac_p6,x1.dac_p7
+x1.dac_n;x1.dac_n0,x1.dac_n1,x1.dac_n2,x1.dac_n3,x1.dac_n4,x1.dac_n5,x1.dac_n6,x1.dac_n7"
+color="4 5 6 7 8 9 10 11 12"
 dataset=-1
 unitx=1
 logx=0
@@ -33,15 +35,15 @@ logy=0
 rawfile=$netlist_dir/adc_tb.raw
 digital=1}
 B 2 -400 -1100 400 -700 {flags=graph
-y1=0.20021648
-y2=1.4290165
+y1=-0.25283548
+y2=1.8472611
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-2.3180321e-08
-x2=1.2209116e-07
+x1=7.5034802e-07
+x2=1.1168976e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -51,20 +53,22 @@ unitx=1
 logx=0
 logy=0
 digital=0
-color="14 7 12"
+color="4 5 6 7 8"
 node="vdd 2 /
 x1.pos
-x1.neg"}
+x1.neg
+pos
+neg"}
 B 2 -400 -1500 400 -1100 {flags=graph
-y1=0
+y1=-0
 y2=1.5
-ypos1=-0.48019282
-ypos2=1.0635002
+ypos1=-0.1714542
+ypos2=1.372239
 divy=5
 subdivy=1
 unity=1
-x1=-2.3180321e-08
-x2=1.2209116e-07
+x1=7.5034802e-07
+x2=1.1168976e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -74,29 +78,11 @@ unitx=1
 logx=0
 logy=0
 digital=1
-color="4 5"
-node="x1.dac_p;x1.dac_p0,x1.dac_p1,x1.dac_p2,x1.dac_p3,x1.dac_p4,x1.dac_p5,x1.dac_p6,x1.dac_p7
-x1.dac_n;x1.dac_n0,x1.dac_n1,x1.dac_n2,x1.dac_n3,x1.dac_n4,x1.dac_n5,x1.dac_n6,x1.dac_n7"}
-B 2 400 -1500 1200 -1100 {flags=graph
-y1=0
-y2=1.5
-ypos1=-0.48019282
-ypos2=1.0635002
-divy=5
-subdivy=1
-unity=1
-x1=-2.3180321e-08
-x2=1.2209116e-07
-divx=5
-subdivx=1
-xlabmag=1.0
-ylabmag=1.0
-dataset=-1
-unitx=1
-logx=0
-logy=0
-digital=1
-}
+color="4 5 6 7"
+node="clk_comp
+x1.comp_p
+x1.comp_n
+x1.pos x1.neg > 1.5 *"}
 N -560 870 -560 890 {lab=VDD}
 N -520 870 -520 890 {lab=VSS}
 N 230 -10 310 -10 {lab=ready_o}
@@ -138,10 +124,10 @@ C {adc.sym} 0 0 0 0 {name=x1}
 C {launcher.sym} -60 -200 0 0 {name=h1
 descr="Build Icarus Object"
 tclcommand="execute 1 sh -c \\"cd $netlist_dir; iverilog -g2012 -o adc [abs_sym_path ../rtl/adc.sv]\\""}
-C {vsource.sym} -560 700 0 1 {name=Vclkdig value="pulse(\{vss\}, \{vdd\}, \{0.5/f\}, 0, 0, \{0.5/f\}, \{1/f\})" savecurrent=false}
+C {vsource.sym} -560 700 0 1 {name=Vclkdig value="pulse(\{vss\}, \{vdd\}, \{0.5/f\}, 1f, 1f, \{0.5/f\}, \{1/f\})" savecurrent=false}
 C {vsource.sym} -540 310 0 0 {name=Vrst value="pulse(\{vdd\}, \{vss\}, 0, 0, 0, \{1/f\})" savecurrent=false}
-C {vsource.sym} -580 310 0 1 {name=Vstart value="pulse(\{vss\}, \{vdd\}, \{2.4/f\}, 0, 0, \{1/f\}, \{12/f\})" savecurrent=false}
-C {vsource.sym} -580 110 0 1 {name=Vpos value=0.8 savecurrent=true}
+C {vsource.sym} -580 310 0 1 {name=Vstart value="pulse(\{vss\}, \{vdd\}, \{1.4/f\}, 0, 0, \{1/f\}, \{12/f\})" savecurrent=false}
+C {vsource.sym} -580 110 0 1 {name=Vpos value=0.2 savecurrent=true}
 C {gnd.sym} -560 730 0 1 {name=l1 lab=GND}
 C {gnd.sym} -540 340 0 0 {name=l2 lab=GND}
 C {gnd.sym} -580 340 0 1 {name=l3 lab=GND}
@@ -157,7 +143,7 @@ C {simulator_commands_shown.sym} 780 -40 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.tran 100p \{14/f\}
+.tran 1n \{11/f\}
 .save all
 *.write comparator_tb.raw
 "}
@@ -166,7 +152,7 @@ only_toplevel=false
 value="
 .param vss=0.0
 .param vdd=1.5
-.param f=80Meg
+.param f=10Meg
 "}
 C {vsource.sym} -560 920 0 1 {name=Vdd value=\{vdd\}
 }
@@ -220,8 +206,6 @@ C {simulator_commands_shown.sym} 780 290 0 0 {name=BRIDGE_MODELS
 simulator=ngspice
 only_toplevel=false 
 value="
-.model adc_buff_clk adc_bridge(in_low = 'vdd/2' in_high = 'vdd/2')
-
 .control
 pre_set auto_bridge_d_out =
 + ( \\".model auto_bridge_out bidi_bridge(direction=0 out_high=1.5 t_rise=0.1n t_fall=0.1n)\\"
@@ -231,7 +215,7 @@ pre_set auto_bridge_d_in =
 +   \\"auto_bridge_in%d [ %s ] [ %s ] null auto_bridge_in\\" )
 .endc
 "}
-C {vsource.sym} -520 700 0 0 {name=Vclkcomp value="pulse(\{vss\}, \{vdd\}, \{0.1/f\}, 0, 0, \{0.5/f\}, \{1/f\})" savecurrent=false}
+C {vsource.sym} -520 700 0 0 {name=Vclkcomp value="pulse(\{vss\}, \{vdd\}, \{0.1/f\}, 1f, 1f, \{0.5/f\}, \{1/f\})" savecurrent=false}
 C {gnd.sym} -520 730 0 0 {name=l12 lab=GND}
 C {capa.sym} 420 350 0 0 {name=C6
 m=1
@@ -274,7 +258,7 @@ C {lab_pin.sym} -520 870 1 0 {name=p7 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} -540 260 1 0 {name=p1 sig_type=std_logic lab=rst}
 C {lab_pin.sym} -580 260 3 1 {name=p2 sig_type=std_logic lab=start}
 C {lab_pin.sym} -580 60 1 0 {name=p3 sig_type=std_logic lab=pos}
-C {vsource.sym} -540 110 0 0 {name=Vneg value=0.7 savecurrent=true}
+C {vsource.sym} -540 110 0 0 {name=Vneg value=1.3 savecurrent=true}
 C {gnd.sym} -580 140 0 1 {name=Vneg1 lab=GND}
 C {lab_pin.sym} -540 60 3 1 {name=Vneg2 sig_type=std_logic lab=neg}
 C {lab_pin.sym} 310 10 0 1 {name=Vneg3 sig_type=std_logic lab=result_o[0..7]}
