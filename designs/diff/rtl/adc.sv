@@ -22,8 +22,8 @@ module adc #(
 
   initial
   begin
-    $dumpfile("adc.vcd");
-    $dumpvars(0, adc);
+    $dumpfile("adc.fst");
+    $dumpvars(1, adc);
   end
 
   typedef enum logic [1:0] { //! State machine states

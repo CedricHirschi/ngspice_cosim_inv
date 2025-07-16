@@ -52,8 +52,8 @@ module adc_tb;
   initial
   begin
     // Initialize VCD dump
-    $dumpfile("adc_tb.vcd");
-    $dumpvars(0, adc_tb);
+    $dumpfile("adc_tb.fst");
+    $dumpvars(1, adc_tb);
 
     // Initialize signals
     start_i = 0;

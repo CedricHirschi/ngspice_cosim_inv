@@ -2,6 +2,7 @@ TOP = adc
 
 SIM_DIR = xschem/simulation
 OBJ_DIR = verilator/obj_dir
+KLAYOUT_DIR = klayout
 
 VERILATOR_ARGS  = --binary -j 0 -Wno-fatal
 VERILATOR_ARGS += -Wno-style -Wno-WIDTHEXPAND
@@ -49,6 +50,18 @@ install:
 
 rtl/common_cells:
 	bender vendor init
+
+$(SIM_DIR)/$(TOP).spice: $(SIM_DIR) $(VERILOG_SRCS) rtl/common_cells
+	cd xschem && xschem -x -q -n $(TOP).sch -o $(PWD)/$(SIM_DIR)
+
+$(SIM_DIR)/$(TOP).cdl: $(SIM_DIR) $(VERILOG_SRCS) rtl/common_cells
+	cd xschem && xschem -x -q --tcl "set spiceprefix 0; set lvs_netlist 1" -n $(TOP).sch -o $(PWD)/$(SIM_DIR) --netlist_filename $(TOP).cdl
+
+$(KLAYOUT_DIR)/$(TOP).gds: $(SIM_DIR)/$(TOP).spice
+	cd $(KLAYOUT_DIR) && klayout -n sg13g2 -zz -r generator.py -rd netlist=../$(SIM_DIR)/$(TOP).spice -rd output=$(TOP).gds
+
+klayout: $(KLAYOUT_DIR)/$(TOP).gds $(SIM_DIR)/$(TOP).cdl
+	cd $(KLAYOUT_DIR) && klayout -n sg13g2 $(TOP).gds -e
 
 clean:
 	rm -rf $(SIM_DIR)

@@ -1,19 +1,16 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
 S {}
 E {}
-N -160 -50 -120 -50 {lab=#net1}
+N -160 -50 -120 -50 {lab=clk_digital_i}
 N -160 -30 -120 -30 {lab=rst_ni}
 N -160 -10 -120 -10 {lab=start_i}
-N -260 -50 -220 -50 {lab=clk_digital_i}
-N 30 220 70 220 {lab=comp}
 N 120 60 160 60 {lab=result_o[0..7]}
 N 120 40 160 40 {lab=ready_o}
 N 120 -60 160 -60 {lab=sample}
 N -390 -950 -320 -950 {lab=pos_ai}
-N -70 220 -30 220 {lab="%vd(pos neg)"}
 N -260 -890 -260 -870 {lab=sample}
 N -280 -1030 -280 -1010 {lab=VDD}
 N -240 -1030 -240 -1010 {lab=VSS}
@@ -44,8 +41,6 @@ N -160 30 -120 30 {lab=comp_p}
 N -160 50 -120 50 {lab=comp_n}
 N 120 -460 160 -460 {lab=comp_1}
 N 120 -420 160 -420 {lab=comp_2}
-N -70 260 -30 260 {lab=comp}
-N 30 260 70 260 {lab=comp_a}
 N 440 -550 460 -550 {lab=comp_1}
 N 440 -600 440 -550 {lab=comp_1}
 N 440 -650 460 -650 {lab=comp_1}
@@ -68,30 +63,18 @@ N 500 -600 540 -600 {lab=comp_p}
 N 500 -620 500 -600 {lab=comp_p}
 C {../../tgate/tgate.sym} -260 -950 0 0 {name=x1}
 C {ipin.sym} -390 -950 0 0 {name=p1 lab=pos_ai}
-C {ipin.sym} -260 -50 0 0 {name=p2 lab=clk_digital_i}
+C {ipin.sym} -160 -50 0 0 {name=p2 lab=clk_digital_i}
 C {ipin.sym} -400 160 0 0 {name=p5 lab=VSS}
 C {ipin.sym} -400 140 0 0 {name=p6 lab=VDD}
 C {ipin.sym} -160 -30 0 0 {name=p15 lab=rst_ni}
-C {lab_pin.sym} 70 220 2 0 {name=p16 sig_type=std_logic lab=comp}
 C {ipin.sym} -160 -10 0 0 {name=p21 lab=start_i}
 C {opin.sym} 160 40 0 0 {name=p26 lab=ready_o}
 C {opin.sym} 160 60 0 0 {name=p27 lab=result_o[0..7]}
-C {adc_bridge.sym} -190 -50 0 0 {name=A2 adc_bridge_model= adc_buff_clk}
-C {adc_vlog.sym} 0 0 0 0 {name=A1 model=adc
+C {adc_vlog.sym} 0 0 0 0 {name=a1 model=adc
 device_model=".model adc d_cosim simulation=\\"ivlng\\" sim_args=[\\"adc\\"]"}
 C {lab_pin.sym} -260 -870 3 0 {name=p18 sig_type=std_logic lab=sample}
 C {lab_pin.sym} 160 -60 2 0 {name=p34 sig_type=std_logic lab=sample}
 C {ipin.sym} -180 -440 0 0 {name=p3 lab=clk_comp_i}
-C {adc_bridge.sym} 0 220 0 0 {name=A3 adc_bridge_model=comp
-device_model=".model comp adc_bridge in_low=0 in_high=0"
-}
-C {lab_pin.sym} -70 220 0 0 {name=p4 lab="%vd(pos neg)"}
-C {dac_bridge.sym} 0 260 0 0 {name=A4 dac_bridge_model= dac_buff
-device_model=".model dac_buff dac_bridge input_load=1e-15 t_rise=0.1n t_fall=0.1n
-+ out_low=0 out_high=1.5"}
-C {lab_pin.sym} 70 260 0 1 {name=p35 lab=comp_a}
-C {lab_pin.sym} -70 260 0 0 {name=p9 sig_type=std_logic lab=comp}
-C {noconn.sym} -70 220 3 0 {name=l3}
 C {../../comparator/comparator.sym} 40 -440 0 0 {name=x2}
 C {lab_pin.sym} -280 -1030 1 0 {name=p7 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} -240 -1030 1 0 {name=p8 sig_type=std_logic lab=VSS}
@@ -115,7 +98,6 @@ C {lab_pin.sym} -160 30 0 0 {name=p22 sig_type=std_logic lab=comp_p}
 C {lab_pin.sym} -160 50 0 0 {name=p23 sig_type=std_logic lab=comp_n}
 C {lab_pin.sym} 160 -460 2 0 {name=p24 sig_type=std_logic lab=comp_1}
 C {lab_pin.sym} 160 -420 2 0 {name=p25 sig_type=std_logic lab=comp_2}
-C {noconn.sym} 70 260 3 0 {name=l1}
 C {sg13g2_pr/sg13_lv_nmos.sym} 480 -550 0 0 {name=M5
 l=0.13u
 w=1.5u
