@@ -10,8 +10,8 @@ ypos2=2
 divy=5
 subdivy=4
 unity=1
-x1=-4.2729297e-09
-x2=5.0404425e-08
+x1=-2.895556e-08
+x2=3.5227066e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -34,7 +34,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-4.2729297e-09
+x1=-2.895556e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -48,7 +48,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=5.0404425e-08
+x2=3.5227066e-08
 autoload=1
 color="4 5 6"
 node="x1.S
@@ -80,9 +80,9 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=5.0404425e-08
+x2=3.5227066e-08
 autoload=1
-x1=-4.2729297e-09}
+x1=-2.895556e-08}
 B 2 -400 -970 400 -770 {flags=graph
 y1=-0.25
 ypos1=0
@@ -90,7 +90,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-4.2729297e-09
+x1=-2.895556e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -106,7 +106,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=5.0404425e-08
+x2=3.5227066e-08
 autoload=1}
 B 2 -1200 -570 -400 -370 {flags=graph
 y1=-0.25
@@ -115,7 +115,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-4.2729297e-09
+x1=-2.895556e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -129,7 +129,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=5.0404425e-08
+x2=3.5227066e-08
 autoload=1
 color="4 5 6"
 node="x2.net1
@@ -158,9 +158,9 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=5.0404425e-08
+x2=3.5227066e-08
 autoload=1
-x1=-4.2729297e-09}
+x1=-2.895556e-08}
 B 2 -400 1400 400 1600 {flags=graph
 y1=-0.25
 ypos1=0
@@ -168,7 +168,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-4.2729297e-09
+x1=-2.895556e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -182,7 +182,7 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=5.0404425e-08
+x2=3.5227066e-08
 autoload=1
 color="4 5"
 node="out1_inv
@@ -210,9 +210,9 @@ digital=0
 rainbow=1
 y2=1.75
 mode=Line
-x2=5.0404425e-08
+x2=3.5227066e-08
 autoload=1
-x1=-4.2729297e-09}
+x1=-2.895556e-08}
 N 0 100 0 120 {lab=vss}
 N 0 -120 0 -100 {lab=vdd}
 N 660 460 660 480 {lab=vdd}
@@ -300,7 +300,7 @@ C {gnd.sym} 660 540 0 0 {name=l3 lab=GND}
 C {gnd.sym} 740 540 0 0 {name=l4 lab=GND}
 C {lab_wire.sym} 0 120 2 0 {name=p1 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 0 -120 0 0 {name=p2 sig_type=std_logic lab=vdd}
-C {vsource.sym} -160 190 0 0 {name=Vclk value="pulse(\{vss\}, \{vdd\}, \{0.5/f\}, 0.2n, 0.2n, \{0.5/f\}, \{1/f\})"}
+C {vsource.sym} -160 190 0 0 {name=Vclk value="pulse(\{vss\}, \{vdd\}, \{0.1/f\}, 0.2n, 0.2n, \{0.5/f\}, \{1/f\})"}
 C {gnd.sym} -160 220 0 0 {name=l1 lab=GND}
 C {lab_wire.sym} -120 0 0 0 {name=p3 sig_type=std_logic lab=clk}
 C {launcher.sym} -10 -340 0 0 {name=h5
@@ -426,7 +426,7 @@ spiceprefix=X
 }
 C {lab_wire.sym} 120 840 0 0 {name=p12 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 120 1040 2 0 {name=p17 sig_type=std_logic lab=vss}
-C {vsource.sym} -480 40 0 0 {name=Vdiff1 value="pulse(\{vhigh/2\}, \{vlow/2\}, \{1.5/f\}, 1f, 1f, \{1/f\}, \{2/f\})"}
+C {vsource.sym} -480 40 0 0 {name=Vdiff1 value="pulse(\{vhigh/2\}, \{vlow/2\}, \{1.25/f\}, 1f, 1f, \{1/f\}, \{2/f\})"}
 C {lab_wire.sym} 0 660 2 0 {name=p26 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 0 420 0 0 {name=p27 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} -120 540 0 0 {name=p28 sig_type=std_logic lab=clk}
