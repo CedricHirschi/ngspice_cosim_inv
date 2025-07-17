@@ -125,7 +125,7 @@ descr="Build Icarus Object"
 tclcommand="execute 1 sh -c \\"cd $netlist_dir; iverilog -g2012 -o adc [abs_sym_path ../rtl/adc.sv]\\""}
 C {vsource.sym} -560 700 0 1 {name=Vclkdig value="pulse(\{vss\}, \{vdd\}, \{0.5/f\}, 1f, 1f, \{0.5/f\}, \{1/f\})" savecurrent=false}
 C {vsource.sym} -540 310 0 0 {name=Vrst value="pulse(\{vdd\}, \{vss\}, 0, 0, 0, \{1/f\})" savecurrent=false}
-C {vsource.sym} -580 310 0 1 {name=Vstart value="pulse(\{vss\}, \{vdd\}, \{1.4/f\}, 0, 0, \{1/f\}, \{8/f\})" savecurrent=false}
+C {vsource.sym} -580 310 0 1 {name=Vstart value="pulse(\{vss\}, \{vdd\}, \{1.4/f\}, 0, 0, \{1/f\}, \{9/f\})" savecurrent=false}
 C {vsource.sym} -580 110 0 1 {name=Vpos value="pwl(0 0.10 \{9/f\} 0.10 \{9/f\} 0.20 \{17/f\} 0.20 \{17/f\} 0.30 \{25/f\} 0.30 \{25/f\} 0.40 \{33/f\} 0.40 \{33/f\} 0.50 \{41/f\} 0.50 \{41/f\} 0.60 \{49/f\} 0.60 \{49/f\} 0.70 \{57/f\} 0.70 \{57/f\} 0.80 \{65/f\} 0.80 \{65/f\} 0.90 \{73/f\} 0.90 \{73/f\} 1.00 \{81/f\} 1.00 \{81/f\} 1.10 \{89/f\} 1.10 \{89/f\} 1.20 \{97/f\} 1.20 \{97/f\} 1.30 \{105/f\} 1.30 \{105/f\} 1.40 \{113/f\} 1.40)" savecurrent=true}
 C {gnd.sym} -560 730 0 1 {name=l1 lab=GND}
 C {gnd.sym} -540 340 0 0 {name=l2 lab=GND}
@@ -142,7 +142,7 @@ C {simulator_commands_shown.sym} 780 -40 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.tran 1n \{116/f\}
+.tran 1n \{30/f\}
 .save all
 *.write comparator_tb.raw
 "}
