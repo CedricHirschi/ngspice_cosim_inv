@@ -12,8 +12,8 @@ ypos2=1.7164026
 divy=5
 subdivy=1
 unity=1
-x1=9.6790279e-08
-x2=1.7351614e-07
+x1=3.2700082e-07
+x2=3.9305497e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -42,8 +42,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=9.6790279e-08
-x2=1.7351614e-07
+x1=3.2700082e-07
+x2=3.9305497e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -66,8 +66,8 @@ ypos2=1.372239
 divy=5
 subdivy=1
 unity=1
-x1=9.6790279e-08
-x2=1.7351614e-07
+x1=3.2700082e-07
+x2=3.9305497e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -126,7 +126,7 @@ tclcommand="execute 1 sh -c \\"cd $netlist_dir; iverilog -g2012 -o adc [abs_sym_
 C {vsource.sym} -560 700 0 1 {name=Vclkdig value="pulse(\{vss\}, \{vdd\}, \{0.5/f\}, 1f, 1f, \{0.5/f\}, \{1/f\})" savecurrent=false}
 C {vsource.sym} -540 310 0 0 {name=Vrst value="pulse(\{vdd\}, \{vss\}, 0, 0, 0, \{1/f\})" savecurrent=false}
 C {vsource.sym} -580 310 0 1 {name=Vstart value="pulse(\{vss\}, \{vdd\}, \{1.4/f\}, 0, 0, \{1/f\}, \{9/f\})" savecurrent=false}
-C {vsource.sym} -580 110 0 1 {name=Vpos value="pwl(0 0.10 \{9/f\} 0.10 \{9/f\} 0.20 \{17/f\} 0.20 \{17/f\} 0.30 \{25/f\} 0.30 \{25/f\} 0.40 \{33/f\} 0.40 \{33/f\} 0.50 \{41/f\} 0.50 \{41/f\} 0.60 \{49/f\} 0.60 \{49/f\} 0.70 \{57/f\} 0.70 \{57/f\} 0.80 \{65/f\} 0.80 \{65/f\} 0.90 \{73/f\} 0.90 \{73/f\} 1.00 \{81/f\} 1.00 \{81/f\} 1.10 \{89/f\} 1.10 \{89/f\} 1.20 \{97/f\} 1.20 \{97/f\} 1.30 \{105/f\} 1.30 \{105/f\} 1.40 \{113/f\} 1.40)" savecurrent=true}
+C {vsource.sym} -580 110 0 1 {name=Vpos value="pwl(0 0.10 \{7/f\} 0.10 \{7/f\} 0.20 \{16/f\} 0.20 \{16/f\} 0.30 \{25/f\} 0.30 \{25/f\} 0.40 \{34/f\} 0.40 \{34/f\} 0.50 \{43/f\} 0.50 \{43/f\} 0.60 \{52/f\} 0.60 \{52/f\} 0.70 \{61/f\} 0.70 \{61/f\} 0.80 \{70/f\} 0.80 \{70/f\} 0.90 \{79/f\} 0.90 \{79/f\} 1.00 \{88/f\} 1.00 \{88/f\} 1.10 \{97/f\} 1.10 \{97/f\} 1.20 \{106/f\} 1.20 \{106/f\} 1.30 \{115/f\} 1.30 \{115/f\} 1.40 \{124/f\} 1.40)" savecurrent=true}
 C {gnd.sym} -560 730 0 1 {name=l1 lab=GND}
 C {gnd.sym} -540 340 0 0 {name=l2 lab=GND}
 C {gnd.sym} -580 340 0 1 {name=l3 lab=GND}
@@ -142,7 +142,7 @@ C {simulator_commands_shown.sym} 780 -40 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.tran 1n \{30/f\}
+.tran 1n \{65/f\}
 .save all
 *.write comparator_tb.raw
 "}
@@ -257,7 +257,7 @@ C {lab_pin.sym} -520 870 1 0 {name=p7 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} -540 260 1 0 {name=p1 sig_type=std_logic lab=rst}
 C {lab_pin.sym} -580 260 3 1 {name=p2 sig_type=std_logic lab=start}
 C {lab_pin.sym} -580 60 1 0 {name=p3 sig_type=std_logic lab=pos}
-C {vsource.sym} -540 110 0 0 {name=Vneg value="pwl(0 1.40 \{9/f\} 1.40 \{9/f\} 1.30 \{17/f\} 1.30 \{17/f\} 1.20 \{25/f\} 1.20 \{25/f\} 1.10 \{33/f\} 1.10 \{33/f\} 1.00 \{41/f\} 1.00 \{41/f\} 0.90 \{49/f\} 0.90 \{49/f\} 0.80 \{57/f\} 0.80 \{57/f\} 0.70 \{65/f\} 0.70 \{65/f\} 0.60 \{73/f\} 0.60 \{73/f\} 0.50 \{81/f\} 0.50 \{81/f\} 0.40 \{89/f\} 0.40 \{89/f\} 0.30 \{97/f\} 0.30 \{97/f\} 0.20 \{105/f\} 0.20 \{105/f\} 0.10 \{113/f\} 0.10)" savecurrent=true}
+C {vsource.sym} -540 110 0 0 {name=Vneg value="pwl(0 1.40 \{7/f\} 1.40 \{7/f\} 1.30 \{16/f\} 1.30 \{16/f\} 1.20 \{25/f\} 1.20 \{25/f\} 1.10 \{34/f\} 1.10 \{34/f\} 1.00 \{43/f\} 1.00 \{43/f\} 0.90 \{52/f\} 0.90 \{52/f\} 0.80 \{61/f\} 0.80 \{61/f\} 0.70 \{70/f\} 0.70 \{70/f\} 0.60 \{79/f\} 0.60 \{79/f\} 0.50 \{88/f\} 0.50 \{88/f\} 0.40 \{97/f\} 0.40 \{97/f\} 0.30 \{106/f\} 0.30 \{106/f\} 0.20 \{115/f\} 0.20 \{115/f\} 0.10 \{124/f\} 0.10)" savecurrent=true}
 C {gnd.sym} -580 140 0 1 {name=Vneg1 lab=GND}
 C {lab_pin.sym} -540 60 3 1 {name=Vneg2 sig_type=std_logic lab=neg}
 C {lab_pin.sym} 310 10 0 1 {name=Vneg3 sig_type=std_logic lab=result_o[0..7]}

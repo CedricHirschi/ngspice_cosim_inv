@@ -1,4 +1,4 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
@@ -118,9 +118,9 @@ N 20 0 80 0 {lab=VSS}
 N -80 0 -20 0 {lab=VSS}
 N 120 0 200 0 {lab=VCM}
 N -200 0 -120 0 {lab=VCM}
-N 80 -50 80 -30 {lab=#net2}
-N -80 -50 -80 -30 {lab=#net2}
-N -80 -50 80 -50 {lab=#net2}
+N 80 -50 80 -30 {lab=VDD}
+N -80 -50 -80 -30 {lab=VDD}
+N -80 -50 80 -50 {lab=VDD}
 C {code_shown.sym} 720 -110 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value="
@@ -156,22 +156,15 @@ value="
 	print @n.xm4.nsg13_lv_nmos[gm]
 	print @n.xm6.nsg13_lv_nmos[gm]
 
-	print @c.xc3.c1[c]
-	print @c.xc1.c1[c]
-
   * --- node P  ----------------------------------------------------
   let CP =  @n.xm4.nsg13_lv_nmos[cdb]   \\   ; drain‐to‐bulk M4
-           +@n.xm8.nsg13_lv_nmos[csb]   \\   ; source‐to‐bulk M8
            +@n.xm4.nsg13_lv_nmos[cgs]   \\   ; gate–source overlap M4
-           +@n.xm4.nsg13_lv_nmos[cgd]   \\   ; gate–drain overlap  M4
-	   +@c.xc3.c1[c]
+           +@n.xm4.nsg13_lv_nmos[cgd]       ; gate–drain overlap  M4
 
   * --- node Q  ----------------------------------------------------
   let CQ =  @n.xm6.nsg13_lv_nmos[cdb]   \\
-           +@n.xm7.nsg13_lv_nmos[csb]   \\
            +@n.xm6.nsg13_lv_nmos[cgs]   \\
-           +@n.xm6.nsg13_lv_nmos[cgd]   \\
-	   +@c.xc1.c1[c]
+           +@n.xm6.nsg13_lv_nmos[cgd]    
 
   print CP
   print CQ	
@@ -179,16 +172,16 @@ value="
 "}
 C {sg13g2_pr/sg13_lv_nmos.sym} -100 0 0 0 {name=M4
 l=0.13u
-w=24u
-ng=12
+w=2u
+ng=3
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -20 100 0 0 {name=M5
 l=1u
-w=16u
-ng=8
+w=3u
+ng=1
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -197,8 +190,8 @@ C {lab_wire.sym} 20 0 0 0 {name=p19 sig_type=std_logic lab=VSS}
 C {lab_wire.sym} -20 0 2 0 {name=p20 sig_type=std_logic lab=VSS}
 C {sg13g2_pr/sg13_lv_nmos.sym} 100 0 0 1 {name=M6
 l=0.13u
-w=24u
-ng=12
+w=2u
+ng=3
 m=1
 model=sg13_lv_nmos
 spiceprefix=X

@@ -1,4 +1,4 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
@@ -80,10 +80,10 @@ N 80 140 280 140 {lab=OUT2}
 N -440 280 -80 280 {lab=P}
 N -80 260 -80 280 {lab=P}
 N -440 80 -440 280 {lab=P}
-N -440 280 -440 300 {lab=OUT1}
 N -440 360 -440 380 {lab=VSS}
-N 440 280 440 300 {lab=OUT1}
 N 440 360 440 380 {lab=VSS}
+N -440 280 -440 300 {lab=P}
+N 440 280 440 300 {lab=N}
 C {sg13g2_pr/sg13_lv_pmos.sym} -460 50 0 0 {name=M1
 l=0.13u
 w=2u
@@ -94,7 +94,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} -60 50 0 1 {name=M3
 l=0.13u
-w=6u
+w=1u
 ng=3
 m=1
 model=sg13_lv_pmos
@@ -102,7 +102,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} 60 50 0 0 {name=M4
 l=0.13u
-w=6u
+w=1u
 ng=3
 m=1
 model=sg13_lv_pmos
@@ -110,23 +110,23 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -60 230 0 1 {name=M8
 l=0.13u
-w=12u
-ng=5
+w=0.2u
+ng=1
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -100 330 0 0 {name=M9
 l=0.13u
-w=3u
+w=2u
 ng=3
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -20 430 0 0 {name=M11
-l=0.13u
-w=1u
+l=1u
+w=3u
 ng=1
 m=1
 model=sg13_lv_nmos
@@ -147,7 +147,7 @@ C {lab_wire.sym} -560 50 0 0 {name=p1 sig_type=std_logic lab=CLK}
 C {lab_wire.sym} 560 50 0 0 {name=p2 sig_type=std_logic lab=CLK}
 C {sg13g2_pr/sg13_lv_nmos.sym} 100 330 0 1 {name=M10
 l=0.13u
-w=3u
+w=2u
 ng=3
 m=1
 model=sg13_lv_nmos
@@ -179,8 +179,8 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 60 230 0 0 {name=M7
 l=0.13u
-w=12u
-ng=5
+w=0.2u
+ng=1
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -204,15 +204,15 @@ C {lab_wire.sym} 200 280 0 0 {name=p19 sig_type=std_logic lab=N}
 C {lab_wire.sym} 30 380 0 0 {name=p20 sig_type=std_logic lab=S}
 C {sg13g2_pr/cap_cmim.sym} -440 330 0 0 {name=C1
 model=cap_cmim
-w=1.8e-6
-l=1.8e-6
+w=3e-6
+l=3e-6
 m=1
 spiceprefix=X}
 C {lab_wire.sym} -440 380 0 0 {name=p15 sig_type=std_logic lab=VSS}
 C {sg13g2_pr/cap_cmim.sym} 440 330 0 0 {name=C3
 model=cap_cmim
-w=1.8e-6
-l=1.8e-6
+w=3e-6
+l=3e-6
 m=1
 spiceprefix=X}
 C {lab_wire.sym} 440 380 0 0 {name=p16 sig_type=std_logic lab=VSS}
