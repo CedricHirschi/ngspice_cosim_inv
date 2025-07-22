@@ -112,9 +112,9 @@ value="
 .param f_sampling=\{f/conv_cycles\}
 .param f_nyq=\{f_sampling/2\}
 
-.param fsignal=\{3*(f/conv_cycles)/128\}
+.param fsignal=\{base_harmonic*f_sampling/N\}
 
-.tran 10n \{N*conv_cycles/f\}
+.tran 0.1n \{N*conv_cycles/f\}
 .save all
 * .write tgate_tb.raw
 "}
@@ -122,7 +122,7 @@ C {lab_wire.sym} 260 80 0 0 {name=p2 sig_type=std_logic lab=out_p}
 C {code_shown.sym} 480 30 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value="
-.lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
+.lib $::SG13G2_MODELS/cornerMOSlv.lib mos_ss
 .include $::PDK_ROOT/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
 C {lab_wire.sym} 0 180 0 0 {name=p1 sig_type=std_logic lab=ctrl}
