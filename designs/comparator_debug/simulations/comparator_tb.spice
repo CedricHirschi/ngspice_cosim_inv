@@ -1,0 +1,65 @@
+** sch_path: /workspaces/ngspice_cosim_inv/designs/comparator_debug/comparator_tb.sch
+**.subckt comparator_tb
+x1 clk in_p in_n out2 out1 vss vdd comparator
+Vdd vdd GND {vdd}
+Vss vss GND {vss}
+Vclk clk GND pulse({vss}, {vdd}, {0.1/f}, 0.2n, 0.2n, {0.5/f}, {1/f})
+Vdiff in_p net1 pulse({vhigh/2}, {vlow/2}, {0.8/f}, 1f, 1f, {1/f}, {2/f})
+Vcm net1 GND {vdd/2}
+Vdiff1 net1 in_n pulse({vhigh/2}, {vlow/2}, {0.8/f}, 1f, 1f, {1/f}, {2/f})
+**** begin user architecture code
+
+.lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.include /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+
+
+
+.param vss=0
+.param vdd=1.5
+.param f=100Meg
+
+.param vhigh=1.5m
+.param vlow=-1.5m
+
+.control
+  save all
+  tran 10p 49n
+  write comparator_tb.raw
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  comparator.sym # of pins=7
+** sym_path: /workspaces/ngspice_cosim_inv/designs/comparator_debug/comparator.sym
+** sch_path: /workspaces/ngspice_cosim_inv/designs/comparator_debug/comparator.sch
+.subckt comparator CLK IN1 IN2 OUT2 OUT1 VSS VDD
+*.ipin CLK
+*.ipin IN1
+*.ipin IN2
+*.opin OUT2
+*.opin OUT1
+*.ipin VSS
+*.ipin VDD
+XM1 P CLK VDD VDD sg13_lv_pmos w=2u l=0.13u ng=1 m=1
+XM3 OUT1 OUT2 VDD VDD sg13_lv_pmos w=1u l=0.13u ng=3 m=1
+XM4 OUT2 OUT1 VDD VDD sg13_lv_pmos w=1u l=0.13u ng=3 m=1
+XM8 OUT1 OUT2 P VSS sg13_lv_nmos w=0.2u l=0.13u ng=1 m=1
+XM9 P IN1 S VSS sg13_lv_nmos w=4u l=0.13u ng=2 m=1
+XM11 S CLK VSS VSS sg13_lv_nmos w=6u l=2u ng=3 m=1
+XM10 N IN2 S VSS sg13_lv_nmos w=4u l=0.13u ng=2 m=1
+XM2 OUT1 CLK VDD VDD sg13_lv_pmos w=2u l=0.13u ng=1 m=1
+XM5 N CLK VDD VDD sg13_lv_pmos w=2u l=0.13u ng=1 m=1
+XM6 OUT2 CLK VDD VDD sg13_lv_pmos w=2u l=0.13u ng=1 m=1
+XM7 OUT2 OUT1 N VSS sg13_lv_nmos w=0.2u l=0.13u ng=1 m=1
+XC2 OUT1 VSS cap_cmim w=1.8e-6 l=1.8e-6 m=1
+XC4 OUT2 VSS cap_cmim w=1.8e-6 l=1.8e-6 m=1
+XC1 P VSS cap_cmim w=3e-6 l=3e-6 m=1
+XC3 N VSS cap_cmim w=3e-6 l=3e-6 m=1
+.ends
+
+.GLOBAL GND
+.end
