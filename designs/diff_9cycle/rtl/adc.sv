@@ -38,12 +38,21 @@ module adc #(
   data_t result_q, result_d;
   data_t result_o_q, result_o_d;
 
-  
+
   // Comparator input signals:
   // - vip > vin: comp_p_i = 1, comp_n_i = 0
   // - vip < vin: comp_p_i = 0, comp_n_i = 1
-  logic comp; //! Comparator output: high when vip > vin
-  assign comp = comp_p_i & ~comp_n_i;
+  logic comp_q;        // last valid value
+  logic comp_now;      // value used this cycle
+
+  always_comb begin
+    case ({comp_p_i, comp_n_i})
+      2'b10:  comp_now = 1'b1;          // vip > vin
+      2'b01:  comp_now = 1'b0;          // vip < vin
+      default: comp_now = comp_q;       // 11 or 00 -> hold last
+    endcase
+  end
+
 
   logic rdy_q, rdy_d; //! Ready signal indicating conversion is complete
 
@@ -57,6 +66,7 @@ module adc #(
       mask_q <= {RESOLUTION{1'b0}};
       result_q <= {RESOLUTION{1'b0}};
       result_o_q <= {RESOLUTION{1'b0}};
+      comp_q <= 1'b0;
       rdy_q <= 1'b0;
     end
     else
@@ -67,6 +77,7 @@ module adc #(
       mask_q <= mask_d;
       result_q <= result_d;
       result_o_q <= result_o_d;
+      comp_q <= comp_now;
       rdy_q <= rdy_d;
     end
   end
@@ -92,10 +103,12 @@ module adc #(
           if (start_i)
           begin
             // If start signal is asserted again, reset and go back to SAMPLE state
+            // (restart mode)
             state_d = SAMPLE;
           end
           else
             // Otherwise, go back to IDLE state
+            // (normal mode)
             state_d = IDLE;
         end
 
@@ -134,7 +147,7 @@ module adc #(
       CONVERT:
       begin
         // Check comparator output and flip DAC outputs accordingly
-        if (comp)
+        if (comp_now)
         begin
           dac_p_d = dac_p_q ^ mask_q;
         end
@@ -144,7 +157,7 @@ module adc #(
         end
 
         // Update result based on comparator output
-        result_d = result_q | (comp ? mask_q : 0);
+        result_d = result_q | (comp_now ? mask_q : 0);
 
         // Shift mask for next bit
         mask_d >>= 1;

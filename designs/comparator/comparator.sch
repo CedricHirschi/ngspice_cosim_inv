@@ -1,4 +1,4 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
@@ -118,16 +118,16 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -100 330 0 0 {name=M9
 l=0.13u
-w=2u
-ng=3
+w=4u
+ng=2
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -20 430 0 0 {name=M11
-l=1u
-w=3u
-ng=1
+l=2u
+w=6u
+ng=3
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -147,8 +147,8 @@ C {lab_wire.sym} -560 50 0 0 {name=p1 sig_type=std_logic lab=CLK}
 C {lab_wire.sym} 560 50 0 0 {name=p2 sig_type=std_logic lab=CLK}
 C {sg13g2_pr/sg13_lv_nmos.sym} 100 330 0 1 {name=M10
 l=0.13u
-w=2u
-ng=3
+w=4u
+ng=2
 m=1
 model=sg13_lv_nmos
 spiceprefix=X

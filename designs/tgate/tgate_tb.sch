@@ -1,4 +1,4 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
@@ -12,8 +12,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.7428917e-06
-x2=1.9167155e-05
+x1=-8.3305363e-07
+x2=1.7464083e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -33,8 +33,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.7428917e-06
-x2=1.9167155e-05
+x1=-8.3305363e-07
+x2=1.7464083e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -55,8 +55,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.7428917e-06
-x2=1.9167155e-05
+x1=-8.3305363e-07
+x2=1.7464083e-05
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -105,7 +105,7 @@ simulator=ngspice
 only_toplevel=false 
 value="
 .param f=80e6
-.param N=128
+.param N=6192
 .param base_harmonic=3
 .param conv_cycles=9
 
