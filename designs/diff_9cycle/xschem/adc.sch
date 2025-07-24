@@ -33,10 +33,10 @@ N -140 -780 -140 -650 {lab=neg}
 N -140 -780 -40 -780 {lab=neg}
 N 40 -560 40 -540 {lab=VDD}
 N 40 -340 40 -320 {lab=VSS}
-N 120 -20 160 -20 {lab=dac_p[0..7]}
-N 120 -0 160 -0 {lab=dac_n[0..7]}
-N 120 -820 160 -820 {lab=dac_p[0..7]}
-N 120 -780 160 -780 {lab=dac_n[0..7]}
+N 120 -20 160 -20 {lab=dac_p[0..6]}
+N 120 -0 160 -0 {lab=dac_n[0..6]}
+N 120 -820 160 -820 {lab=dac_p[0..6]}
+N 120 -780 160 -780 {lab=dac_n[0..6]}
 N -160 30 -120 30 {lab=comp_p}
 N -160 50 -120 50 {lab=comp_n}
 N 120 -460 160 -460 {lab=comp_1}
@@ -90,10 +90,10 @@ C {lab_wire.sym} -60 -820 0 0 {name=p12 sig_type=std_logic lab=pos}
 C {lab_wire.sym} -60 -780 0 0 {name=p29 sig_type=std_logic lab=neg}
 C {lab_pin.sym} 40 -320 3 0 {name=p30 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} 40 -560 1 0 {name=p31 sig_type=std_logic lab=VDD}
-C {lab_pin.sym} 160 -20 2 0 {name=p10 sig_type=std_logic lab=dac_p[0..7]}
-C {lab_pin.sym} 160 0 2 0 {name=p11 sig_type=std_logic lab=dac_n[0..7]}
-C {lab_pin.sym} 160 -820 2 0 {name=p19 sig_type=std_logic lab=dac_p[0..7]}
-C {lab_pin.sym} 160 -780 2 0 {name=p20 sig_type=std_logic lab=dac_n[0..7]}
+C {lab_pin.sym} 160 -20 2 0 {name=p10 sig_type=std_logic lab=dac_p[0..6]}
+C {lab_pin.sym} 160 0 2 0 {name=p11 sig_type=std_logic lab=dac_n[0..6]}
+C {lab_pin.sym} 160 -820 2 0 {name=p19 sig_type=std_logic lab=dac_p[0..6]}
+C {lab_pin.sym} 160 -780 2 0 {name=p20 sig_type=std_logic lab=dac_n[0..6]}
 C {lab_pin.sym} -160 30 0 0 {name=p22 sig_type=std_logic lab=comp_p}
 C {lab_pin.sym} -160 50 0 0 {name=p23 sig_type=std_logic lab=comp_n}
 C {lab_pin.sym} 160 -460 2 0 {name=p24 sig_type=std_logic lab=comp_1}

@@ -11,8 +11,8 @@ module adc #(
     input  logic                    comp_n_i, //! Negative side comparator input
 
     output logic                    sample_o, //! Sample signal indicating ADC is sampling
-    output logic [RESOLUTION-1:0]   dac_p_o,  //! Positive Digital-to-Analog Converter output
-    output logic [RESOLUTION-1:0]   dac_n_o,  //! Negative Digital-to-Analog Converter output
+    output logic [RESOLUTION-2:0]   dac_p_o,  //! Positive Digital-to-Analog Converter output
+    output logic [RESOLUTION-2:0]   dac_n_o,  //! Negative Digital-to-Analog Converter output
 
     output logic                    rdy_o,    //! Ready signal indicating conversion is done
     output logic [RESOLUTION-1:0]   result_o  //! Result of the ADC conversion
@@ -149,11 +149,11 @@ module adc #(
         // Check comparator output and flip DAC outputs accordingly
         if (comp_now)
         begin
-          dac_p_d = dac_p_q ^ mask_q;
+          dac_p_d = dac_p_q ^ (mask_q >> 1);
         end
         else
         begin
-          dac_n_d = dac_n_q ^ mask_q;
+          dac_n_d = dac_n_q ^ (mask_q >> 1);
         end
 
         // Update result based on comparator output
