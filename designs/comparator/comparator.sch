@@ -1,4 +1,4 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
@@ -84,6 +84,9 @@ N -440 360 -440 380 {lab=VSS}
 N 440 360 440 380 {lab=VSS}
 N -440 280 -440 300 {lab=P}
 N 440 280 440 300 {lab=N}
+N 140 380 140 420 {lab=S}
+N 80 380 140 380 {lab=S}
+N 140 480 140 520 {lab=VSS}
 C {sg13g2_pr/sg13_lv_pmos.sym} -460 50 0 0 {name=M1
 l=0.13u
 w=2u
@@ -95,7 +98,7 @@ spiceprefix=X
 C {sg13g2_pr/sg13_lv_pmos.sym} -60 50 0 1 {name=M3
 l=0.13u
 w=1u
-ng=3
+ng=1
 m=1
 model=sg13_lv_pmos
 spiceprefix=X
@@ -103,20 +106,12 @@ spiceprefix=X
 C {sg13g2_pr/sg13_lv_pmos.sym} 60 50 0 0 {name=M4
 l=0.13u
 w=1u
-ng=3
+ng=1
 m=1
 model=sg13_lv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -60 230 0 1 {name=M8
-l=0.13u
-w=0.2u
-ng=1
-m=1
-model=sg13_lv_nmos
-spiceprefix=X
-}
-C {sg13g2_pr/sg13_lv_nmos.sym} -100 330 0 0 {name=M9
 l=0.13u
 w=4u
 ng=2
@@ -124,10 +119,18 @@ m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
+C {sg13g2_pr/sg13_lv_nmos.sym} -100 330 0 0 {name=M9
+l=0.13u
+w=12u
+ng=6
+m=1
+model=sg13_lv_nmos
+spiceprefix=X
+}
 C {sg13g2_pr/sg13_lv_nmos.sym} -20 430 0 0 {name=M11
 l=2u
-w=6u
-ng=3
+w=4u
+ng=2
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -147,8 +150,8 @@ C {lab_wire.sym} -560 50 0 0 {name=p1 sig_type=std_logic lab=CLK}
 C {lab_wire.sym} 560 50 0 0 {name=p2 sig_type=std_logic lab=CLK}
 C {sg13g2_pr/sg13_lv_nmos.sym} 100 330 0 1 {name=M10
 l=0.13u
-w=4u
-ng=2
+w=12u
+ng=6
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -179,8 +182,8 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 60 230 0 0 {name=M7
 l=0.13u
-w=0.2u
-ng=1
+w=4u
+ng=2
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -216,3 +219,9 @@ l=3e-6
 m=1
 spiceprefix=X}
 C {lab_wire.sym} 440 380 0 0 {name=p16 sig_type=std_logic lab=VSS}
+C {capa.sym} 140 450 0 0 {name=C5
+m=1
+value=25f
+footprint=1206
+device="ceramic capacitor"}
+C {lab_wire.sym} 140 520 0 0 {name=p21 sig_type=std_logic lab=VSS}

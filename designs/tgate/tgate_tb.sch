@@ -1,4 +1,4 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
@@ -105,14 +105,12 @@ simulator=ngspice
 only_toplevel=false 
 value="
 .param f=80e6
-.param N=6192
+.param N=128
 .param base_harmonic=3
-.param conv_cycles=9
+.param conv_cycles=2
 
 .param f_sampling=\{f/conv_cycles\}
-.param f_nyq=\{f_sampling/2\}
-
-.param fsignal=\{3*(f/conv_cycles)/128\}
+.param fsignal=\{base_harmonic*f_sampling/N\}
 
 .tran 10n \{N*conv_cycles/f\}
 .save all
@@ -140,7 +138,7 @@ C {lab_wire.sym} -20 0 0 0 {name=p4 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 20 0 0 0 {name=p5 sig_type=std_logic lab=vss}
 C {capa.sym} 180 150 0 0 {name=C1
 m=1
-value=2.7p
+value=1.7p
 footprint=1206
 device="ceramic capacitor"}
 C {lab_wire.sym} -200 80 0 0 {name=p3 sig_type=std_logic lab=in_p}
@@ -155,7 +153,7 @@ C {lab_wire.sym} -20 280 0 0 {name=p10 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 20 280 0 0 {name=p11 sig_type=std_logic lab=vss}
 C {capa.sym} 180 290 0 0 {name=C2
 m=1
-value=2.7p
+value=1.7p
 footprint=1206
 device="ceramic capacitor"}
 C {lab_wire.sym} -200 360 0 0 {name=p12 sig_type=std_logic lab=in_n}

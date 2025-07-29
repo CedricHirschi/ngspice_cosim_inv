@@ -4,6 +4,7 @@ K {}
 V {}
 S {}
 E {}
+T {"s=2.5292e-6"} -50 -510 0 0 0.4 0.4 {}
 N -760 -320 -720 -320 {lab=#net1}
 N -480 -320 -440 -320 {lab=#net2}
 N -200 -320 -160 -320 {lab=#net3}
@@ -110,8 +111,8 @@ N 960 180 1280 180 {lab=neg_ai}
 N 680 180 960 180 {lab=neg_ai}
 N 1280 -220 1280 -180 {lab=pos_ai}
 N 960 -180 1280 -180 {lab=pos_ai}
-N 1280 -320 1280 -280 {lab=#net23}
-N 1280 280 1280 320 {lab=#net24}
+N 1280 -320 1280 -280 {lab=VSS}
+N 1280 280 1280 320 {lab=VSS}
 C {ipin.sym} -1160 -180 2 1 {name=p2 lab=pos_ai}
 C {ipin.sym} -700 600 0 0 {name=p12 lab=VSS}
 C {sg13g2_stdcells/sg13g2_inv_2.sym} -800 -320 2 1 {name=x2 VDD=VDD VSS=VSS prefix=sg13g2_ }
