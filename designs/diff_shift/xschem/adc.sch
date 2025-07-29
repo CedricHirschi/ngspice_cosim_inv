@@ -4,7 +4,7 @@ K {}
 V {}
 S {}
 E {}
-N -160 -50 -120 -50 {lab=clk_digital_i}
+N -160 -50 -120 -50 {lab=#net1}
 N -160 -30 -120 -30 {lab=rst_ni}
 N -160 -10 -120 -10 {lab=start_i}
 N 120 60 160 60 {lab=result_o[0..7]}
@@ -63,17 +63,18 @@ N 500 -600 540 -600 {lab=comp_p}
 N 500 -620 500 -600 {lab=comp_p}
 N -840 -340 -800 -340 {lab=clk_sample_i}
 N -840 -300 -800 -300 {lab=sample_en}
-N -420 -300 -400 -300 {lab=#net1}
-N -400 -300 -400 -240 {lab=#net1}
-N -620 -240 -400 -240 {lab=#net1}
-N -620 -300 -620 -240 {lab=#net1}
-N -620 -300 -600 -300 {lab=#net1}
+N -420 -300 -400 -300 {lab=#net2}
+N -400 -300 -400 -240 {lab=#net2}
+N -620 -240 -400 -240 {lab=#net2}
+N -620 -300 -620 -240 {lab=#net2}
+N -620 -300 -600 -300 {lab=#net2}
 N -660 -280 -600 -280 {lab=rst_ni}
 N -420 -320 -360 -320 {lab=sample}
-N -680 -320 -600 -320 {lab=#net2}
+N -680 -320 -600 -320 {lab=#net3}
+N -260 -50 -220 -50 {lab=clk_digital_i}
 C {../../tgate/tgate.sym} -260 -950 0 0 {name=x1}
 C {ipin.sym} -390 -950 0 0 {name=p1 lab=pos_ai}
-C {ipin.sym} -160 -50 0 0 {name=p2 lab=clk_digital_i}
+C {ipin.sym} -260 -50 0 0 {name=p2 lab=clk_digital_i}
 C {ipin.sym} -400 160 0 0 {name=p5 lab=VSS}
 C {ipin.sym} -400 140 0 0 {name=p6 lab=VDD}
 C {ipin.sym} -160 -10 0 0 {name=p21 lab=start_i}
@@ -155,3 +156,4 @@ C {lab_pin.sym} -160 -30 0 0 {name=p15 sig_type=std_logic lab=rst_ni}
 C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} -510 -300 0 0 {name=x6 VDD=VDD VSS=VSS prefix=sg13g2_ }
 C {lab_pin.sym} -660 -280 0 0 {name=p44 sig_type=std_logic lab=rst_ni}
 C {sg13g2_stdcells/sg13g2_and2_1.sym} -740 -320 0 0 {name=x5 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {adc_bridge.sym} -190 -50 0 0 {name=A2 adc_bridge_model=adc_buff_clk}

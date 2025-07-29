@@ -12,8 +12,8 @@ ypos2=1.7983155
 divy=5
 subdivy=1
 unity=1
-x1=-6.7410474e-08
-x2=5.114483e-07
+x1=-1.4545529e-07
+x2=8.822624e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -44,8 +44,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-6.7410474e-08
-x2=5.114483e-07
+x1=-1.4545529e-07
+x2=8.822624e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -68,8 +68,8 @@ ypos2=1.372239
 divy=5
 subdivy=1
 unity=1
-x1=-6.7410474e-08
-x2=5.114483e-07
+x1=-1.4545529e-07
+x2=8.822624e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -92,17 +92,17 @@ ypos2=1.3054164
 divy=5
 subdivy=1
 unity=1
-x1=-6.7410474e-08
-x2=5.114483e-07
+x1=-1.4545529e-07
+x2=8.822624e-08
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
 node="clk_sample
-x1.sample
 clk_comp
 clk_digital
-x1.sample_en"
+clock
+clock_comp"
 color="4 5 6 7 8"
 dataset=-1
 unitx=1
@@ -133,8 +133,8 @@ N 480 260 480 320 {lab=result_o5}
 N 420 260 420 320 {lab=result_o4}
 N 0 110 0 130 {lab=VSS}
 N 0 -130 0 -110 {lab=VDD}
-N -500 650 -500 670 {lab=clk_comp}
-N -560 650 -560 670 {lab=clk_digital}
+N -500 650 -500 670 {lab=clock_comp}
+N -560 650 -560 670 {lab=clock}
 N -540 260 -540 280 {lab=rst}
 N -580 260 -580 280 {lab=start}
 N -580 60 -580 80 {lab=pos}
@@ -149,6 +149,16 @@ N -160 50 -120 50 {lab=clk_digital}
 N -160 70 -120 70 {lab=clk_comp}
 N -620 580 -620 600 {lab=clk_sample}
 N -160 30 -120 30 {lab=clk_sample}
+N -40 620 -0 620 {lab=clk_sample}
+N 80 620 100 620 {lab=#net1}
+N 400 620 440 620 {lab=clk_digital}
+N 400 700 420 700 {lab=clk_digital}
+N 400 620 400 700 {lab=clk_digital}
+N 380 620 400 620 {lab=clk_digital}
+N 600 700 640 700 {lab=clk_comp}
+N 280 620 300 620 {lab=#net2}
+N 180 620 200 620 {lab=#net3}
+N 500 700 520 700 {lab=#net4}
 C {adc.sym} 0 0 0 0 {name=x1}
 C {launcher.sym} -60 -200 0 0 {name=h1
 descr="Build Icarus Object"
@@ -178,8 +188,9 @@ value="
 
 .control
   save all
-  tran 1n 850n
-  *tran 1n 160n
+  *tran 1n 850n
+  tran 1n 160n
+  *tran 1n 40n
   write adc_tb.raw
 .endc
 "}
@@ -242,6 +253,8 @@ C {simulator_commands_shown.sym} 780 400 0 0 {name=BRIDGE_MODELS
 simulator=ngspice
 only_toplevel=false 
 value="
+.model adc_buff_clk adc_bridge(in_low=0.75 in_high=0.75)
+
 .control
 pre_set auto_bridge_d_out =
 + ( \\".model auto_bridge_out bidi_bridge(direction=0 out_high=1.5 t_rise=0.2n t_fall=0.2n)\\"
@@ -287,8 +300,6 @@ C {lab_wire.sym} 600 260 1 0 {name=p19 sig_type=std_logic lab=result_o7
 }
 C {lab_pin.sym} 0 130 3 0 {name=p20 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} 0 -130 1 0 {name=p21 sig_type=std_logic lab=VDD}
-C {lab_pin.sym} -500 650 1 0 {name=p22 sig_type=std_logic lab=clk_comp}
-C {lab_pin.sym} -560 650 3 1 {name=p23 sig_type=std_logic lab=clk_digital}
 C {lab_pin.sym} -560 870 1 0 {name=p6 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} -520 870 1 0 {name=p7 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} -540 260 1 0 {name=p1 sig_type=std_logic lab=rst}
@@ -309,3 +320,14 @@ C {vsource.sym} -620 630 0 1 {name=Vclksample value="pulse(\{vss\}, \{vdd\}, \{0
 C {gnd.sym} -620 660 0 1 {name=l17 lab=GND}
 C {lab_pin.sym} -620 580 3 1 {name=p15 sig_type=std_logic lab=clk_sample}
 C {lab_pin.sym} -160 30 2 1 {name=p24 sig_type=std_logic lab=clk_sample}
+C {lab_pin.sym} 440 620 0 1 {name=p22 sig_type=std_logic lab=clk_digital}
+C {lab_pin.sym} 640 700 2 0 {name=p26 sig_type=std_logic lab=clk_comp}
+C {sg13g2_stdcells/sg13g2_dlygate4sd3_1.sym} 40 620 0 0 {name=x2 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_dlygate4sd3_1.sym} 140 620 0 0 {name=x3 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {lab_pin.sym} -40 620 2 1 {name=p23 sig_type=std_logic lab=clk_sample}
+C {sg13g2_stdcells/sg13g2_inv_1.sym} 340 620 0 0 {name=x5 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_inv_1.sym} 560 700 0 0 {name=x6 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_dlygate4sd3_1.sym} 240 620 0 0 {name=x7 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_dlygate4sd3_1.sym} 460 700 0 0 {name=x4 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {lab_pin.sym} -560 650 3 1 {name=p25 sig_type=std_logic lab=clock}
+C {lab_pin.sym} -500 650 3 1 {name=p27 sig_type=std_logic lab=clock_comp}
