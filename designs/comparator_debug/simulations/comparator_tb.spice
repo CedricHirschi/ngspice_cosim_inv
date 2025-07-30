@@ -52,14 +52,14 @@ Vdiff1 net1 in_n pulse({vhigh/2}, {vlow/2}, {0.8/f}, 0.2n, 0.2n, {1/f}, {2/f})
 XM1 P CLK VDD VDD sg13_lv_pmos w=2u l=0.13u ng=1 m=1
 XM3 OUT1 OUT2 VDD VDD sg13_lv_pmos w=1u l=0.13u ng=1 m=1
 XM4 OUT2 OUT1 VDD VDD sg13_lv_pmos w=1u l=0.13u ng=1 m=1
-XM8 OUT1 OUT2 P VSS sg13_lv_nmos w=4u l=0.13u ng=2 m=1
+XM8 OUT1 OUT2 P VSS sg13_lv_nmos w=1u l=0.13u ng=1 m=1
 XM9 P IN1 S VSS sg13_lv_nmos w=12u l=0.13u ng=6 m=1
-XM11 S CLK VSS VSS sg13_lv_nmos w=4u l=2u ng=1 m=1
+XM11 S CLK VSS VSS sg13_lv_nmos w=4u l=2u ng=2 m=1
 XM10 N IN2 S VSS sg13_lv_nmos w=12u l=0.13u ng=6 m=1
 XM2 OUT1 CLK VDD VDD sg13_lv_pmos w=2u l=0.13u ng=1 m=1
 XM5 N CLK VDD VDD sg13_lv_pmos w=2u l=0.13u ng=1 m=1
 XM6 OUT2 CLK VDD VDD sg13_lv_pmos w=2u l=0.13u ng=1 m=1
-XM7 OUT2 OUT1 N VSS sg13_lv_nmos w=4u l=0.13u ng=2 m=1
+XM7 OUT2 OUT1 N VSS sg13_lv_nmos w=1u l=0.13u ng=1 m=1
 XC2 OUT1 VSS cap_cmim w=1.8e-6 l=1.8e-6 m=1
 XC4 OUT2 VSS cap_cmim w=1.8e-6 l=1.8e-6 m=1
 XC1 P VSS cap_cmim w=3e-6 l=3e-6 m=1

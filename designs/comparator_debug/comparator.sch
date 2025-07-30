@@ -1,4 +1,4 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
@@ -82,10 +82,10 @@ N -80 260 -80 280 {lab=P}
 N -440 80 -440 280 {lab=P}
 N -440 360 -440 380 {lab=VSS}
 N 440 360 440 380 {lab=VSS}
-N -440 280 -440 300 {lab=P}
-N 440 280 440 300 {lab=N}
 N 120 500 120 520 {lab=VSS}
 N 120 420 120 440 {lab=S}
+N -440 280 -440 300 {lab=P}
+N 440 280 440 300 {lab=N}
 C {sg13g2_pr/sg13_lv_pmos.sym} -460 50 0 0 {name=M1
 l=0.13u
 w=2u
@@ -112,8 +112,8 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -60 230 0 1 {name=M8
 l=0.13u
-w=4u
-ng=2
+w=1u
+ng=1
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -129,7 +129,7 @@ spiceprefix=X
 C {sg13g2_pr/sg13_lv_nmos.sym} -20 430 0 0 {name=M11
 l=2u
 w=4u
-ng=1
+ng=2
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -181,8 +181,8 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 60 230 0 0 {name=M7
 l=0.13u
-w=4u
-ng=2
+w=1u
+ng=1
 m=1
 model=sg13_lv_nmos
 spiceprefix=X

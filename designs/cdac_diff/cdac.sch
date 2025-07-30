@@ -1,10 +1,11 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
 S {}
 E {}
 T {"s=2.5292e-6"} -50 -510 0 0 0.4 0.4 {}
+T {Change this fixed cap size to range (1.1V)} 1090 -450 0 0 0.4 0.4 {}
 N -760 -320 -720 -320 {lab=#net1}
 N -480 -320 -440 -320 {lab=#net2}
 N -200 -320 -160 -320 {lab=#net3}
@@ -301,13 +302,13 @@ C {sg13g2_pr/cap_cmim.sym} 1280 250 0 0 {name=C23
 model=cap_cmim
 w=\{s\}
 l=\{s\}
-m=1
+m=47
 spiceprefix=X}
 C {sg13g2_pr/cap_cmim.sym} 1280 -250 2 1 {name=C24
 model=cap_cmim
 w=\{s\}
 l=\{s\}
-m=1
+m=47
 spiceprefix=X}
 C {lab_wire.sym} 1280 320 1 1 {name=p29 sig_type=std_logic lab=VSS}
 C {lab_wire.sym} 1280 -320 3 1 {name=p30 sig_type=std_logic lab=VSS}

@@ -1,4 +1,4 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
@@ -10,8 +10,8 @@ ypos2=2
 divy=5
 subdivy=4
 unity=1
-x1=1.9560548e-08
-x2=2.3268429e-08
+x1=2.067154e-08
+x2=2.22703e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -32,7 +32,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.9560548e-08
+x1=2.067154e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -46,7 +46,7 @@ digital=0
 rainbow=1
 y2=2.2831926
 mode=Line
-x2=2.3268429e-08
+x2=2.22703e-08
 autoload=1
 color="4 5 6 21"
 node="x1.S
@@ -54,7 +54,7 @@ x1.P
 x1.N
 x1.N x1.P -"}
 B 2 -820 -580 -20 -380 {flags=graph
-y1=-0.5
+y1=-0.21230307
 ypos1=0
 ypos2=2
 divy=5
@@ -65,8 +65,9 @@ subdivx=1
 xlabmag=1.0
 ylabmag=1.0
 node="out1
-out2"
-color="15 14"
+out2
+x1.N x1.P -"
+color="15 14 21"
 dataset=-1
 unitx=1
 logx=0
@@ -74,11 +75,11 @@ logy=0
 rawfile=$netlist_dir/comparator_tb.raw
 digital=0
 rainbow=1
-y2=1.75
+y2=0.049119756
 mode=Line
-x2=2.3268429e-08
+x2=2.22703e-08
 autoload=1
-x1=1.9560548e-08}
+x1=2.067154e-08}
 B 2 -820 -780 -20 -580 {flags=graph
 y1=-1.0468158
 ypos1=0
@@ -86,7 +87,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1.9560548e-08
+x1=2.067154e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -103,7 +104,7 @@ digital=0
 rainbow=1
 y2=2.4091843
 mode=Line
-x2=2.3268429e-08
+x2=2.22703e-08
 autoload=1}
 T {Verify in PEX if the 25fF at the virtual ground of the comparator is enough} -680 -20 0 0 0.4 0.4 {}
 N -420 290 -420 310 {lab=vss}

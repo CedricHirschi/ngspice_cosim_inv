@@ -10,6 +10,8 @@ module adc #(
     input  logic                    comp_p_i, //! Positive side comparator input
     input  logic                    comp_n_i, //! Negative side comparator input
 
+    output logic                    compare_o, //! Enable signal for comparator
+
     output logic                    sample_o, //! Sample signal indicating ADC is sampling
     output logic [RESOLUTION-2:0]   dac_p_o,  //! Positive Digital-to-Analog Converter output
     output logic [RESOLUTION-2:0]   dac_n_o,  //! Negative Digital-to-Analog Converter output
@@ -177,6 +179,7 @@ module adc #(
 
   // Output assignments
   assign sample_o = (state_q == SAMPLE) || (mask_q == (1 << (RESOLUTION - 1)));
+  assign compare_o = (state_q == CONVERT);
   assign rdy_o = rdy_q;
   assign dac_p_o = dac_p_q;
   assign dac_n_o = dac_n_q;

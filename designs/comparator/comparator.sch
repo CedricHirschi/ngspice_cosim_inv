@@ -1,4 +1,4 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
@@ -113,8 +113,8 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} -60 230 0 1 {name=M8
 l=0.13u
-w=4u
-ng=2
+w=1u
+ng=1
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
@@ -182,8 +182,8 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 60 230 0 0 {name=M7
 l=0.13u
-w=4u
-ng=2
+w=1u
+ng=1
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
