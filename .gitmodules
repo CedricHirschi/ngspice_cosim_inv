@@ -1,0 +1,3 @@
+[submodule "project/ihp13/pdk"]
+	path = project/ihp13/pdk
+	url = https://github.com/IHP-GmbH/IHP-Open-PDK
