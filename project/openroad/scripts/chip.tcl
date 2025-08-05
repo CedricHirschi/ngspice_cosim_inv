@@ -58,7 +58,7 @@ utl::report "Initialize Chip"
 # initialize_floorplan -die_area "0 0 $chipW $chipH" \
 #     -core_area "$coreMargin $coreMargin [expr $chipW-$coreMargin] [expr $chipH-$coreMargin]" \
 #     -site "CoreSite"
-initialize_floorplan -utilization [expr $TDENSITY * 100 - 10] -aspect_ratio 1.0 -core_space 0.0 -site "CoreSite"
+initialize_floorplan -utilization [expr $TDENSITY * 100 - 10] -aspect_ratio 1.0 -core_space {2.0 2.0 10.0 2.0} -site "CoreSite"
 
 utl::report "Connect global nets (power)"
 source scripts/power_connect.tcl
@@ -89,7 +89,6 @@ set_wire_rc -signal -layer Metal4
 # repair_timing can insert a 'split0000' buffer which then prevents CTS from running
 set clock_nets [get_nets -of_objects [get_pins -of_objects "*_reg" -filter "name == CLK"]]
 set_dont_touch $clock_nets
-set_dont_use $dont_use_cells
 
 utl::report "Repair tie fanout"
 repair_tie_fanout sg13g2_tielo/L_LO
