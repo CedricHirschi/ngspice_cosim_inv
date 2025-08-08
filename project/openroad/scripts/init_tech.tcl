@@ -31,15 +31,17 @@ set pdk_pad_lef   ../ihp13/bondpad/lef
 
 
 # LIB
-define_corners tt ff
+define_corners tt ff ss
 
 puts "Init standard cells"
-read_liberty -corner tt ${pdk_cells_lib}/sg13g2_stdcell_typ_1p20V_25C.lib
-read_liberty -corner ff ${pdk_cells_lib}/sg13g2_stdcell_fast_1p32V_m40C.lib
+read_liberty -corner ss ${pdk_cells_lib}/sg13g2_stdcell_slow_1p35V_125C.lib
+read_liberty -corner tt ${pdk_cells_lib}/sg13g2_stdcell_typ_1p50V_25C.lib
+read_liberty -corner ff ${pdk_cells_lib}/sg13g2_stdcell_fast_1p65V_m40C.lib
 
 puts "Init IO cells"
-read_liberty -corner tt ${pdk_io_lib}/sg13g2_io_typ_1p2V_3p3V_25C.lib
-read_liberty -corner ff ${pdk_io_lib}/sg13g2_io_fast_1p32V_3p6V_m40C.lib
+read_liberty -corner ss ${pdk_io_lib}/sg13g2_io_slow_1p35V_3p0V_125C.lib
+read_liberty -corner tt ${pdk_io_lib}/sg13g2_io_typ_1p5V_3p3V_25C.lib
+read_liberty -corner ff ${pdk_io_lib}/sg13g2_io_fast_1p65V_3p6V_m40C.lib
 
 puts "Init tech-lef"
 read_lef ${pdk_cells_lef}/sg13g2_tech.lef

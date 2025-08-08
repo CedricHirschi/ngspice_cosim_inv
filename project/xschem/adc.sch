@@ -1,4 +1,4 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
@@ -74,8 +74,8 @@ N -260 -50 -220 -50 {lab=clk_digital_i}
 N -440 -420 -400 -420 {lab=compare_en}
 N -440 -460 -400 -460 {lab=clk_comp_i}
 N 120 -40 160 -40 {lab=compare_en}
-N -280 -440 -60 -440 {lab=#net4}
-C {../../tgate/tgate.sym} -260 -950 0 0 {name=x1}
+N -280 -440 -60 -440 {lab=compare}
+C {./tgate.sym} -260 -950 0 0 {name=x1}
 C {ipin.sym} -390 -950 0 0 {name=p1 lab=pos_ai}
 C {ipin.sym} -260 -50 0 0 {name=p2 lab=clk_digital_i}
 C {ipin.sym} -400 160 0 0 {name=p5 lab=VSS}
@@ -88,15 +88,15 @@ device_model=".model adc d_cosim simulation=\\"ivlng\\" sim_args=[\\"adc\\"]"}
 C {lab_pin.sym} -260 -870 3 0 {name=p18 sig_type=std_logic lab=sample}
 C {lab_pin.sym} 160 -60 2 0 {name=p34 sig_type=std_logic lab=sample_en}
 C {ipin.sym} -440 -460 0 0 {name=p3 lab=clk_comp_i}
-C {../../comparator/comparator.sym} 40 -440 0 0 {name=x2}
+C {./comparator.sym} 40 -440 0 0 {name=x2}
 C {lab_pin.sym} -280 -1030 1 0 {name=p7 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} -240 -1030 1 0 {name=p8 sig_type=std_logic lab=VSS}
-C {../../tgate/tgate.sym} -260 -650 0 0 {name=x3}
+C {./tgate.sym} -260 -650 0 0 {name=x3}
 C {ipin.sym} -390 -650 0 0 {name=p13 lab=neg_ai}
 C {lab_pin.sym} -260 -570 3 0 {name=p14 sig_type=std_logic lab=sample}
 C {lab_pin.sym} -280 -730 1 0 {name=p17 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} -240 -730 1 0 {name=p28 sig_type=std_logic lab=VSS}
-C {../../cdac_diff/cdac.sym} 40 -800 0 0 {name=x4}
+C {./cdac.sym} 40 -800 0 0 {name=x4}
 C {lab_pin.sym} 40 -720 3 0 {name=p37 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} 40 -880 1 0 {name=p38 sig_type=std_logic lab=VDD}
 C {lab_wire.sym} -60 -820 0 0 {name=p12 sig_type=std_logic lab=pos}

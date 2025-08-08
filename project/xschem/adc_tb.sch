@@ -1,4 +1,4 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
@@ -12,8 +12,8 @@ ypos2=1.7983155
 divy=5
 subdivy=1
 unity=1
-x1=-3.1660802e-08
-x2=4.3340209e-07
+x1=-8.3247759e-08
+x2=2.3188255e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -41,8 +41,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.1660802e-08
-x2=4.3340209e-07
+x1=-8.3247759e-08
+x2=2.3188255e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -65,8 +65,8 @@ ypos2=1.372239
 divy=5
 subdivy=1
 unity=1
-x1=-3.1660802e-08
-x2=4.3340209e-07
+x1=-8.3247759e-08
+x2=2.3188255e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -89,8 +89,8 @@ ypos2=1.3054164
 divy=5
 subdivy=1
 unity=1
-x1=-3.1660802e-08
-x2=4.3340209e-07
+x1=-8.3247759e-08
+x2=2.3188255e-07
 divx=5
 subdivx=1
 xlabmag=1.0
