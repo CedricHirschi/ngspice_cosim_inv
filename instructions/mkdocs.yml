@@ -6,10 +6,12 @@ repo_url: https://github.com/CedricHirschi/ngspice_cosim_inv
 
 nav:
   - Home: index.md
-  - Getting Started:
-      - XSCHEM:
-          - PDK Examples: getting_started_xschem.md
-          - Creating a New Design: creating_design_xschem.md
+  - XSCHEM:
+      - PDK Examples: xschem/pdk_examples.md
+      - Creating a New Design: xschem/creating_design.md
+  - Cosimulation:
+      - Introduction: cosimulation/intro.md
+      - Creating a Mixed-Signal Simulation: cosimulation/design.md
 
 copyright: Copyright &copy; 2025 <a href="mailto:cehirschi@student.ethz.ch">Cedric Hirschi</a>
 
@@ -110,3 +112,7 @@ markdown_extensions:
       slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
           case: lower
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js

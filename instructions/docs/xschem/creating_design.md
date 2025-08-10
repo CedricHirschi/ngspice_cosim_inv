@@ -1,4 +1,4 @@
-## Creating a new Design
+## Creating a new Block
 
 Here, we will create our own inverter design, including a sub-sheet, symbol and testbench.
 

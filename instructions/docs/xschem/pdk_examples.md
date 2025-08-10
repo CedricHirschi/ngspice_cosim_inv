@@ -1,5 +1,3 @@
-# Getting Started with XSCHEM
-
 ## Exploring the PDK Examples
 
 The PDK (Process Design Kit) examples provide a set of pre-configured designs and simulations that can be used as a starting point for your own projects. These examples cover a wide range of use cases and demonstrate best practices for using the tools and libraries available in the PDK.

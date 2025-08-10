@@ -2,7 +2,8 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 
-FIG_WIDTH = 7.5 # Inches, about the width of a column in the paper
+# FIG_WIDTH = 7.5 # Inches, about the width of a column in the paper
+FIG_WIDTH = 9.4 # Inches, about the width of a column in the paper
 # FIG_SETTINGS = {
 #     'font.family': 'serif',           # Use serif font family
 #     'mathtext.fontset': 'cm',         # Use Computer Modern for math text
