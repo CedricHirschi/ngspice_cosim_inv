@@ -12,6 +12,8 @@
         <meta name="author" content="Cedric Hirschi">
       
       
+        <link rel="canonical" href="https://CedricHirschi.github.io/ngspice_cosim_inv/">
+      
       
       
         <link rel="next" href="xschem/pdk_examples/">
@@ -61,7 +63,7 @@
       
         <meta  property="og:description"  content="Introduction to Open Source Mixed Signal Design" >
       
-        <meta  property="og:image"  content="./assets/images/social/index.png" >
+        <meta  property="og:image"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/index.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -69,7 +71,7 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="None" >
+        <meta  property="og:url"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
@@ -77,11 +79,20 @@
       
         <meta  name="twitter:description"  content="Introduction to Open Source Mixed Signal Design" >
       
-        <meta  name="twitter:image"  content="./assets/images/social/index.png" >
+        <meta  name="twitter:image"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/index.png" >
       
     
     
-  </head>
+   <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -100,7 +111,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-mkdocs" class="md-skip">
+        <a href="#welcome-to-this-guide-for-open-source-mixed-signal-design" class="md-skip">
           Skip to content
         </a>
       
@@ -380,19 +391,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="." class="md-nav__link md-nav__link--active">
         
   
@@ -404,43 +402,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
-    <span class="md-ellipsis">
-      Project layout
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -558,32 +519,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
-    <span class="md-ellipsis">
-      Project layout
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -601,21 +536,15 @@
   
 
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs<a class="headerlink" href="#welcome-to-mkdocs" title="Permanent link">&para;</a></h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h2>
+<h1 id="welcome-to-this-guide-for-open-source-mixed-signal-design">Welcome to this guide for Open Source Mixed Signal Design!<a class="headerlink" href="#welcome-to-this-guide-for-open-source-mixed-signal-design" title="Permanent link">&para;</a></h1>
+<p>This guide will help you understand the principles of mixed-signal design using open-source tools. We will cover topics such as:</p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
+<li>Digital design with SystemVerilog</li>
+<li>Analog design with SPICE with XSCHEM</li>
+<li>Cosimulation of digital and analog components with ngspice</li>
+<li>Visualization of simulation results with XSCHEM and Python</li>
 </ul>
-<h2 id="project-layout">Project layout<a class="headerlink" href="#project-layout" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
+<p>By the end of this guide, you will have a solid understanding of how to create and simulate mixed-signal designs using open-source tools.</p>
 
 
 
@@ -715,5 +644,7 @@ docs/
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

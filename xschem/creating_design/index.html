@@ -12,6 +12,8 @@
         <meta name="author" content="Cedric Hirschi">
       
       
+        <link rel="canonical" href="https://CedricHirschi.github.io/ngspice_cosim_inv/xschem/creating_design/">
+      
       
         <link rel="prev" href="../pdk_examples/">
       
@@ -63,7 +65,7 @@
       
         <meta  property="og:description"  content="Introduction to Open Source Mixed Signal Design" >
       
-        <meta  property="og:image"  content="./assets/images/social/xschem/creating_design.png" >
+        <meta  property="og:image"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/xschem/creating_design.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -71,7 +73,7 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="None" >
+        <meta  property="og:url"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/xschem/creating_design/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
@@ -79,11 +81,20 @@
       
         <meta  name="twitter:description"  content="Introduction to Open Source Mixed Signal Design" >
       
-        <meta  name="twitter:image"  content="./assets/images/social/xschem/creating_design.png" >
+        <meta  name="twitter:image"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/xschem/creating_design.png" >
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -735,7 +746,7 @@ You will get a warning that the file does not exist, which is fine.</p>
 <p><strong>Wires</strong></p>
 <p>Now, we connect the gates and the drains of the NMOS and PMOS transistors together to form the inverter structure. You can place a wire by pressing <code>W</code> on your keyboard while you are at your first connection point. If you want to have a corner in your wire, move the cursor to the position of the corner and press <code>W</code> again. This will place the first wire segment. Then, when you are at the second connection point, simply left-click to finalize the wire placement.</p>
 <p>Also place some short wires out of the sources and bodies of the transistors as well as some input and output wires out of the gates/drains. Your design should look something like this:
-<img alt="Unfinished Inverter Schematic" src="../assets/inverter_unfinished.svg" /></p>
+<a class="glightbox" href="../assets/inverter_unfinished.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Unfinished Inverter Schematic" src="../assets/inverter_unfinished.svg" /></a></p>
 <p><strong>Labels</strong></p>
 <p>Now, let's place some labels to identify each net. To do this, open the <code>Choose symbol</code> dialog by pressing <code>Insert</code> again and go to the builtin devices library. You can do this by pressing the <code>Home</code> button on the bottom left. This will choose the <code>xschem_library/devices</code> library. These are the spice primitives (not physical devices).</p>
 <p>We want to search for the <code>lab</code> symbols. You can do this by clicking into the search field on the bottom left and by entering <code>lab</code>. This will give us some different options, but we are taking the <code>lab_pin.sym</code> symbol. Select it and place it on the end of the input wire.</p>
@@ -755,7 +766,7 @@ You will get a warning that the file does not exist, which is fine.</p>
 - VDD: <code>iopin.sym</code>, name it <code>VDD</code></p>
 <p>These pins will attach to the nets of the same name, so we dont need to connect them further.</p>
 <p>Your schematic should something look like this:
-<img alt="Inverter Schematic" src="../assets/inverter.svg" /></p>
+<a class="glightbox" href="../assets/inverter.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Inverter Schematic" src="../assets/inverter.svg" /></a></p>
 <h3 id="creating-the-symbol">Creating the Symbol<a class="headerlink" href="#creating-the-symbol" title="Permanent link">&para;</a></h3>
 <p>Now, we want to create a symbol for our inverter.</p>
 <p>For this, navigate to the <code>Symbol</code> menu in the toolbar and click on <code>Make symbol from schematic</code>. This will create a <code>inverter.sym</code> file in the same directory as <code>inverter.sch</code>.</p>
@@ -763,10 +774,10 @@ You will get a warning that the file does not exist, which is fine.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>xschem<span class="w"> </span>inverter.sym
 </span></code></pre></div></p>
 <p>You should see the default generated symbol for the inverter.
-<img alt="Default Inverter Symbol" src="../assets/inverter_symbol_default.svg" /></p>
+<a class="glightbox" href="../assets/inverter_symbol_default.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Default Inverter Symbol" src="../assets/inverter_symbol_default.svg" /></a></p>
 <p>This is good but it looks quite boring. You can improve it by editing the symbol by moving/rotating the pins around and by adding new polygons (<code>P</code>), generally using the tools in the toolbar.</p>
 <p>An improved version could look like this:
-<img alt="Inverter Symbol" src="../assets/inverter_symbol.svg" /></p>
+<a class="glightbox" href="../assets/inverter_symbol.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Inverter Symbol" src="../assets/inverter_symbol.svg" /></a></p>
 <h2 id="creating-the-testbench">Creating the Testbench<a class="headerlink" href="#creating-the-testbench" title="Permanent link">&para;</a></h2>
 <p>Now, we create a testbench for our inverter.</p>
 <p>For this, create the testbench schematic:
@@ -798,14 +809,14 @@ Copy these blocks via <code>Ctrl+C</code> and paste them into your testbench sch
 While you are in the code block, also change all <code>&lt;filename&gt;</code> instances to <code>inverter_tb</code>.</p>
 <p>We also want a graph, which can be placed via <code>Simulation -&gt; Graphs -&gt; Add waveform graph</code>. Also, add a waveform reload launcher via <code>Simulation -&gt; Graphs -&gt; Add waveform reload launcher</code>.</p>
 <p>Your testbench should look something like this:
-<img alt="Inverter Testbench" src="../assets/inverter_tb.svg" /></p>
+<a class="glightbox" href="../assets/inverter_tb.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Inverter Testbench" src="../assets/inverter_tb.svg" /></a></p>
 <h2 id="running-the-testbench">Running the testbench<a class="headerlink" href="#running-the-testbench" title="Permanent link">&para;</a></h2>
 <p>Now, run the testbench via <code>Ctrl + left click</code> on the <code>SimulateNGSPICE</code> launcher. Then, load the waves via the <code>load waves</code> launcher.</p>
 <p>Now, we want to add some traces to the graph. You can do this by double-clicking in the middle of the graph. You should be able to see a list of traces to plot on the left side. There, find and add the <code>in</code> and <code>out</code> traces by double-clicking on them.</p>
 <p>By default, all traces are the same color. To changes that, click on the <code>AUTO SET</code> button on the bottom right.</p>
 <p>Now, click <code>Apply</code> and <code>OK</code>. You should see some traces in the graph, but you need to adjust the time scale to see the pulses clearly. You can do this by holding <code>Shift</code> and scrolling the mouse wheel to zoom in and out, or by holding <code>Ctrl</code> and scrolling to pan.</p>
 <p>Your plot may look something like this:
-<img alt="Inverter Testbench Plot" src="../assets/inverter_tb_plot.svg" /></p>
+<a class="glightbox" href="../assets/inverter_tb_plot.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Inverter Testbench Plot" src="../assets/inverter_tb_plot.svg" /></a></p>
 
 
 
@@ -921,5 +932,7 @@ While you are in the code block, also change all <code>&lt;filename&gt;</code> i
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

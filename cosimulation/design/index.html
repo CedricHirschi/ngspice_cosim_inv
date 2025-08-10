@@ -12,6 +12,8 @@
         <meta name="author" content="Cedric Hirschi">
       
       
+        <link rel="canonical" href="https://CedricHirschi.github.io/ngspice_cosim_inv/cosimulation/design/">
+      
       
         <link rel="prev" href="../intro/">
       
@@ -61,7 +63,7 @@
       
         <meta  property="og:description"  content="Introduction to Open Source Mixed Signal Design" >
       
-        <meta  property="og:image"  content="./assets/images/social/cosimulation/design.png" >
+        <meta  property="og:image"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/cosimulation/design.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -69,7 +71,7 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="None" >
+        <meta  property="og:url"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/cosimulation/design/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
@@ -77,11 +79,20 @@
       
         <meta  name="twitter:description"  content="Introduction to Open Source Mixed Signal Design" >
       
-        <meta  name="twitter:image"  content="./assets/images/social/cosimulation/design.png" >
+        <meta  name="twitter:image"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/cosimulation/design.png" >
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -793,7 +804,7 @@ The <code>-g2012</code> flag tells Icarus Verilog to use the SystemVerilog 2012 
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>xschem<span class="w"> </span>pwm_dac_tb.sch
 </span></code></pre></div>
 The resulting circuit looks something like this:
-<img alt="Lowpass Circuit" src="../assets/rc_lowpass.svg" /></p>
+<a class="glightbox" href="../assets/rc_lowpass.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Lowpass Circuit" src="../assets/rc_lowpass.svg" /></a></p>
 <h2 id="symbol-for-the-digital-design">Symbol for the Digital Design<a class="headerlink" href="#symbol-for-the-digital-design" title="Permanent link">&para;</a></h2>
 <p>We need to create a symbol for the digital design that we can use in the testbench. This symbol should represent the inputs and outputs of the <code>pwm_dac</code> module. Create a new symbol with
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>xschem<span class="w"> </span>pwm_dac.sym
@@ -818,7 +829,7 @@ This defines:</p>
 </ul>
 <p>Now, we place the pins of the symbol in the schematic. Do this via <code>Symbol -&gt; Place symbol pin</code> (<code>Alt + P</code>). Make sure to set the correct name and direction (<code>in</code>, <code>out</code> or <code>inout</code>) for each pin.</p>
 <p>Your symbol might look something like this:
-<img alt="PWM DAC Symbol" src="../assets/pwm_dac_symbol.svg" />
+<a class="glightbox" href="../assets/pwm_dac_symbol.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="PWM DAC Symbol" src="../assets/pwm_dac_symbol.svg" /></a>
 The <code>@symname</code> and <code>@name</code> texts are placeholders that will be replaced with the actual symbol and instance names when the schematic is instantiated. You can leave them out.</p>
 <h2 id="testbench">Testbench<a class="headerlink" href="#testbench" title="Permanent link">&para;</a></h2>
 <p>Now, we go back to the testbench
@@ -837,7 +848,7 @@ The <code>@symname</code> and <code>@name</code> texts are placeholders that wil
 Here, the important part is <code>VCC</code>. This defines the logic levels for the digital-&gt;analog and analog-&gt;digital transitions. These transitions can be set up more sophisticated, but for now we just set <code>VCC</code> to our vdd, 1.5V. Also, we set the simulation time to 10 microseconds with a timestep of 10 nanoseconds and to save all data to <code>pwm_dac_tb.raw</code>.</p>
 <p>Also add a waveform loader and two graphs.</p>
 <p>The testbench might look like this:
-<img alt="PWM DAC Testbench" src="../assets/pwm_dac_tb.svg" /></p>
+<a class="glightbox" href="../assets/pwm_dac_tb.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="PWM DAC Testbench" src="../assets/pwm_dac_tb.svg" /></a></p>
 <h2 id="simulation">Simulation<a class="headerlink" href="#simulation" title="Permanent link">&para;</a></h2>
 <p>Currently, for the simulation to run successfully, some tweaks need to be made when you are using the IIC-OSIC-TOOLS container:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/usr/local/lib/ngspice
@@ -903,8 +914,8 @@ You can see the <code>PWM DAC digital part started</code> and <code>VCD info: du
 <h2 id="visualization">Visualization<a class="headerlink" href="#visualization" title="Permanent link">&para;</a></h2>
 <p>XSCHEM's built in graphs already include a handy way to display digital and analog signals concurrently. We use one of our graphs for the digital signals and one for the analog signals.</p>
 <p>In the graph for the analog signals, add the <code>unfilt</code> and <code>out</code> signals. The settings can remain the default.</p>
-<p>In the graph for the digital signals, add the <code>clk</code>, <code>rst</code> signals as well as <code>set;set3,set2,set1,set0</code>, which allows us to look at the <code>set</code> signals as a bus. You plots might look like this:
-<img alt="PWM DAC Testbench Plots" src="../assets/pwm_dac_tb_plot.svg" /></p>
+<p>In the graph for the digital signals, add the <code>clk</code>, <code>rst</code> signals as well as <code>set;set3,set2,set1,set0</code>, which allows us to look at the <code>set</code> signals as a bus. Your plots might look like this:
+<a class="glightbox" href="../assets/pwm_dac_tb_plot.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="PWM DAC Testbench Plots" src="../assets/pwm_dac_tb_plot.svg" /></a></p>
 <p>We can see that our simple PWM DAC example works as expected.</p>
 <p>Now, you can also open the .vcd file in a waveform viewer to inspect the digital part more closely.</p>
 
@@ -1006,5 +1017,7 @@ You can see the <code>PWM DAC digital part started</code> and <code>VCD info: du
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

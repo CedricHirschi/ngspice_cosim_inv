@@ -12,6 +12,8 @@
         <meta name="author" content="Cedric Hirschi">
       
       
+        <link rel="canonical" href="https://CedricHirschi.github.io/ngspice_cosim_inv/xschem/pdk_examples/">
+      
       
         <link rel="prev" href="../..">
       
@@ -63,7 +65,7 @@
       
         <meta  property="og:description"  content="Introduction to Open Source Mixed Signal Design" >
       
-        <meta  property="og:image"  content="./assets/images/social/xschem/pdk_examples.png" >
+        <meta  property="og:image"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/xschem/pdk_examples.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -71,7 +73,7 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="None" >
+        <meta  property="og:url"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/xschem/pdk_examples/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
@@ -79,11 +81,20 @@
       
         <meta  name="twitter:description"  content="Introduction to Open Source Mixed Signal Design" >
       
-        <meta  name="twitter:image"  content="./assets/images/social/xschem/pdk_examples.png" >
+        <meta  name="twitter:image"  content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/xschem/pdk_examples.png" >
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -738,16 +749,16 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>xschem
 </span></code></pre></div></p>
 <p>You should see this start page:
-<img alt="XSCHEM Start Page" src="../assets/start_page.svg" />
+<a class="glightbox" href="../assets/start_page.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="XSCHEM Start Page" src="../assets/start_page.svg" /></a>
 Here, you can see some useful commands and blocks which you can place into your own designs to the right. On the top right, you can access a cheatsheet of the controls available in XSCHEM.</p>
 <h3 id="navigating-the-examples">Navigating the Examples<a class="headerlink" href="#navigating-the-examples" title="Permanent link">&para;</a></h3>
 <p>We are interested in the examples to the left, those for ngspice to be exact. Jump into this sub-sheet by pressing <code>E</code> while hovering over the green rectangle (<code>IHP_testcases</code>) below <code>NGSPICE</code>.</p>
 <p>You should see this sheet:
-<img alt="XSCHEM Examples" src="../assets/IHP_testcases.svg" />
+<a class="glightbox" href="../assets/IHP_testcases.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="XSCHEM Examples" src="../assets/IHP_testcases.svg" /></a>
 Here, you can explore various test cases and examples for different analysis types. You can once again enter each test case by pressing <code>E</code> while hovering over it. Leave a sub-sheet by pressing <code>Ctrl + E</code>.</p>
 <h2 id="simulating-a-test-case---inverter">Simulating a Test Case - Inverter<a class="headerlink" href="#simulating-a-test-case---inverter" title="Permanent link">&para;</a></h2>
 <p>We explore the <code>tran_logic_not</code> test case. This simulates a logic inverter using a transient analysis. Please enter it. You should see this sheet:
-<img alt="XSCHEM Inverter Test Case" src="../assets/tran_logic_not.svg" /></p>
+<a class="glightbox" href="../assets/tran_logic_not.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="XSCHEM Inverter Test Case" src="../assets/tran_logic_not.svg" /></a></p>
 <p>Let's just simulate the inverter first.</p>
 <p>In order to do a simulation, we first need to generate the netlist. The netlist describes the device instances and their connections in the circuit. In XSCHEM, you can generate the netlist by clicking on the "Netlist" button in the toolbar.</p>
 <p>After the netlist is generated, you can run the simulation by clicking on the "Simulate" button in the toolbar. This will open a new window, which is the interactive prompt for ngspice.</p>
@@ -799,7 +810,7 @@ This output shows that the simulation was successful and provides information ab
 <p><strong>Graphs</strong></p>
 <p>The simulation results in the resulting raw file can also be plotted. You can do this by using the waveform reload launcher (<code>load waves Ctrl + left click</code>).</p>
 <p>This should load the traces into the plot in the schematic editor. It should look something like this:
-<img alt="XSCHEM Inverter Test Case Plot" src="../assets/tran_logic_not_plot.svg" /></p>
+<a class="glightbox" href="../assets/tran_logic_not_plot.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="XSCHEM Inverter Test Case Plot" src="../assets/tran_logic_not_plot.svg" /></a></p>
 <p>We can see that the inverter is functioning as expected, with the output being the inverse of the input.</p>
 <p><strong>Measurements/Analysis</strong></p>
 <p>You can already do some analysis in ngspice directly via <code>.meas</code> commands. In the case of this simulation, we have this command:
@@ -965,5 +976,7 @@ Here, we simulate the inverter at 10 degrees Celsius with a total simulation tim
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>
