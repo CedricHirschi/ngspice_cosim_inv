@@ -801,12 +801,14 @@ Here, you can explore various test cases and examples for different analysis typ
 </span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>ngspice 1 -&gt;
 </span></code></pre></div>
 This output shows that the simulation was successful and provides information about the circuit being simulated.</p>
-<p>This includes:
-- The temperature at which the simulation was run
-- The initial transient solution (values at each node at time t=0)
-- The amount of data generated during the simulation (<code>No. of Data Rows</code>)
-- Measurement results (e.g., propagation delay <code>tdelay</code>, user-defined by <code>.meas</code> commands)
-- The location of the binary raw file containing the simulation data (<code>tran_logic_not.raw</code>)</p>
+<p>This includes:</p>
+<ul>
+<li>The temperature at which the simulation was run</li>
+<li>The initial transient solution (values at each node at time t=0)</li>
+<li>The amount of data generated during the simulation (<code>No. of Data Rows</code>)</li>
+<li>Measurement results (e.g., propagation delay <code>tdelay</code>, user-defined by <code>.meas</code> commands)</li>
+<li>The location of the binary raw file containing the simulation data (<code>tran_logic_not.raw</code>)</li>
+</ul>
 <p><strong>Graphs</strong></p>
 <p>The simulation results in the resulting raw file can also be plotted. You can do this by using the waveform reload launcher (<code>load waves Ctrl + left click</code>).</p>
 <p>This should load the traces into the plot in the schematic editor. It should look something like this:
@@ -843,14 +845,16 @@ Here, <code>name</code> simply specifies the title used for the code block, <cod
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nx">meas</span><span class="w"> </span><span class="nx">tran</span><span class="w"> </span><span class="nx">tdelay</span><span class="w"> </span><span class="nx">TRIG</span><span class="w"> </span><span class="nx">v</span><span class="p">(</span><span class="nx">in</span><span class="p">)</span><span class="w"> </span><span class="nx">VAl</span><span class="p">=</span><span class="m m-Double">0.9</span><span class="w"> </span><span class="nx">FALl</span><span class="p">=</span><span class="mi">1</span><span class="w"> </span><span class="nx">TARG</span><span class="w"> </span><span class="nx">v</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span><span class="w"> </span><span class="nx">VAl</span><span class="p">=</span><span class="m m-Double">0.9</span><span class="w"> </span><span class="nx">RISE</span><span class="p">=</span><span class="mi">1</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nx">write</span><span class="w"> </span><span class="nx">tran_logic_not</span><span class="p">.</span><span class="nx">raw</span>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">.</span><span class="nx">endc</span>
-</span></code></pre></div>
-- The <code>.param</code> command sets a simulation parameter (in this case, temperature).
-- The <code>.control</code> block contains the simulation commands to be executed (<strong>Note:</strong> There are multiple ways to do this. We will just focus on this one for now).
-- The <code>save all</code> command tells the simulator to save all node voltages and branch currents.
-- The <code>tran 50p 20n</code> command performs a transient analysis with a maximum time step of 50 ps and a total simulation time of 20 ns.
-- The <code>meas</code> command measures the propagation delay of the inverter (as described above).
-- The <code>write</code> command saves the simulation results to a raw file.
-- The <code>.endc</code> command ends the control (<code>.control</code>) block.</p>
+</span></code></pre></div></p>
+<ul>
+<li>The <code>.param</code> command sets a simulation parameter (in this case, temperature).</li>
+<li>The <code>.control</code> block contains the simulation commands to be executed (<strong>Note:</strong> There are multiple ways to do this. We will just focus on this one for now).</li>
+<li>The <code>save all</code> command tells the simulator to save all node voltages and branch currents.</li>
+<li>The <code>tran 50p 20n</code> command performs a transient analysis with a maximum time step of 50 ps and a total simulation time of 20 ns.</li>
+<li>The <code>meas</code> command measures the propagation delay of the inverter (as described above).</li>
+<li>The <code>write</code> command saves the simulation results to a raw file.</li>
+<li>The <code>.endc</code> command ends the control (<code>.control</code>) block.</li>
+</ul>
 <p>Now, if we want to modify the simulation parameters, we can do so by editing the code block accordingly. For example, we could change the temperature or the transient analysis time settings:
 <div class="language-spice highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">.</span><span class="nx">param</span><span class="w"> </span><span class="nx">temp</span><span class="p">=</span><span class="mi">10</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">.</span><span class="nx">control</span>

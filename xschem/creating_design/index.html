@@ -752,18 +752,22 @@ You will get a warning that the file does not exist, which is fine.</p>
 <p>We want to search for the <code>lab</code> symbols. You can do this by clicking into the search field on the bottom left and by entering <code>lab</code>. This will give us some different options, but we are taking the <code>lab_pin.sym</code> symbol. Select it and place it on the end of the input wire.</p>
 <p>To copy a symbol instance, select the label and press <code>C</code>. This will attach a new instance to the cursor. You can rotate the current instance by pressing <code>Ctrl + R</code>.</p>
 <p>Repeat this for the output wire and sources/bodies wires of the transistors.</p>
-<p>To rename a label, simply double-click on it and enter the new name (<code>lab</code> parameter). Name the labels:
-- Input: <code>in</code>
-- Output: <code>out</code>
-- NMOS source/body: <code>VSS</code>
-- PMOS source/body: <code>VDD</code></p>
+<p>To rename a label, simply double-click on it and enter the new name (<code>lab</code> parameter). Name the labels:</p>
+<ul>
+<li>Input: <code>in</code></li>
+<li>Output: <code>out</code></li>
+<li>NMOS source/body: <code>VSS</code></li>
+<li>PMOS source/body: <code>VDD</code></li>
+</ul>
 <p><strong>Pins</strong></p>
 <p>Since we want the inverter to be a symbol in the end, we need to place to place the pins of the symbol. To do this, we use <code>ipin.sym</code> for inputs, <code>opin.sym</code> for outputs and <code>iopin.sym</code> for bidirectional pins from the generic library.</p>
-<p>Place the following pins:
-- Input: <code>ipin.sym</code>, name it <code>in</code>
-- Output: <code>opin.sym</code>, name it <code>out</code>
-- VSS: <code>iopin.sym</code>, name it <code>VSS</code>
-- VDD: <code>iopin.sym</code>, name it <code>VDD</code></p>
+<p>Place the following pins:</p>
+<ul>
+<li>Input: <code>ipin.sym</code>, name it <code>in</code></li>
+<li>Output: <code>opin.sym</code>, name it <code>out</code></li>
+<li>VSS: <code>iopin.sym</code>, name it <code>VSS</code></li>
+<li>VDD: <code>iopin.sym</code>, name it <code>VDD</code></li>
+</ul>
 <p>These pins will attach to the nets of the same name, so we dont need to connect them further.</p>
 <p>Your schematic should something look like this:
 <a class="glightbox" href="../assets/inverter.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Inverter Schematic" src="../assets/inverter.svg" /></a></p>
@@ -784,24 +788,30 @@ You will get a warning that the file does not exist, which is fine.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>xschem<span class="w"> </span>inverter_tb.sch
 </span></code></pre></div></p>
 <p>Place your inverter symbol by going to the current directory via the <code>Current Dir</code> button of the <code>Choose symbol</code> dialog (<code>Insert</code>) and selecting the <code>inverter.sym</code> file.</p>
-<p>Now, we need to connect the input and output of the inverter to the testbench. Specifically, we add:
-- Input: Rectangle voltage source
-- VSS/VDD: DC supply voltages
-- Output: Some loading resistor</p>
+<p>Now, we need to connect the input and output of the inverter to the testbench. Specifically, we add:</p>
+<ul>
+<li>Input: Rectangle voltage source</li>
+<li>VSS/VDD: DC supply voltages</li>
+<li>Output: Some loading resistor</li>
+</ul>
 <p>Place three voltage sources <code>vsource</code> from the generic library.</p>
 <p>Place one resistor <code>res</code> from the generic library.</p>
 <p>Place grounds (<code>gnd</code>) at the lower terminals of each voltage source and the resistor.</p>
 <p>Connect the voltages and resistor accordingly using wires (<code>W</code>). I suggest using labels for clarity.</p>
-<p>Set the voltages for the voltage sources:
-- VSS: <code>0</code>
-- VDD: <code>1.5</code>
-- Input: <code>"pulse(0 1.5 1n 0.1n 0.1n 1n 2n)"</code> (<strong>Dont</strong> forget the quotes) <br> This generates a pulse waveform from 0 to 1.5V, with a delay for the first edge of 1 ns, 0.1ns fall and rise times, 1 ns high time and 2 ns period.</p>
+<p>Set the voltages for the voltage sources:</p>
+<ul>
+<li>VSS: <code>0</code></li>
+<li>VDD: <code>1.5</code></li>
+<li>Input: <code>"pulse(0 1.5 1n 0.1n 0.1n 1n 2n)"</code> (<strong>Dont</strong> forget the quotes) <br> This generates a pulse waveform from 0 to 1.5V, with a delay for the first edge of 1 ns, 0.1ns fall and rise times, 1 ns high time and 2 ns period.</li>
+</ul>
 <p>Set the resistance to <code>1Meg</code>.</p>
-<p>Now, we need to write the commands for actually running the simulation. We will just take them from the XSCHEM PDK starting site. In a new terminal, open XSCHEM via <code>xschem</code>. From the PDK start page, select (select multiple via holding <code>Shift</code>):
-- "Load IHP SG13G2 spice models for ngspice" (<code>Libs_Ngspice</code>)
-- "Simulation skeleton for ngspice" (<code>SimulatorNGSPICE</code>)
-- "Create .save file, create netlist, simulate with ngspice" (<code>SimulateNGSPICE</code>)
-Copy these blocks via <code>Ctrl+C</code> and paste them into your testbench schematic via <code>Ctrl+V</code>.</p>
+<p>Now, we need to write the commands for actually running the simulation. We will just take them from the XSCHEM PDK starting site. In a new terminal, open XSCHEM via <code>xschem</code>. From the PDK start page, select (select multiple via holding <code>Shift</code>):</p>
+<ul>
+<li>"Load IHP SG13G2 spice models for ngspice" (<code>Libs_Ngspice</code>)</li>
+<li>"Simulation skeleton for ngspice" (<code>SimulatorNGSPICE</code>)</li>
+<li>"Create .save file, create netlist, simulate with ngspice" (<code>SimulateNGSPICE</code>)</li>
+</ul>
+<p>Copy these blocks via <code>Ctrl+C</code> and paste them into your testbench schematic via <code>Ctrl+V</code>.</p>
 <p>At the moment, this simulates the operating point only. We need to modify the <code>SimulatorNGSPICE</code> code block, specifically, we need to change the <code>op</code> command to (to also save all voltages/currents):
 <div class="language-spice highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">save</span><span class="w"> </span><span class="nx">all</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">tran</span><span class="w"> </span><span class="mi">50</span><span class="kd">p</span><span class="w"> </span><span class="mi">10</span><span class="nx">n</span>
