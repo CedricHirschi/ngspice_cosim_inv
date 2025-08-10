@@ -3,8 +3,10 @@ name = "ngspice-cosim-inv"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "cairosvg>=2.8.2",
     "ipympl>=0.9.7",
     "matplotlib>=3.10.3",
+    "mkdocs-material[imaging]>=9.6.16",
     "notebook>=7.4.3",
     "numpy>=2.2.6",
     "scipy>=1.15.3",
