@@ -11,19 +11,16 @@ In our example, we create a simple PWM DAC, with digitally adjustable output vol
 
 We create a simple SystemVerilog module with the following signals:
 
-Inputs
-
-- `clk_i`: Clock signal
-- `rst_ni`: Active-low reset signal
-- `set_i[3:0]`: 4-bit control signal for the duty cycle
-
-Outputs
-
-- `pwm_o`: PWM output signal
+| Signal Name  | Direction | Function                                |
+| ------------ | --------- | --------------------------------------- |
+| `clk_i`      | Input     | Clock signal                            |
+| `rst_ni`     | Input     | Active-low reset signal                 |
+| `set_i[3:0]` | Input     | 4-bit control signal for the duty cycle |
+| `pwm_o`      | Output    | PWM output signal                       |
 
 The module might look something like this:
 ```sv
-`timescale 1ns/1ps
+`timescale 1ns/1ps // (1)!
 
 module pwm_dac (
     input logic       clk_i,  // Clock signal
@@ -36,8 +33,8 @@ module pwm_dac (
     logic [3:0] counter_d, counter_q;
 
     initial begin
-        $display("PWM DAC digital part started");
-        $dumpfile("pwm_dac.vcd");
+        $display("PWM DAC digital part started"); // (2)!
+        $dumpfile("pwm_dac.vcd"); // (3)!
         $dumpvars(0, pwm_dac);
     end
 
@@ -61,7 +58,13 @@ module pwm_dac (
 
 endmodule
 ```
-**Important:** The ``timescale` directive is crucial for enabling cosimulation.
+
+1.  **Important:** The ``timescale` directive is crucial for enabling cosimulation.
+2.  This will get printed in the ngspice simulation log
+3.  We can save the waveform data to a file for later analysis.
+
+!!! danger
+    The ``timescale` directive is crucial for enabling cosimulation. It has to be present in the top-level module used for cosimulation.
 
 We save this code as `pwm_dac.sv` and compile it with Icarus Verilog. This is done with the following command:
 ```bash
@@ -79,8 +82,9 @@ We implement the circuit in the testbench `pwm_dac_tb.sch` directly via
 ```bash
 xschem pwm_dac_tb.sch
 ```
-The resulting circuit looks something like this:
-![Lowpass Circuit](assets/rc_lowpass.svg)
+
+??? info "The resulting circuit looks something like this"
+    ![Lowpass Circuit](assets/rc_lowpass.svg)
 
 ## Symbol for the Digital Design
 
@@ -108,9 +112,9 @@ This defines:
 
 Now, we place the pins of the symbol in the schematic. Do this via `Symbol -> Place symbol pin` (`Alt + P`). Make sure to set the correct name and direction (`in`, `out` or `inout`) for each pin.
 
-Your symbol might look something like this:
-![PWM DAC Symbol](assets/pwm_dac_symbol.svg)
-The `@symname` and `@name` texts are placeholders that will be replaced with the actual symbol and instance names when the schematic is instantiated. You can leave them out.
+??? info "The resulting symbol might look something like this"
+    ![PWM DAC Symbol](assets/pwm_dac_symbol.svg)
+    The `@symname` and `@name` texts are placeholders that will be replaced with the actual symbol and instance names when the schematic is instantiated. You can leave them out.
 
 ## Testbench
 
@@ -129,10 +133,12 @@ Now we can hook up the output up to the lowpass filter. Also place voltage sourc
 
 The control inputs `set_i0 to set_i3` are each connected to their own voltage source so that we can simulate a simple changing digital input. A simple example would be the following:
 
-- `set_i0`: Constant 1.5V
-- `set_i1`: Constant 1.5V
-- `set_i2`: Step 0V to 1.5V at 15us
-- `set_i3`: Constant 0V
+| Signal   | Description                                 |
+| -------- | ------------------------------------------- |
+| `set_i0` | Logic high (bit 0)                          |
+| `set_i1` | Logic high (bit 1)                          |
+| `set_i2` | Transition from low to high at 15μs (bit 2) |
+| `set_i3` | Logic low (bit 3)                           |
 
 With this, we simulate a simple step from input code 0x03 to 0x07 at 15us, such that we can observe the behavior of the PWM DAC.
 
@@ -150,8 +156,8 @@ Here, the important part is `VCC`. This defines the logic levels for the digital
 
 Also add a waveform loader and two graphs.
 
-The testbench might look like this:
-![PWM DAC Testbench](assets/pwm_dac_tb.svg)
+??? info "The resulting testbench might look something like this"
+    ![PWM DAC Testbench](assets/pwm_dac_tb.svg)
 
 ## Simulation
 
@@ -226,9 +232,13 @@ XSCHEM's built in graphs already include a handy way to display digital and anal
 
 In the graph for the analog signals, add the `unfilt` and `out` signals. The settings can remain the default.
 
-In the graph for the digital signals, add the `clk`, `rst` signals as well as `set;set3,set2,set1,set0`, which allows us to look at the `set` signals as a bus. Your plots might look like this:
-![PWM DAC Testbench Plots](assets/pwm_dac_tb_plot.svg)
+In the graph for the digital signals, add the `clk`, `rst` signals as well as `set;set3,set2,set1,set0`, which allows us to look at the `set` signals as a bus.
 
-We can see that our simple PWM DAC example works as expected.
+??? info "The resulting plots might look something like this"
+    ![PWM DAC Testbench Plots](assets/pwm_dac_tb_plot.svg)
 
-Now, you can also open the .vcd file in a waveform viewer to inspect the digital part more closely.
+!!! success
+    We can see that our simple PWM DAC example works as expected.
+
+!!! tip
+    Now, you can also open the .vcd file in a waveform viewer to inspect the digital part more closely.

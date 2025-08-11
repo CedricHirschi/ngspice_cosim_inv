@@ -31,7 +31,7 @@ After the netlist is generated, you can run the simulation by clicking on the "S
 **Simulation Log**
 
 You should see this log output:
-```log
+```md
 
 *************
 ** ngspice-44.2 Circuit level simulation program
@@ -48,7 +48,7 @@ Note: No compatibility mode selected!
 
 Circuit: ** sch_path: /foss/pdks/ihp-sg1392/libs.tech/xschem/s91392_tests/tran_logic_not.sch
 
-Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000 <!--(1)-->
 
 Using SPARSE 1.3 as Direct Linear Solver
 
@@ -73,11 +73,13 @@ This output shows that the simulation was successful and provides information ab
 
 This includes:
 
-- The temperature at which the simulation was run
-- The initial transient solution (values at each node at time t=0)
-- The amount of data generated during the simulation (`No. of Data Rows`)
-- Measurement results (e.g., propagation delay `tdelay`, user-defined by `.meas` commands)
-- The location of the binary raw file containing the simulation data (`tran_logic_not.raw`)
+| Information Type | Command/Value                          | Description                                                                              |
+| ---------------- | -------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Temperature      | `TEMP = 27.000000`                     | The temperature at which the simulation was run                                          |
+| Initial solution | `Node` and `Voltage` columns           | The initial transient solution (values at each node at time t=0)                         |
+| Data volume      | `No. of Data Rows : 465`               | The amount of data generated during the simulation                                       |
+| Measurements     | `tdelay = 1.119817e-10`                | Measurement results (e.g., propagation delay `tdelay`, user-defined by `.meas` commands) |
+| Output file      | `binary raw file "tran_logic_not.raw"` | The location of the binary raw file containing the simulation data                       |
 
 **Graphs**
 
@@ -132,13 +134,15 @@ write tran_logic_not.raw
 .endc
 ```
 
-- The `.param` command sets a simulation parameter (in this case, temperature).
-- The `.control` block contains the simulation commands to be executed (**Note:** There are multiple ways to do this. We will just focus on this one for now).
-- The `save all` command tells the simulator to save all node voltages and branch currents.
-- The `tran 50p 20n` command performs a transient analysis with a maximum time step of 50 ps and a total simulation time of 20 ns.
-- The `meas` command measures the propagation delay of the inverter (as described above).
-- The `write` command saves the simulation results to a raw file.
-- The `.endc` command ends the control (`.control`) block.
+| Command        | Purpose             | Description                                                                                                                            |
+| -------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `.param`       | Parameter setting   | Sets a simulation parameter (in this case, temperature)                                                                                |
+| `.control`     | Command block start | Contains the simulation commands to be executed (**Note:** There are multiple ways to do this. We will just focus on this one for now) |
+| `save all`     | Data collection     | Tells the simulator to save all node voltages and branch currents                                                                      |
+| `tran 50p 20n` | Transient analysis  | Performs a transient analysis with a maximum time step of 50 ps and a total simulation time of 20 ns                                   |
+| `meas`         | Measurement         | Measures the propagation delay of the inverter (as described above)                                                                    |
+| `write`        | File output         | Saves the simulation results to a raw file                                                                                             |
+| `.endc`        | Command block end   | Ends the control (`.control`) block                                                                                                    |
 
 Now, if we want to modify the simulation parameters, we can do so by editing the code block accordingly. For example, we could change the temperature or the transient analysis time settings:
 ```spice

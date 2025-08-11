@@ -8,7 +8,9 @@ To create a new schematic in XSCHEM, we simply create a new `.sch` file (schemat
 ```bash
 xschem inverter.sch
 ```
-You will get a warning that the file does not exist, which is fine.
+
+!!! info
+    You will get a warning that the file does not exist, which is fine.
 
 Now, you should see a blank schematic editor window where you can start building your inverter design.
 
@@ -24,8 +26,10 @@ Repeat this for the PMOS transistor by selecting `sg13_lv_pmos` from the same li
 
 Now, we connect the gates and the drains of the NMOS and PMOS transistors together to form the inverter structure. You can place a wire by pressing `W` on your keyboard while you are at your first connection point. If you want to have a corner in your wire, move the cursor to the position of the corner and press `W` again. This will place the first wire segment. Then, when you are at the second connection point, simply left-click to finalize the wire placement.
 
-Also place some short wires out of the sources and bodies of the transistors as well as some input and output wires out of the gates/drains. Your design should look something like this:
-![Unfinished Inverter Schematic](assets/inverter_unfinished.svg)
+Also place some short wires out of the sources and bodies of the transistors as well as some input and output wires out of the gates/drains.
+
+??? info "The resulting schematic might look something like this"
+    ![Unfinished Inverter Schematic](assets/inverter_unfinished.svg)
 
 **Labels**
 
@@ -57,8 +61,8 @@ Place the following pins:
 
 These pins will attach to the nets of the same name, so we dont need to connect them further.
 
-Your schematic should something look like this:
-![Inverter Schematic](assets/inverter.svg)
+??? info "The resulting schematic might look something like this"
+    ![Inverter Schematic](assets/inverter.svg)
 
 ### Creating the Symbol
 
@@ -76,8 +80,8 @@ You should see the default generated symbol for the inverter.
 
 This is good but it looks quite boring. You can improve it by editing the symbol by moving/rotating the pins around and by adding new polygons (`P`), generally using the tools in the toolbar.
 
-An improved version could look like this:
-![Inverter Symbol](assets/inverter_symbol.svg)
+??? info "An improved symbol might look something like this"
+    ![Inverter Symbol](assets/inverter_symbol.svg)
 
 ## Creating the Testbench
 
@@ -137,8 +141,8 @@ While you are in the code block, also change all `<filename>` instances to `inve
 
 We also want a graph, which can be placed via `Simulation -> Graphs -> Add waveform graph`. Also, add a waveform reload launcher via `Simulation -> Graphs -> Add waveform reload launcher`.
 
-Your testbench should look something like this:
-![Inverter Testbench](assets/inverter_tb.svg)
+??? info "The resulting testbench might look something like this"
+    ![Inverter Testbench](assets/inverter_tb.svg)
 
 ## Running the testbench
 
@@ -150,5 +154,5 @@ By default, all traces are the same color. To changes that, click on the `AUTO S
 
 Now, click `Apply` and `OK`. You should see some traces in the graph, but you need to adjust the time scale to see the pulses clearly. You can do this by holding `Shift` and scrolling the mouse wheel to zoom in and out, or by holding `Ctrl` and scrolling to pan.
 
-Your plot may look something like this:
-![Inverter Testbench Plot](assets/inverter_tb_plot.svg)
+??? info "The resulting plot might look something like this"
+    ![Inverter Testbench Plot](assets/inverter_tb_plot.svg)

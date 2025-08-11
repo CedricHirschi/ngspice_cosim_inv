@@ -2,9 +2,11 @@
 
 Bridges in ngspice define the transitions between the analog and digital domain. There are three different types of bridges:
 
-- `dac_bridge`: Digital-to-Analog node bridge, at outputs of digital blocks
-- `adc_bridge`: Analog-to-Digital node bridge, at inputs of digital blocks
-- `bidi_bridge`: Bidirectional bridge, allowing for two-way communication between analog and digital domains
+| Bridge Type   | Purpose           | Description                                                     |
+| ------------- | ----------------- | --------------------------------------------------------------- |
+| `dac_bridge`  | Digital-to-Analog | Node bridge at outputs of digital blocks                        |
+| `adc_bridge`  | Analog-to-Digital | Node bridge at inputs of digital blocks                         |
+| `bidi_bridge` | Bidirectional     | Allows two-way communication between analog and digital domains |
 
 These bridges have a variety of configurable parameters, such as trigger voltage levels, rise/fall times and delays.
 
