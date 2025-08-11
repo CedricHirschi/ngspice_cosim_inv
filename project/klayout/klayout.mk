@@ -10,7 +10,8 @@ KLAYOUT_DIR := $(realpath $(dir $(realpath $(filter %klayout.mk,$(MAKEFILE_LIST)
 # klayout: $(TOP).gds $(KLAYOUT_SIM_DIR)/$(TOP).cdl
 # 	$(KLAYOUT) -n sg13g2 $(TOP).gds -e
 
-klayout_digital:
+## IMP3; Convert design to GDS
+klayout:
 	$(KLAYOUT_DIR)/def2gds.sh
 
 clean_klayout:

@@ -6,7 +6,7 @@ VERILOG_SRCS = $(wildcard ../rtl/*.sv)
 IVERILOG_DIR = $(realpath $(dir $(realpath $(filter %iverilog.mk,$(MAKEFILE_LIST)))))
 IVERILOG_BUILD_DIR = $(IVERILOG_DIR)/build
 
-## Icarus Verilog build target
+## SIM-; Build cosimulation model for the RTL design
 iverilog: $(IVERILOG_BUILD_DIR)/$(TOP)
 
 $(IVERILOG_BUILD_DIR)/$(TOP): $(VERILOG_SRCS)

@@ -7,7 +7,8 @@ ARTISTIC_TOOL_DIR := $(ARTISTIC_DIR)/artistic
 
 PYTHON ?= python3
 
-artistic: $(ARTISTIC_DIR)/$(IC_NAME)_chip.gds.gz render
+## ADD-; Add logo to the chip
+artistic: $(ARTISTIC_DIR)/$(IC_NAME)_chip.gds render
 
 $(ARTISTIC_DIR)/$(IC_NAME)_tm.gds: $(INPUT_GDS)
 	cd $(ARTISTIC_DIR) && $(PYTHON) $(ARTISTIC_TOOL_DIR)/scripts/meerkat_interface.py \
@@ -18,7 +19,7 @@ $(ARTISTIC_DIR)/$(IC_NAME)_tm.gds: $(INPUT_GDS)
 	    -w . \
 	    -l 134
 	cd $(ARTISTIC_DIR) && klayout -zz -rm $(ARTISTIC_TOOL_DIR)/scripts/export_top_metal.py
-	cd $(ARTISTIC_DIR) && gzip -d $(ARTISTIC_DIR)/$(IC_NAME)_tm.gds.gz
+	cd $(ARTISTIC_DIR) && gzip -dc $(ARTISTIC_DIR)/$(IC_NAME)_tm.gds.gz > $(ARTISTIC_DIR)/$(IC_NAME)_tm.gds
 
 $(ARTISTIC_DIR)/$(IC_NAME)_logo.gds: $(ARTISTIC_DIR)/$(IC_NAME)_tm.gds
 	convert $(ARTISTIC_DIR)/$(INPUT_IMAGE) -remap pattern:gray50 $(ARTISTIC_DIR)/mono_$(INPUT_IMAGE)
@@ -34,8 +35,8 @@ $(ARTISTIC_DIR)/$(IC_NAME)_logo.gds: $(ARTISTIC_DIR)/$(IC_NAME)_tm.gds
 $(ARTISTIC_DIR)/$(IC_NAME)_chip.gds.gz: $(ARTISTIC_DIR)/$(IC_NAME)_logo.gds
 	cd $(ARTISTIC_DIR) && klayout -zz -rm $(ARTISTIC_TOOL_DIR)/scripts/merge_logo.py
 
-# $(ARTISTIC_DIR)/$(IC_NAME)_chip.gds: $(ARTISTIC_DIR)/$(IC_NAME)_chip.gds.gz
-# 	cd $(ARTISTIC_DIR) && gzip -d $(ARTISTIC_DIR)/$(IC_NAME)_chip.gds.gz
+$(ARTISTIC_DIR)/$(IC_NAME)_chip.gds: $(ARTISTIC_DIR)/$(IC_NAME)_chip.gds.gz
+	cd $(ARTISTIC_DIR) && gzip -dc $(ARTISTIC_DIR)/$(IC_NAME)_chip.gds.gz > $(ARTISTIC_DIR)/$(IC_NAME)_chip.gds
 
 render: $(ARTISTIC_DIR)/$(IC_NAME)_chip.gds.gz
 	mkdir -p /dev/shm/renderics

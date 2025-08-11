@@ -16,7 +16,7 @@ $(XSCHEM_SIM_DIR)/$(TOP).spice: $(XSCHEM_SIM_DIR) $(VERILOG_SRCS)
 $(XSCHEM_SIM_DIR)/$(TOP).cdl: $(XSCHEM_SIM_DIR) $(VERILOG_SRCS)
 	$(call run_xschem,-x -q --tcl "set spiceprefix 0; set lvs_netlist 1" -n $(TOP).sch -o $(XSCHEM_SIM_DIR) --netlist_filename $(TOP).cdl)
 
-## Open the schematic in xschem
+## SIM-; Open the schematic in xschem
 xschem: $(XSCHEM_SIM_DIR)
 	$(call run_xschem,-o $(XSCHEM_SIM_DIR) $(TOP)_tb.sch)
 

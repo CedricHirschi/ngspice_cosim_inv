@@ -5,3 +5,4 @@ mono_*.png
 *.svg
 *.gds.gz
 *.gds
+!sarn_chip.gds

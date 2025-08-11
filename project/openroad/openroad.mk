@@ -26,6 +26,7 @@ OR_OUT_FILES  = $(OR_OUT)/$(PROJ_NAME).def $(OR_OUT)/$(PROJ_NAME).v $(OR_OUT)/$(
 
 backend: $(OR_OUT)/$(PROJ_NAME).def
 
+## IMP2; Run PNR of the synthesized design
 openroad: $(OR_OUT)/$(PROJ_NAME).def
 
 ## Place & Route flow using OpenROAD

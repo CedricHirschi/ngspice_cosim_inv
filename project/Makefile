@@ -14,11 +14,16 @@ all:
 		{ lastLine = $$0 }' $$mkfile; \
 	done
 
-include iverilog/iverilog.mk
-include klayout/klayout.mk
-include openroad/openroad.mk
+# Schematic capture & Simulation
 include xschem/xschem.mk
+include iverilog/iverilog.mk
+
+# Synthesis & PNR
 include yosys/yosys.mk
+include openroad/openroad.mk
+include klayout/klayout.mk
+
+# Addons
 include artistic/artistic.mk
 
 clean:

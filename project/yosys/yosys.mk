@@ -26,7 +26,7 @@ NETLIST			:= $(YOSYS_OUT)/$(TOP_DESIGN)_yosys.v
 NETLIST_DEBUG	:= $(YOSYS_OUT)/$(TOP_DESIGN)_debug_yosys.v
 
 
-## Synthesize netlist using Yosys
+## IMP1; Synthesize netlist using Yosys
 yosys: $(NETLIST)
 
 $(NETLIST) $(NETLIST_DEBUG):  $(SV_FLIST)
