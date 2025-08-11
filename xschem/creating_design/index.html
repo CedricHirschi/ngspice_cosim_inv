@@ -439,7 +439,10 @@
 <p>To create a new schematic in XSCHEM, we simply create a new <code>.sch</code> file (schematic format for XSCHEM). We can do this via
 </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>xschem<span class="w"> </span>inverter.sch
 </span></code></pre></div>
-You will get a warning that the file does not exist, which is fine.
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You will get a warning that the file does not exist, which is fine.</p>
+</div>
 <p>Now, you should see a blank schematic editor window where you can start building your inverter design.</p>
 <p><strong>Symbols</strong></p>
 <p>We start by placing our two MOSFETs (NMOS and PMOS) in the schematic. To do this, select the <code>Insert Symbol</code> symbol from the toolbar (looks like an AND gate) or press <code>Insert</code> on your keyboard.</p>
@@ -447,8 +450,11 @@ You will get a warning that the file does not exist, which is fine.
 <p>Repeat this for the PMOS transistor by selecting <code>sg13_lv_pmos</code> from the same library.</p>
 <p><strong>Wires</strong></p>
 <p>Now, we connect the gates and the drains of the NMOS and PMOS transistors together to form the inverter structure. You can place a wire by pressing <code>W</code> on your keyboard while you are at your first connection point. If you want to have a corner in your wire, move the cursor to the position of the corner and press <code>W</code> again. This will place the first wire segment. Then, when you are at the second connection point, simply left-click to finalize the wire placement.</p>
-<p>Also place some short wires out of the sources and bodies of the transistors as well as some input and output wires out of the gates/drains. Your design should look something like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_unfinished.svg"><img alt="Unfinished Inverter Schematic" src="../assets/inverter_unfinished.svg"/></a></p>
+<p>Also place some short wires out of the sources and bodies of the transistors as well as some input and output wires out of the gates/drains.</p>
+<details class="info">
+<summary>The resulting schematic might look something like this</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_unfinished.svg"><img alt="Unfinished Inverter Schematic" src="../assets/inverter_unfinished.svg"/></a></p>
+</details>
 <p><strong>Labels</strong></p>
 <p>Now, let's place some labels to identify each net. To do this, open the <code>Choose symbol</code> dialog by pressing <code>Insert</code> again and go to the builtin devices library. You can do this by pressing the <code>Home</code> button on the bottom left. This will choose the <code>xschem_library/devices</code> library. These are the spice primitives (not physical devices).</p>
 <p>We want to search for the <code>lab</code> symbols. You can do this by clicking into the search field on the bottom left and by entering <code>lab</code>. This will give us some different options, but we are taking the <code>lab_pin.sym</code> symbol. Select it and place it on the end of the input wire.</p>
@@ -471,8 +477,10 @@ You will get a warning that the file does not exist, which is fine.
 <li>VDD: <code>iopin.sym</code>, name it <code>VDD</code></li>
 </ul>
 <p>These pins will attach to the nets of the same name, so we dont need to connect them further.</p>
-<p>Your schematic should something look like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter.svg"><img alt="Inverter Schematic" src="../assets/inverter.svg"/></a></p>
+<details class="info">
+<summary>The resulting schematic might look something like this</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter.svg"><img alt="Inverter Schematic" src="../assets/inverter.svg"/></a></p>
+</details>
 <h3 id="creating-the-symbol">Creating the Symbol<a class="headerlink" href="#creating-the-symbol" title="Permanent link">¶</a></h3>
 <p>Now, we want to create a symbol for our inverter.</p>
 <p>For this, navigate to the <code>Symbol</code> menu in the toolbar and click on <code>Make symbol from schematic</code>. This will create a <code>inverter.sym</code> file in the same directory as <code>inverter.sch</code>.</p>
@@ -482,8 +490,10 @@ You will get a warning that the file does not exist, which is fine.
 <p>You should see the default generated symbol for the inverter.
 <a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_symbol_default.svg"><img alt="Default Inverter Symbol" src="../assets/inverter_symbol_default.svg"/></a></p>
 <p>This is good but it looks quite boring. You can improve it by editing the symbol by moving/rotating the pins around and by adding new polygons (<code>P</code>), generally using the tools in the toolbar.</p>
-<p>An improved version could look like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_symbol.svg"><img alt="Inverter Symbol" src="../assets/inverter_symbol.svg"/></a></p>
+<details class="info">
+<summary>An improved symbol might look something like this</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_symbol.svg"><img alt="Inverter Symbol" src="../assets/inverter_symbol.svg"/></a></p>
+</details>
 <h2 id="creating-the-testbench">Creating the Testbench<a class="headerlink" href="#creating-the-testbench" title="Permanent link">¶</a></h2>
 <p>Now, we create a testbench for our inverter.</p>
 <p>For this, create the testbench schematic:
@@ -524,15 +534,19 @@ You will get a warning that the file does not exist, which is fine.
 While you are in the code block, also change all <code>&lt;filename&gt;</code> instances to <code>inverter_tb</code>.
 <h3 id="adding-graphs">Adding Graphs<a class="headerlink" href="#adding-graphs" title="Permanent link">¶</a></h3>
 <p>We also want a graph, which can be placed via <code>Simulation -&gt; Graphs -&gt; Add waveform graph</code>. Also, add a waveform reload launcher via <code>Simulation -&gt; Graphs -&gt; Add waveform reload launcher</code>.</p>
-<p>Your testbench should look something like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_tb.svg"><img alt="Inverter Testbench" src="../assets/inverter_tb.svg"/></a></p>
+<details class="info">
+<summary>The resulting testbench might look something like this</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_tb.svg"><img alt="Inverter Testbench" src="../assets/inverter_tb.svg"/></a></p>
+</details>
 <h2 id="running-the-testbench">Running the testbench<a class="headerlink" href="#running-the-testbench" title="Permanent link">¶</a></h2>
 <p>Now, run the testbench via <code>Ctrl + left click</code> on the <code>SimulateNGSPICE</code> launcher. Then, load the waves via the <code>load waves</code> launcher.</p>
 <p>Now, we want to add some traces to the graph. You can do this by double-clicking in the middle of the graph. You should be able to see a list of traces to plot on the left side. There, find and add the <code>in</code> and <code>out</code> traces by double-clicking on them.</p>
 <p>By default, all traces are the same color. To changes that, click on the <code>AUTO SET</code> button on the bottom right.</p>
 <p>Now, click <code>Apply</code> and <code>OK</code>. You should see some traces in the graph, but you need to adjust the time scale to see the pulses clearly. You can do this by holding <code>Shift</code> and scrolling the mouse wheel to zoom in and out, or by holding <code>Ctrl</code> and scrolling to pan.</p>
-<p>Your plot may look something like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_tb_plot.svg"><img alt="Inverter Testbench Plot" src="../assets/inverter_tb_plot.svg"/></a></p>
+<details class="info">
+<summary>The resulting plot might look something like this</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_tb_plot.svg"><img alt="Inverter Testbench Plot" src="../assets/inverter_tb_plot.svg"/></a></p>
+</details>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

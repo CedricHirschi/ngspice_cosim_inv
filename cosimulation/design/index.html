@@ -385,18 +385,39 @@
 <p>In our example, we create a simple PWM DAC, with digitally adjustable output voltage levels.</p>
 <h2 id="digital-design">Digital Design<a class="headerlink" href="#digital-design" title="Permanent link">¶</a></h2>
 <p>We create a simple SystemVerilog module with the following signals:</p>
-<p>Inputs</p>
-<ul>
-<li><code>clk_i</code>: Clock signal</li>
-<li><code>rst_ni</code>: Active-low reset signal</li>
-<li><code>set_i[3:0]</code>: 4-bit control signal for the duty cycle</li>
-</ul>
-<p>Outputs</p>
-<ul>
-<li><code>pwm_o</code>: PWM output signal</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Signal Name</th>
+<th>Direction</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clk_i</code></td>
+<td>Input</td>
+<td>Clock signal</td>
+</tr>
+<tr>
+<td><code>rst_ni</code></td>
+<td>Input</td>
+<td>Active-low reset signal</td>
+</tr>
+<tr>
+<td><code>set_i[3:0]</code></td>
+<td>Input</td>
+<td>4-bit control signal for the duty cycle</td>
+</tr>
+<tr>
+<td><code>pwm_o</code></td>
+<td>Output</td>
+<td>PWM output signal</td>
+</tr>
+</tbody>
+</table>
 <p>The module might look something like this:
-</p><div class="language-sv highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="no">`timescale</span><span class="w"> </span><span class="mi">1</span><span class="n">ns</span><span class="o">/</span><span class="mi">1</span><span class="n">ps</span>
+</p><div class="language-sv highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="no">`timescale</span><span class="w"> </span><span class="mi">1</span><span class="n">ns</span><span class="o">/</span><span class="mi">1</span><span class="n">ps</span><span class="w"> </span><span class="c1">// (1)!</span>
 </span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>
 </span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">module</span><span class="w"> </span><span class="n">pwm_dac</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="k">input</span><span class="w"> </span><span class="kt">logic</span><span class="w">       </span><span class="n">clk_i</span><span class="p">,</span><span class="w">  </span><span class="c1">// Clock signal</span>
@@ -409,8 +430,8 @@
 </span><span id="__span-0-11"><a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">counter_d</span><span class="p">,</span><span class="w"> </span><span class="n">counter_q</span><span class="p">;</span>
 </span><span id="__span-0-12"><a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a>
 </span><span id="__span-0-13"><a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="k">initial</span><span class="w"> </span><span class="k">begin</span>
-</span><span id="__span-0-14"><a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">        </span><span class="p">$</span><span class="n">display</span><span class="p">(</span><span class="s">"PWM DAC digital part started"</span><span class="p">);</span>
-</span><span id="__span-0-15"><a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">        </span><span class="p">$</span><span class="n">dumpfile</span><span class="p">(</span><span class="s">"pwm_dac.vcd"</span><span class="p">);</span>
+</span><span id="__span-0-14"><a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">        </span><span class="p">$</span><span class="n">display</span><span class="p">(</span><span class="s">"PWM DAC digital part started"</span><span class="p">);</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-0-15"><a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">        </span><span class="p">$</span><span class="n">dumpfile</span><span class="p">(</span><span class="s">"pwm_dac.vcd"</span><span class="p">);</span><span class="w"> </span><span class="c1">// (3)!</span>
 </span><span id="__span-0-16"><a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">        </span><span class="p">$</span><span class="n">dumpvars</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">pwm_dac</span><span class="p">);</span>
 </span><span id="__span-0-17"><a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="k">end</span>
 </span><span id="__span-0-18"><a href="#__codelineno-0-18" id="__codelineno-0-18" name="__codelineno-0-18"></a>
@@ -434,7 +455,15 @@
 </span><span id="__span-0-36"><a href="#__codelineno-0-36" id="__codelineno-0-36" name="__codelineno-0-36"></a>
 </span><span id="__span-0-37"><a href="#__codelineno-0-37" id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="k">endmodule</span>
 </span></code></pre></div>
-<strong>Important:</strong> The <code>`timescale</code> directive is crucial for enabling cosimulation.
+<ol>
+<li><strong>Important:</strong> The <code>`timescale</code> directive is crucial for enabling cosimulation.</li>
+<li>This will get printed in the ngspice simulation log</li>
+<li>We can save the waveform data to a file for later analysis.</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>The <code>`timescale</code> directive is crucial for enabling cosimulation. It has to be present in the top-level module used for cosimulation.</p>
+</div>
 <p>We save this code as <code>pwm_dac.sv</code> and compile it with Icarus Verilog. This is done with the following command:
 </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>iverilog<span class="w"> </span>-g2012<span class="w"> </span>-o<span class="w"> </span>pwm_dac<span class="w"> </span>pwm_dac.sv
 </span></code></pre></div>
@@ -445,8 +474,10 @@ The <code>-g2012</code> flag tells Icarus Verilog to use the SystemVerilog 2012 
 <p>We implement the circuit in the testbench <code>pwm_dac_tb.sch</code> directly via
 </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>xschem<span class="w"> </span>pwm_dac_tb.sch
 </span></code></pre></div>
-The resulting circuit looks something like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/rc_lowpass.svg"><img alt="Lowpass Circuit" src="../assets/rc_lowpass.svg"/></a>
+<details class="info">
+<summary>The resulting circuit looks something like this</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/rc_lowpass.svg"><img alt="Lowpass Circuit" src="../assets/rc_lowpass.svg"/></a></p>
+</details>
 <h2 id="symbol-for-the-digital-design">Symbol for the Digital Design<a class="headerlink" href="#symbol-for-the-digital-design" title="Permanent link">¶</a></h2>
 <p>We need to create a symbol for the digital design that we can use in the testbench. This symbol should represent the inputs and outputs of the <code>pwm_dac</code> module. Create a new symbol with
 </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>xschem<span class="w"> </span>pwm_dac.sym
@@ -470,9 +501,11 @@ This defines:
 <li>The template for the instance. This defines how the instance will be instantiated in the schematic. Here, the instance gets the name <code>A1</code> and the model <code>pwm_dac</code>, which we have built above.</li>
 </ul>
 <p>Now, we place the pins of the symbol in the schematic. Do this via <code>Symbol -&gt; Place symbol pin</code> (<code>Alt + P</code>). Make sure to set the correct name and direction (<code>in</code>, <code>out</code> or <code>inout</code>) for each pin.</p>
-<p>Your symbol might look something like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/pwm_dac_symbol.svg"><img alt="PWM DAC Symbol" src="../assets/pwm_dac_symbol.svg"/></a>
+<details class="info">
+<summary>The resulting symbol might look something like this</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/pwm_dac_symbol.svg"><img alt="PWM DAC Symbol" src="../assets/pwm_dac_symbol.svg"/></a>
 The <code>@symname</code> and <code>@name</code> texts are placeholders that will be replaced with the actual symbol and instance names when the schematic is instantiated. You can leave them out.</p>
+</details>
 <h2 id="testbench">Testbench<a class="headerlink" href="#testbench" title="Permanent link">¶</a></h2>
 <p>Now, we go back to the testbench
 </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>xschem<span class="w"> </span>pwm_dac_tb.sch
@@ -483,12 +516,32 @@ The <code>@symname</code> and <code>@name</code> texts are placeholders that wil
 The <code>device_model</code> property specifies the model name and the simulation parameters for the PWM DAC. This tells ngspice to use the <code>ivlng</code> simulation method with the specified arguments.
 <p>Now we can hook up the output up to the lowpass filter. Also place voltage sources to input the clock and reset signals, as well as the control inputs. Single signals from a bus can be accessed via the <code>a0 up to a3</code> labels if you have a <code>a[3..0]</code> label.</p>
 <p>The control inputs <code>set_i0 to set_i3</code> are each connected to their own voltage source so that we can simulate a simple changing digital input. A simple example would be the following:</p>
-<ul>
-<li><code>set_i0</code>: Constant 1.5V</li>
-<li><code>set_i1</code>: Constant 1.5V</li>
-<li><code>set_i2</code>: Step 0V to 1.5V at 15us</li>
-<li><code>set_i3</code>: Constant 0V</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>set_i0</code></td>
+<td>Logic high (bit 0)</td>
+</tr>
+<tr>
+<td><code>set_i1</code></td>
+<td>Logic high (bit 1)</td>
+</tr>
+<tr>
+<td><code>set_i2</code></td>
+<td>Transition from low to high at 15μs (bit 2)</td>
+</tr>
+<tr>
+<td><code>set_i3</code></td>
+<td>Logic low (bit 3)</td>
+</tr>
+</tbody>
+</table>
 <p>With this, we simulate a simple step from input code 0x03 to 0x07 at 15us, such that we can observe the behavior of the PWM DAC.</p>
 <p>Add the device models and simulation commands/launcher. For the simulation commands, we use the following:
 </p><div class="language-spice highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">.</span><span class="nx">include</span><span class="w"> </span><span class="nx">pwm_dac_tb</span><span class="p">.</span><span class="nx">save</span>
@@ -501,8 +554,10 @@ The <code>device_model</code> property specifies the model name and the simulati
 </span></code></pre></div>
 Here, the important part is <code>VCC</code>. This defines the logic levels for the digital-&gt;analog and analog-&gt;digital bridges. These bridges can be set up more sophisticated (See <a href="../bridges/">Bridges</a>), but for now we just set <code>VCC</code> to our vdd, 1.5V. Also, we set the simulation time to 10 microseconds with a timestep of 10 nanoseconds and to save all data to <code>pwm_dac_tb.raw</code>.
 <p>Also add a waveform loader and two graphs.</p>
-<p>The testbench might look like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/pwm_dac_tb.svg"><img alt="PWM DAC Testbench" src="../assets/pwm_dac_tb.svg"/></a></p>
+<details class="info">
+<summary>The resulting testbench might look something like this</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/pwm_dac_tb.svg"><img alt="PWM DAC Testbench" src="../assets/pwm_dac_tb.svg"/></a></p>
+</details>
 <h2 id="simulation">Simulation<a class="headerlink" href="#simulation" title="Permanent link">¶</a></h2>
 <p>Currently, for the simulation to run successfully, some tweaks need to be made when you are using the IIC-OSIC-TOOLS container:
 </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/usr/local/lib/ngspice
@@ -568,10 +623,19 @@ You can see the <code>PWM DAC digital part started</code> and <code>VCD info: du
 <h2 id="visualization">Visualization<a class="headerlink" href="#visualization" title="Permanent link">¶</a></h2>
 <p>XSCHEM's built in graphs already include a handy way to display digital and analog signals concurrently. We use one of our graphs for the digital signals and one for the analog signals.</p>
 <p>In the graph for the analog signals, add the <code>unfilt</code> and <code>out</code> signals. The settings can remain the default.</p>
-<p>In the graph for the digital signals, add the <code>clk</code>, <code>rst</code> signals as well as <code>set;set3,set2,set1,set0</code>, which allows us to look at the <code>set</code> signals as a bus. Your plots might look like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/pwm_dac_tb_plot.svg"><img alt="PWM DAC Testbench Plots" src="../assets/pwm_dac_tb_plot.svg"/></a></p>
+<p>In the graph for the digital signals, add the <code>clk</code>, <code>rst</code> signals as well as <code>set;set3,set2,set1,set0</code>, which allows us to look at the <code>set</code> signals as a bus.</p>
+<details class="info">
+<summary>The resulting plots might look something like this</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/pwm_dac_tb_plot.svg"><img alt="PWM DAC Testbench Plots" src="../assets/pwm_dac_tb_plot.svg"/></a></p>
+</details>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
 <p>We can see that our simple PWM DAC example works as expected.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>Now, you can also open the .vcd file in a waveform viewer to inspect the digital part more closely.</p>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
