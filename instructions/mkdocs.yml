@@ -1,6 +1,7 @@
 site_name: Open Source Mixed Signal Design
 site_description: Introduction to Open Source Mixed Signal Design
 site_author: Cedric Hirschi
+site_url: https://CedricHirschi.github.io/ngspice_cosim_inv/
 repo_name: ngspice_cosim_inv
 repo_url: https://github.com/CedricHirschi/ngspice_cosim_inv
 
@@ -9,9 +10,11 @@ nav:
   - XSCHEM:
       - PDK Examples: xschem/pdk_examples.md
       - Creating a New Design: xschem/creating_design.md
+      - Analysis in Python: xschem/python.md
   - Cosimulation:
       - Introduction: cosimulation/intro.md
       - Creating a Mixed-Signal Simulation: cosimulation/design.md
+      - Bridges: cosimulation/bridges.md
 
 copyright: Copyright &copy; 2025 <a href="mailto:cehirschi@student.ethz.ch">Cedric Hirschi</a>
 
@@ -70,6 +73,16 @@ theme:
 plugins:
   - search
   - social
+  - glightbox
+  - exporter:
+      formats:
+        pdf:
+          enabled: !ENV [MKDOCS_EXPORTER_PDF, true]
+          concurrency: 8
+          aggregator:
+            enabled: true
+            output: /workspaces/ngspice_cosim_inv/instructions/site/site.pdf
+            covers: all
   # - privacy
 
 markdown_extensions:

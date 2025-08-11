@@ -1,7 +1,8 @@
 To get a full mixed-signal simulation, we need:
+
 - Digital design, we write it in SystemVerilog
-- Analog design, we write it in SPICE
-- A symbol representing the digital design
+- Analog design, in SPICE, designed in XSCHEM
+- A symbol representing the digital design as a block for XSCHEM
 - Testbench, combining both Analog and Digital designs and defining their interaction
 
 In our example, we create a simple PWM DAC, with digitally adjustable output voltage levels.
@@ -14,7 +15,7 @@ Inputs
 
 - `clk_i`: Clock signal
 - `rst_ni`: Active-low reset signal
-- `set_i[7:0]`: 8-bit control signal for the duty cycle
+- `set_i[3:0]`: 4-bit control signal for the duty cycle
 
 Outputs
 
@@ -72,7 +73,7 @@ This gives us a compiled simulation model that we can use for testing. You can a
 
 ## Analog Design
 
-We design a simple 1-stage RC lowpass filter. We assume the input frequency to be 1MHz. We take the corner frequency one decade lower, at 100kHz. With $R = 100\ k\Omega$, we need $C = \frac{1}{2\pi f_c R} = \frac{1}{2\pi \cdot 100\ k\Omega \cdot 100\ kHz} \approx 16\ pF$.
+We design a simple 1-stage RC lowpass filter. We assume the input frequency to be $100\ MHz$. The resulting output frequency is thus $\frac{100\ MHz}{16} = 6.25\ MHz$. We put the corner frequency of the filter two decades lower, at $62.5\ kHz$. With $R = 100\ k\Omega$, we need $C = \frac{1}{2\pi f_c R} \approx 25.5\ pF$.
 
 We implement the circuit in the testbench `pwm_dac_tb.sch` directly via
 ```bash
@@ -92,7 +93,7 @@ Directly after opening, please save the symbol via `File -> Save as symbol` (or 
 Now, we first configure these properties by double-clicking the emtpy canvas. This opens an empty text input where we enter:
 ```
 type=primitive
-format="@name [ @@clk_i @@rst_ni @@set_i[7..0] ] [ @@pwm_o ] @model"
+format="@name [ @@clk_i @@rst_ni @@set_i[3..0] ] [ @@pwm_o ] @model"
 template="name=A1 model=pwm_dac"
 ```
 This defines:
@@ -118,7 +119,22 @@ Now, we go back to the testbench
 xschem pwm_dac_tb.sch
 ```
 
-And place our symbol into the schematic, hooking the output up to the lowpass filter. Also place voltage sources to input the clock and reset signals, as well as the control inputs. Single signals from a bus can be accessed via the `set0 up to set3` labels if you have a `set[3..0]` label.
+Place our `pwm_dac.sym` symbol into the schematic. Now, we need to specify the cosimulation model for the PWM DAC. We can do this in this symbols properties directly. When you open the symbols properties by double-clicking it, you should be able to see the name and model properties. On a new line, add the following:
+```spice
+device_model=".model pwm_dac d_cosim simulation=\"ivlng\" sim_args=[\"../pwm_dac\"]"
+```
+The `device_model` property specifies the model name and the simulation parameters for the PWM DAC. This tells ngspice to use the `ivlng` simulation method with the specified arguments.
+
+Now we can hook up the output up to the lowpass filter. Also place voltage sources to input the clock and reset signals, as well as the control inputs. Single signals from a bus can be accessed via the `a0 up to a3` labels if you have a `a[3..0]` label.
+
+The control inputs `set_i0 to set_i3` are each connected to their own voltage source so that we can simulate a simple changing digital input. A simple example would be the following:
+
+- `set_i0`: Constant 1.5V
+- `set_i1`: Constant 1.5V
+- `set_i2`: Step 0V to 1.5V at 15us
+- `set_i3`: Constant 0V
+
+With this, we simulate a simple step from input code 0x03 to 0x07 at 15us, such that we can observe the behavior of the PWM DAC.
 
 Add the device models and simulation commands/launcher. For the simulation commands, we use the following:
 ```spice
@@ -130,7 +146,7 @@ save all
 tran 10n 10u
 write pwm_dac_tb.raw
 ```
-Here, the important part is `VCC`. This defines the logic levels for the digital->analog and analog->digital transitions. These transitions can be set up more sophisticated, but for now we just set `VCC` to our vdd, 1.5V. Also, we set the simulation time to 10 microseconds with a timestep of 10 nanoseconds and to save all data to `pwm_dac_tb.raw`.
+Here, the important part is `VCC`. This defines the logic levels for the digital->analog and analog->digital bridges. These bridges can be set up more sophisticated (See [Bridges](bridges.md)), but for now we just set `VCC` to our vdd, 1.5V. Also, we set the simulation time to 10 microseconds with a timestep of 10 nanoseconds and to save all data to `pwm_dac_tb.raw`.
 
 Also add a waveform loader and two graphs.
 
@@ -210,7 +226,7 @@ XSCHEM's built in graphs already include a handy way to display digital and anal
 
 In the graph for the analog signals, add the `unfilt` and `out` signals. The settings can remain the default.
 
-In the graph for the digital signals, add the `clk`, `rst` signals as well as `set;set3,set2,set1,set0`, which allows us to look at the `set` signals as a bus. You plots might look like this:
+In the graph for the digital signals, add the `clk`, `rst` signals as well as `set;set3,set2,set1,set0`, which allows us to look at the `set` signals as a bus. Your plots might look like this:
 ![PWM DAC Testbench Plots](assets/pwm_dac_tb_plot.svg)
 
 We can see that our simple PWM DAC example works as expected.

@@ -1,17 +1,10 @@
-# Welcome to MkDocs
+# Welcome to this guide for Open Source Mixed Signal Design!
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+This guide will help you understand the principles of mixed-signal design using open-source tools. We will cover topics such as:
 
-## Commands
+- Digital design with SystemVerilog
+- Analog design with SPICE with XSCHEM
+- Cosimulation of digital and analog components with ngspice
+- Visualization of simulation results with XSCHEM and Python
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+By the end of this guide, you will have a solid understanding of how to create and simulate mixed-signal designs using open-source tools.

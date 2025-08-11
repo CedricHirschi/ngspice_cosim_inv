@@ -38,6 +38,7 @@ To copy a symbol instance, select the label and press `C`. This will attach a ne
 Repeat this for the output wire and sources/bodies wires of the transistors.
 
 To rename a label, simply double-click on it and enter the new name (`lab` parameter). Name the labels:
+
 - Input: `in`
 - Output: `out`
 - NMOS source/body: `VSS`
@@ -48,6 +49,7 @@ To rename a label, simply double-click on it and enter the new name (`lab` param
 Since we want the inverter to be a symbol in the end, we need to place to place the pins of the symbol. To do this, we use `ipin.sym` for inputs, `opin.sym` for outputs and `iopin.sym` for bidirectional pins from the generic library.
 
 Place the following pins:
+
 - Input: `ipin.sym`, name it `in`
 - Output: `opin.sym`, name it `out`
 - VSS: `iopin.sym`, name it `VSS`
@@ -86,9 +88,14 @@ For this, create the testbench schematic:
 xschem inverter_tb.sch
 ```
 
+### Placing our new Block
+
 Place your inverter symbol by going to the current directory via the `Current Dir` button of the `Choose symbol` dialog (`Insert`) and selecting the `inverter.sym` file.
 
+### Placing the Testbench Components
+
 Now, we need to connect the input and output of the inverter to the testbench. Specifically, we add:
+
 - Input: Rectangle voltage source
 - VSS/VDD: DC supply voltages
 - Output: Some loading resistor
@@ -102,16 +109,21 @@ Place grounds (`gnd`) at the lower terminals of each voltage source and the resi
 Connect the voltages and resistor accordingly using wires (`W`). I suggest using labels for clarity.
 
 Set the voltages for the voltage sources:
+
 - VSS: `0`
 - VDD: `1.5`
 - Input: `"pulse(0 1.5 1n 0.1n 0.1n 1n 2n)"` (**Dont** forget the quotes) <br> This generates a pulse waveform from 0 to 1.5V, with a delay for the first edge of 1 ns, 0.1ns fall and rise times, 1 ns high time and 2 ns period.
 
 Set the resistance to `1Meg`.
 
+### Setting up the Simulation Commands
+
 Now, we need to write the commands for actually running the simulation. We will just take them from the XSCHEM PDK starting site. In a new terminal, open XSCHEM via `xschem`. From the PDK start page, select (select multiple via holding `Shift`):
+
 - "Load IHP SG13G2 spice models for ngspice" (`Libs_Ngspice`)
 - "Simulation skeleton for ngspice" (`SimulatorNGSPICE`)
 - "Create .save file, create netlist, simulate with ngspice" (`SimulateNGSPICE`)
+
 Copy these blocks via `Ctrl+C` and paste them into your testbench schematic via `Ctrl+V`.
 
 At the moment, this simulates the operating point only. We need to modify the `SimulatorNGSPICE` code block, specifically, we need to change the `op` command to (to also save all voltages/currents):
@@ -120,6 +132,8 @@ save all
 tran 50p 10n
 ```
 While you are in the code block, also change all `<filename>` instances to `inverter_tb`.
+
+### Adding Graphs
 
 We also want a graph, which can be placed via `Simulation -> Graphs -> Add waveform graph`. Also, add a waveform reload launcher via `Simulation -> Graphs -> Add waveform reload launcher`.
 

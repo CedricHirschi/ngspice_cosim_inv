@@ -11,8 +11,6 @@ You should see this start page:
 ![XSCHEM Start Page](./assets/start_page.svg)
 Here, you can see some useful commands and blocks which you can place into your own designs to the right. On the top right, you can access a cheatsheet of the controls available in XSCHEM.
 
-### Navigating the Examples
-
 We are interested in the examples to the left, those for ngspice to be exact. Jump into this sub-sheet by pressing `E` while hovering over the green rectangle (`IHP_testcases`) below `NGSPICE`.
 
 You should see this sheet:
@@ -74,6 +72,7 @@ ngspice 1 ->
 This output shows that the simulation was successful and provides information about the circuit being simulated.
 
 This includes:
+
 - The temperature at which the simulation was run
 - The initial transient solution (values at each node at time t=0)
 - The amount of data generated during the simulation (`No. of Data Rows`)
@@ -132,6 +131,7 @@ meas tran tdelay TRIG v(in) VAl=0.9 FALl=1 TARG v(out) VAl=0.9 RISE=1
 write tran_logic_not.raw
 .endc
 ```
+
 - The `.param` command sets a simulation parameter (in this case, temperature).
 - The `.control` block contains the simulation commands to be executed (**Note:** There are multiple ways to do this. We will just focus on this one for now).
 - The `save all` command tells the simulator to save all node voltages and branch currents.
