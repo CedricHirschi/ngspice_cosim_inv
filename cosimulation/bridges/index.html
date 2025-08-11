@@ -5,12 +5,11 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Introduction to Open Source Mixed Signal Design" name="description"/>
 <meta content="Cedric Hirschi" name="author"/>
-<link href="https://CedricHirschi.github.io/ngspice_cosim_inv/xschem/creating_design/" rel="canonical"/>
-<link href="../pdk_examples/" rel="prev"/>
-<link href="../python/" rel="next"/>
+<link href="https://CedricHirschi.github.io/ngspice_cosim_inv/cosimulation/bridges/" rel="canonical"/>
+<link href="../design/" rel="prev"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.16" name="generator"/>
-<title>Creating a New Design - Open Source Mixed Signal Design</title>
+<title>Bridges - Open Source Mixed Signal Design</title>
 <link href="../../assets/stylesheets/main.7e37652d.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -18,17 +17,17 @@
 <style>:root{--md-text-font:"Roboto Flex";--md-code-font:"Roboto Mono"}</style>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <meta content="website" property="og:type"/>
-<meta content="Creating a New Design - Open Source Mixed Signal Design" property="og:title"/>
+<meta content="Bridges - Open Source Mixed Signal Design" property="og:title"/>
 <meta content="Introduction to Open Source Mixed Signal Design" property="og:description"/>
-<meta content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/xschem/creating_design.png" property="og:image"/>
+<meta content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/cosimulation/bridges.png" property="og:image"/>
 <meta content="image/png" property="og:image:type"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
-<meta content="https://CedricHirschi.github.io/ngspice_cosim_inv/xschem/creating_design/" property="og:url"/>
+<meta content="https://CedricHirschi.github.io/ngspice_cosim_inv/cosimulation/bridges/" property="og:url"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="Creating a New Design - Open Source Mixed Signal Design" name="twitter:title"/>
+<meta content="Bridges - Open Source Mixed Signal Design" name="twitter:title"/>
 <meta content="Introduction to Open Source Mixed Signal Design" name="twitter:description"/>
-<meta content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/xschem/creating_design.png" name="twitter:image"/>
+<meta content="https://CedricHirschi.github.io/ngspice_cosim_inv/assets/images/social/cosimulation/bridges.png" name="twitter:image"/>
 <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
@@ -44,7 +43,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#creating-a-new-block">
+<a class="md-skip" href="#what-are-bridges">
           Skip to content
         </a>
 </div>
@@ -68,7 +67,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Creating a New Design
+              Bridges
             
           </span>
 </div>
@@ -148,8 +147,8 @@
 
       </a>
 </li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="../pdk_examples/">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../xschem/pdk_examples/">
           
   
   
@@ -157,8 +156,8 @@
 
         </a>
 </li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../cosimulation/intro/">
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../intro/">
           
   
   
@@ -202,25 +201,42 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../xschem/pdk_examples/">
 <span class="md-ellipsis">
     XSCHEM
     
   </span>
 <span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_2">
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+<span class="md-ellipsis">
+    Cosimulation
+    
+  </span>
 <span class="md-nav__icon md-icon"></span>
-            XSCHEM
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            Cosimulation
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../pdk_examples/">
+<a class="md-nav__link" href="../intro/">
 <span class="md-ellipsis">
-    PDK Examples
+    Introduction
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../design/">
+<span class="md-ellipsis">
+    Creating a Mixed-Signal Simulation
     
   </span>
 </a>
@@ -229,14 +245,14 @@
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
-    Creating a New Design
+    Bridges
     
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
-    Creating a New Design
+    Bridges
     
   </span>
 </a>
@@ -247,98 +263,31 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#creating-a-new-block">
+<a class="md-nav__link" href="#what-are-bridges">
 <span class="md-ellipsis">
-      Creating a new Block
-    </span>
-</a>
-<nav aria-label="Creating a new Block" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#creating-the-schematic">
-<span class="md-ellipsis">
-      Creating the Schematic
+      What are bridges?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#creating-the-symbol">
+<a class="md-nav__link" href="#automatically-placed-bridges">
 <span class="md-ellipsis">
-      Creating the Symbol
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#creating-the-testbench">
-<span class="md-ellipsis">
-      Creating the Testbench
-    </span>
-</a>
-<nav aria-label="Creating the Testbench" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#placing-our-new-block">
-<span class="md-ellipsis">
-      Placing our new Block
+      Automatically placed Bridges
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#placing-the-testbench-components">
+<a class="md-nav__link" href="#manually-placing-bridges">
 <span class="md-ellipsis">
-      Placing the Testbench Components
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#setting-up-the-simulation-commands">
-<span class="md-ellipsis">
-      Setting up the Simulation Commands
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#adding-graphs">
-<span class="md-ellipsis">
-      Adding Graphs
+      Manually placing Bridges
     </span>
 </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#running-the-testbench">
-<span class="md-ellipsis">
-      Running the testbench
-    </span>
-</a>
-</li>
 </ul>
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../python/">
-<span class="md-ellipsis">
-    Analysis in Python
-    
-  </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../cosimulation/intro/">
-<span class="md-ellipsis">
-    Cosimulation
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</a>
 </li>
 </ul>
 </nav>
@@ -355,73 +304,23 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#creating-a-new-block">
+<a class="md-nav__link" href="#what-are-bridges">
 <span class="md-ellipsis">
-      Creating a new Block
-    </span>
-</a>
-<nav aria-label="Creating a new Block" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#creating-the-schematic">
-<span class="md-ellipsis">
-      Creating the Schematic
+      What are bridges?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#creating-the-symbol">
+<a class="md-nav__link" href="#automatically-placed-bridges">
 <span class="md-ellipsis">
-      Creating the Symbol
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#creating-the-testbench">
-<span class="md-ellipsis">
-      Creating the Testbench
-    </span>
-</a>
-<nav aria-label="Creating the Testbench" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#placing-our-new-block">
-<span class="md-ellipsis">
-      Placing our new Block
+      Automatically placed Bridges
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#placing-the-testbench-components">
+<a class="md-nav__link" href="#manually-placing-bridges">
 <span class="md-ellipsis">
-      Placing the Testbench Components
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#setting-up-the-simulation-commands">
-<span class="md-ellipsis">
-      Setting up the Simulation Commands
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#adding-graphs">
-<span class="md-ellipsis">
-      Adding Graphs
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#running-the-testbench">
-<span class="md-ellipsis">
-      Running the testbench
+      Manually placing Bridges
     </span>
 </a>
 </li>
@@ -432,107 +331,47 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Creating a New Design</h1>
-<h2 id="creating-a-new-block">Creating a new Block<a class="headerlink" href="#creating-a-new-block" title="Permanent link">¶</a></h2>
-<p>Here, we will create our own inverter design, including a sub-sheet, symbol and testbench.</p>
-<h3 id="creating-the-schematic">Creating the Schematic<a class="headerlink" href="#creating-the-schematic" title="Permanent link">¶</a></h3>
-<p>To create a new schematic in XSCHEM, we simply create a new <code>.sch</code> file (schematic format for XSCHEM). We can do this via
-</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>xschem<span class="w"> </span>inverter.sch
+<h1>Bridges</h1>
+<h2 id="what-are-bridges">What are bridges?<a class="headerlink" href="#what-are-bridges" title="Permanent link">¶</a></h2>
+<p>Bridges in ngspice define the transitions between the analog and digital domain. There are three different types of bridges:</p>
+<ul>
+<li><code>dac_bridge</code>: Digital-to-Analog node bridge, at outputs of digital blocks</li>
+<li><code>adc_bridge</code>: Analog-to-Digital node bridge, at inputs of digital blocks</li>
+<li><code>bidi_bridge</code>: Bidirectional bridge, allowing for two-way communication between analog and digital domains</li>
+</ul>
+<p>These bridges have a variety of configurable parameters, such as trigger voltage levels, rise/fall times and delays.</p>
+<h2 id="automatically-placed-bridges">Automatically placed Bridges<a class="headerlink" href="#automatically-placed-bridges" title="Permanent link">¶</a></h2>
+<p>By default, ngspice inserts some bridges automatically between analog and digital domains based on the circuit topology. The default bridges are:</p>
+<ul>
+<li>Digital-to-Analog: <code>.model auto_dac dac_bridge(out_low = 0 out_high = 'VCC')</code></li>
+<li>Analog-to-Digital: <code>.model auto_adc adc_bridge(in_low = 'VCC/2' in_high = 'VCC/2')</code></li>
+<li>Bidirectional: <code>.model auto_bidi bidi_bridge(out_high='VCC' in_low='VCC/2' in_high='VCC/2')</code></li>
+</ul>
+<p>But they can be overwritten. I suggest using bidirectional bridges for all of them, since they have the most flexible parameters. You can change the default bridges as follows:
+</p><div class="language-spice highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="p">.</span><span class="nx">model</span><span class="w"> </span><span class="nx">adc_buff_clk</span><span class="w"> </span><span class="nx">adc_bridge</span><span class="p">(</span><span class="nx">in_low</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">'</span><span class="nx">vdd</span><span class="o">/</span><span class="mi">2</span><span class="err">'</span><span class="w"> </span><span class="nx">in_high</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">'</span><span class="nx">vdd</span><span class="o">/</span><span class="mi">2</span><span class="err">'</span><span class="p">)</span>
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="p">.</span><span class="nx">control</span>
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="p">.</span><span class="nx">model</span><span class="w"> </span><span class="nx">adc_buff_clk</span><span class="w"> </span><span class="nx">adc_bridge</span><span class="p">(</span><span class="nx">in_low</span><span class="p">=</span><span class="err">'</span><span class="nx">vdd</span><span class="o">/</span><span class="mi">2</span><span class="err">'</span><span class="w"> </span><span class="nx">in_high</span><span class="p">=</span><span class="err">'</span><span class="nx">vdd</span><span class="o">/</span><span class="mi">2</span><span class="err">'</span><span class="p">)</span>
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="p">.</span><span class="nx">control</span>
+</span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="nx">pre_set</span><span class="w"> </span><span class="nx">auto_bridge_d_out</span><span class="w"> </span><span class="p">=</span>
+</span><span id="__span-0-8"><a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="err">\"</span><span class="p">.</span><span class="nx">model</span><span class="w"> </span><span class="nx">auto_bridge_out</span><span class="w"> </span><span class="nx">bidi_bridge</span><span class="p">(</span><span class="nx">direction</span><span class="p">=</span><span class="mi">0</span><span class="w"> </span><span class="nx">out_high</span><span class="p">=</span><span class="err">'</span><span class="nx">vdd</span><span class="err">'</span><span class="w"> </span><span class="nx">t_rise</span><span class="p">=</span><span class="m m-Double">0.2</span><span class="nx">n</span><span class="w"> </span><span class="nx">t_fall</span><span class="p">=</span><span class="m m-Double">0.2</span><span class="nx">n</span><span class="p">)</span><span class="err">\"</span>
+</span><span id="__span-0-9"><a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="o">+</span><span class="w">   </span><span class="err">\"</span><span class="nx">auto_bridge_out</span><span class="o">%</span><span class="nx">d</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">%</span><span class="nx">s</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">%</span><span class="nx">s</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="nx">null</span><span class="w"> </span><span class="nx">auto_bridge_out</span><span class="err">\"</span><span class="w"> </span><span class="p">)</span>
+</span><span id="__span-0-10"><a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="nx">pre_set</span><span class="w"> </span><span class="nx">auto_bridge_d_in</span><span class="w"> </span><span class="p">=</span>
+</span><span id="__span-0-11"><a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="err">\"</span><span class="p">.</span><span class="nx">model</span><span class="w"> </span><span class="nx">auto_bridge_in</span><span class="w"> </span><span class="nx">bidi_bridge</span><span class="p">(</span><span class="nx">direction</span><span class="p">=</span><span class="mi">1</span><span class="w"> </span><span class="nx">in_low</span><span class="p">=</span><span class="err">'</span><span class="nx">vdd</span><span class="o">/</span><span class="mi">3</span><span class="err">'</span><span class="w"> </span><span class="nx">in_high</span><span class="p">=</span><span class="err">'</span><span class="nx">vdd</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="err">'</span><span class="p">)</span><span class="err">\"</span>
+</span><span id="__span-0-12"><a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="o">+</span><span class="w">   </span><span class="err">\"</span><span class="nx">auto_bridge_in</span><span class="o">%</span><span class="nx">d</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">%</span><span class="nx">s</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">%</span><span class="nx">s</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="nx">null</span><span class="w"> </span><span class="nx">auto_bridge_in</span><span class="err">\"</span><span class="w"> </span><span class="p">)</span>
+</span><span id="__span-0-13"><a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="p">.</span><span class="nx">endc</span>
 </span></code></pre></div>
-You will get a warning that the file does not exist, which is fine.
-<p>Now, you should see a blank schematic editor window where you can start building your inverter design.</p>
-<p><strong>Symbols</strong></p>
-<p>We start by placing our two MOSFETs (NMOS and PMOS) in the schematic. To do this, select the <code>Insert Symbol</code> symbol from the toolbar (looks like an AND gate) or press <code>Insert</code> on your keyboard.</p>
-<p>This will open the <code>Choose symbol</code> dialog, where we can see some libraries. In our case, we choose the one ending with <code>ihp-sg13g2/libs.tech/xschem</code>. There, we choose <code>sg23g2_pr</code> and <code>sg13_lv_nmos</code>. Click <code>OK</code> to insert the symbol into the schematic. Place the symbol by moving it somewhere sensible and by then left-clicking to confirm the placement.</p>
-<p>Repeat this for the PMOS transistor by selecting <code>sg13_lv_pmos</code> from the same library.</p>
-<p><strong>Wires</strong></p>
-<p>Now, we connect the gates and the drains of the NMOS and PMOS transistors together to form the inverter structure. You can place a wire by pressing <code>W</code> on your keyboard while you are at your first connection point. If you want to have a corner in your wire, move the cursor to the position of the corner and press <code>W</code> again. This will place the first wire segment. Then, when you are at the second connection point, simply left-click to finalize the wire placement.</p>
-<p>Also place some short wires out of the sources and bodies of the transistors as well as some input and output wires out of the gates/drains. Your design should look something like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_unfinished.svg"><img alt="Unfinished Inverter Schematic" src="../assets/inverter_unfinished.svg"/></a></p>
-<p><strong>Labels</strong></p>
-<p>Now, let's place some labels to identify each net. To do this, open the <code>Choose symbol</code> dialog by pressing <code>Insert</code> again and go to the builtin devices library. You can do this by pressing the <code>Home</code> button on the bottom left. This will choose the <code>xschem_library/devices</code> library. These are the spice primitives (not physical devices).</p>
-<p>We want to search for the <code>lab</code> symbols. You can do this by clicking into the search field on the bottom left and by entering <code>lab</code>. This will give us some different options, but we are taking the <code>lab_pin.sym</code> symbol. Select it and place it on the end of the input wire.</p>
-<p>To copy a symbol instance, select the label and press <code>C</code>. This will attach a new instance to the cursor. You can rotate the current instance by pressing <code>Ctrl + R</code>.</p>
-<p>Repeat this for the output wire and sources/bodies wires of the transistors.</p>
-<p>To rename a label, simply double-click on it and enter the new name (<code>lab</code> parameter). Name the labels:</p>
+This defines the following models:
 <ul>
-<li>Input: <code>in</code></li>
-<li>Output: <code>out</code></li>
-<li>NMOS source/body: <code>VSS</code></li>
-<li>PMOS source/body: <code>VDD</code></li>
+<li><code>auto_bridge_out</code>: A bidirectional bridge for analog-to-digital conversion.</li>
+<li><code>auto_bridge_in</code>: A bidirectional bridge for digital-to-analog conversion.</li>
+<li><code>adc_buff_clk</code>: A bridge for clock signals in ADCs. If you have a hysteresis on the digital inputs, your signal may be undefined for some duration of the clock edge. Since one may not want this behavior in their clock inputs, we define a bridge model specifically for clock inputs.</li>
 </ul>
-<p><strong>Pins</strong></p>
-<p>Since we want the inverter to be a symbol in the end, we need to place to place the pins of the symbol. To do this, we use <code>ipin.sym</code> for inputs, <code>opin.sym</code> for outputs and <code>iopin.sym</code> for bidirectional pins from the generic library.</p>
-<p>Place the following pins:</p>
-<ul>
-<li>Input: <code>ipin.sym</code>, name it <code>in</code></li>
-<li>Output: <code>opin.sym</code>, name it <code>out</code></li>
-<li>VSS: <code>iopin.sym</code>, name it <code>VSS</code></li>
-<li>VDD: <code>iopin.sym</code>, name it <code>VDD</code></li>
-</ul>
-<p>These pins will attach to the nets of the same name, so we dont need to connect them further.</p>
-<p>Your schematic should something look like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter.svg"><img alt="Inverter Schematic" src="../assets/inverter.svg"/></a></p>
-<h3 id="creating-the-symbol">Creating the Symbol<a class="headerlink" href="#creating-the-symbol" title="Permanent link">¶</a></h3>
-<p>Now, we want to create a symbol for our inverter.</p>
-<p>For this, navigate to the <code>Symbol</code> menu in the toolbar and click on <code>Make symbol from schematic</code>. This will create a <code>inverter.sym</code> file in the same directory as <code>inverter.sch</code>.</p>
-<p>Open the symbol using
-</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>xschem<span class="w"> </span>inverter.sym
-</span></code></pre></div>
-<p>You should see the default generated symbol for the inverter.
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_symbol_default.svg"><img alt="Default Inverter Symbol" src="../assets/inverter_symbol_default.svg"/></a></p>
-<p>This is good but it looks quite boring. You can improve it by editing the symbol by moving/rotating the pins around and by adding new polygons (<code>P</code>), generally using the tools in the toolbar.</p>
-<p>An improved version could look like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_symbol.svg"><img alt="Inverter Symbol" src="../assets/inverter_symbol.svg"/></a></p>
-<h2 id="creating-the-testbench">Creating the Testbench<a class="headerlink" href="#creating-the-testbench" title="Permanent link">¶</a></h2>
-<p>Now, we create a testbench for our inverter.</p>
-<p>For this, create the testbench schematic:
-</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>xschem<span class="w"> </span>inverter_tb.sch
-</span></code></pre></div>
-<h3 id="placing-our-new-block">Placing our new Block<a class="headerlink" href="#placing-our-new-block" title="Permanent link">¶</a></h3>
-<p>Place your inverter symbol by going to the current directory via the <code>Current Dir</code> button of the <code>Choose symbol</code> dialog (<code>Insert</code>) and selecting the <code>inverter.sym</code> file.</p>
-<h3 id="placing-the-testbench-components">Placing the Testbench Components<a class="headerlink" href="#placing-the-testbench-components" title="Permanent link">¶</a></h3>
-<p>Now, we need to connect the input and output of the inverter to the testbench. Specifically, we add:</p>
-<ul>
-<li>Input: Rectangle voltage source</li>
-<li>VSS/VDD: DC supply voltages</li>
-<li>Output: Some loading resistor</li>
-</ul>
-<p>Place three voltage sources <code>vsource</code> from the generic library.</p>
-<p>Place one resistor <code>res</code> from the generic library.</p>
-<p>Place grounds (<code>gnd</code>) at the lower terminals of each voltage source and the resistor.</p>
-<p>Connect the voltages and resistor accordingly using wires (<code>W</code>). I suggest using labels for clarity.</p>
-<p>Set the voltages for the voltage sources:</p>
-<ul>
-<li>VSS: <code>0</code></li>
-<li>VDD: <code>1.5</code></li>
-<li>Input: <code>"pulse(0 1.5 1n 0.1n 0.1n 1n 2n)"</code> (<strong>Dont</strong> forget the quotes) <br/> This generates a pulse waveform from 0 to 1.5V, with a delay for the first edge of 1 ns, 0.1ns fall and rise times, 1 ns high time and 2 ns period.</li>
-</ul>
-<p>Set the resistance to <code>1Meg</code>.</p>
-<h3 id="setting-up-the-simulation-commands">Setting up the Simulation Commands<a class="headerlink" href="#setting-up-the-simulation-commands" title="Permanent link">¶</a></h3>
-<p>Now, we need to write the commands for actually running the simulation. We will just take them from the XSCHEM PDK starting site. In a new terminal, open XSCHEM via <code>xschem</code>. From the PDK start page, select (select multiple via holding <code>Shift</code>):</p>
-<ul>
-<li>"Load IHP SG13G2 spice models for ngspice" (<code>Libs_Ngspice</code>)</li>
-<li>"Simulation skeleton for ngspice" (<code>SimulatorNGSPICE</code>)</li>
-<li>"Create .save file, create netlist, simulate with ngspice" (<code>SimulateNGSPICE</code>)</li>
-</ul>
-<p>Copy these blocks via <code>Ctrl+C</code> and paste them into your testbench schematic via <code>Ctrl+V</code>.</p>
-<p>At the moment, this simulates the operating point only. We need to modify the <code>SimulatorNGSPICE</code> code block, specifically, we need to change the <code>op</code> command to (to also save all voltages/currents):
-</p><div class="language-spice highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nx">save</span><span class="w"> </span><span class="nx">all</span>
-</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nx">tran</span><span class="w"> </span><span class="mi">50</span><span class="kd">p</span><span class="w"> </span><span class="mi">10</span><span class="nx">n</span>
-</span></code></pre></div>
-While you are in the code block, also change all <code>&lt;filename&gt;</code> instances to <code>inverter_tb</code>.
-<h3 id="adding-graphs">Adding Graphs<a class="headerlink" href="#adding-graphs" title="Permanent link">¶</a></h3>
-<p>We also want a graph, which can be placed via <code>Simulation -&gt; Graphs -&gt; Add waveform graph</code>. Also, add a waveform reload launcher via <code>Simulation -&gt; Graphs -&gt; Add waveform reload launcher</code>.</p>
-<p>Your testbench should look something like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_tb.svg"><img alt="Inverter Testbench" src="../assets/inverter_tb.svg"/></a></p>
-<h2 id="running-the-testbench">Running the testbench<a class="headerlink" href="#running-the-testbench" title="Permanent link">¶</a></h2>
-<p>Now, run the testbench via <code>Ctrl + left click</code> on the <code>SimulateNGSPICE</code> launcher. Then, load the waves via the <code>load waves</code> launcher.</p>
-<p>Now, we want to add some traces to the graph. You can do this by double-clicking in the middle of the graph. You should be able to see a list of traces to plot on the left side. There, find and add the <code>in</code> and <code>out</code> traces by double-clicking on them.</p>
-<p>By default, all traces are the same color. To changes that, click on the <code>AUTO SET</code> button on the bottom right.</p>
-<p>Now, click <code>Apply</code> and <code>OK</code>. You should see some traces in the graph, but you need to adjust the time scale to see the pulses clearly. You can do this by holding <code>Shift</code> and scrolling the mouse wheel to zoom in and out, or by holding <code>Ctrl</code> and scrolling to pan.</p>
-<p>Your plot may look something like this:
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/inverter_tb_plot.svg"><img alt="Inverter Testbench Plot" src="../assets/inverter_tb_plot.svg"/></a></p>
+<h2 id="manually-placing-bridges">Manually placing Bridges<a class="headerlink" href="#manually-placing-bridges" title="Permanent link">¶</a></h2>
+<p>Bridges can also be placed manually. The components for the bridges are located in the generic library and are called <code>adc_bridge.sym</code> and <code>dac_bridge.sym</code>.</p>
+<p>We can take our clock buffer above as an example. Place the <code>adc_bridge.sym</code> directly in front of the clock pin of a digital design. Double-click on the bridge and change the model from <code>adc_buff</code> to <code>adc_buff_clk</code>. Now, the clock input should use the properties as described in the <code>adc_buff_clk</code> model.
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/adc_buff_clk.svg"><img alt="Clock ADC Bridge" src="../assets/adc_buff_clk.svg"/></a></p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
@@ -545,7 +384,7 @@ While you are in the code block, also change all <code>&lt;filename&gt;</code> i
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: PDK Examples" class="md-footer__link md-footer__link--prev" href="../pdk_examples/">
+<a aria-label="Previous: Creating a Mixed-Signal Simulation" class="md-footer__link md-footer__link--prev" href="../design/">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
 </div>
@@ -554,21 +393,8 @@ While you are in the code block, also change all <code>&lt;filename&gt;</code> i
                 Previous
               </span>
 <div class="md-ellipsis">
-                PDK Examples
+                Creating a Mixed-Signal Simulation
               </div>
-</div>
-</a>
-<a aria-label="Next: Analysis in Python" class="md-footer__link md-footer__link--next" href="../python/">
-<div class="md-footer__title">
-<span class="md-footer__direction">
-                Next
-              </span>
-<div class="md-ellipsis">
-                Analysis in Python
-              </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
 </div>
 </a>
 </nav>
