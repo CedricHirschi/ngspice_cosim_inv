@@ -99,7 +99,6 @@
 <lef-files>/workspaces/ngspice_cosim_inv/project/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_sram/lef/RM_IHPSG13_1P_64x64_c2_bm_bist.lef</lef-files>
 <lef-files>/workspaces/ngspice_cosim_inv/project/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_sram/lef/RM_IHPSG13_2P_64x32_c2.lef</lef-files>
 <lef-files>/workspaces/ngspice_cosim_inv/project/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_io/lef/sg13g2_io.lef</lef-files>
-<lef-files>/workspaces/ngspice_cosim_inv/project/ihp13/bondpad/lef/bondpad_70x70.lef</lef-files>
 
   </lefdef>
   <mebes>

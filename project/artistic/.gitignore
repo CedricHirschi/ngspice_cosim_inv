@@ -1,0 +1,7 @@
+out/
+
+meerkat_design.py
+mono_*.png
+*.svg
+*.gds.gz
+*.gds

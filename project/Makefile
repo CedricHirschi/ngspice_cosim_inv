@@ -19,8 +19,10 @@ include klayout/klayout.mk
 include openroad/openroad.mk
 include xschem/xschem.mk
 include yosys/yosys.mk
+include artistic/artistic.mk
 
 clean:
+	$(MAKE) clean_artistic
 	$(MAKE) clean_iverilog
 	$(MAKE) clean_klayout
 	$(MAKE) clean_openroad

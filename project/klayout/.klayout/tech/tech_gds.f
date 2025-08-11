@@ -9,4 +9,4 @@
 /workspaces/ngspice_cosim_inv/project/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_sram/gds/RM_IHPSG13_1P_512x32_c2_bm_bist.gds
 /workspaces/ngspice_cosim_inv/project/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_sram/gds/RM_IHPSG13_1P_512x64_c2_bm_bist.gds
 /workspaces/ngspice_cosim_inv/project/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_sram/gds/RM_IHPSG13_1P_64x64_c2_bm_bist.gds
-/workspaces/ngspice_cosim_inv/project/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_sram/gds/RM_IHPSG13_2P_64x32_c2.gds      /workspaces/ngspice_cosim_inv/project/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_io/gds/sg13g2_io.gds      /workspaces/ngspice_cosim_inv/project/ihp13/bondpad/gds/bondpad_70x70.gds
+/workspaces/ngspice_cosim_inv/project/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_sram/gds/RM_IHPSG13_2P_64x32_c2.gds      /workspaces/ngspice_cosim_inv/project/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_io/gds/sg13g2_io.gds      

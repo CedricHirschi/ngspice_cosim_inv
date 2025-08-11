@@ -58,7 +58,7 @@ utl::report "Initialize Chip"
 # initialize_floorplan -die_area "0 0 $chipW $chipH" \
 #     -core_area "$coreMargin $coreMargin [expr $chipW-$coreMargin] [expr $chipH-$coreMargin]" \
 #     -site "CoreSite"
-initialize_floorplan -utilization [expr $TDENSITY * 100 - 10] -aspect_ratio 1.0 -core_space {2.0 2.0 10.0 2.0} -site "CoreSite"
+initialize_floorplan -utilization [expr $TDENSITY * 100 - 10] -aspect_ratio 1.0 -core_space {6.0 6.0 6.0 6.0} -site "CoreSite"
 
 utl::report "Connect global nets (power)"
 source scripts/power_connect.tcl
