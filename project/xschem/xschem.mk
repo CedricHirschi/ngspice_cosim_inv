@@ -1,4 +1,4 @@
-XSCHEM ?= xschem
+XSCHEM ?= xschem-proot
 
 XSCHEM_DIR = $(realpath $(dir $(realpath $(filter %xschem.mk,$(MAKEFILE_LIST)))))
 XSCHEM_SIM_DIR = $(XSCHEM_DIR)/simulation
