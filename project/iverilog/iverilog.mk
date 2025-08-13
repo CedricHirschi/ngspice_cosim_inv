@@ -10,7 +10,8 @@ IVERILOG_BUILD_DIR = $(IVERILOG_DIR)/build
 iverilog: $(IVERILOG_BUILD_DIR)/$(TOP)
 
 $(IVERILOG_BUILD_DIR)/$(TOP): $(VERILOG_SRCS)
-	$(IVERILOG) -g2012 -o $@ ../rtl/$(TOP).sv
+	mkdir -p $(IVERILOG_BUILD_DIR)
+	$(IVERILOG) -g2012 -o $@ rtl/$(TOP).sv
 
 clean_iverilog:
 	rm -rf $(IVERILOG_BUILD_DIR)
