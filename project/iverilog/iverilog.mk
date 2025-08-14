@@ -13,5 +13,9 @@ $(IVERILOG_BUILD_DIR)/$(TOP): $(VERILOG_SRCS)
 	mkdir -p $(IVERILOG_BUILD_DIR)
 	$(IVERILOG) -g2012 -o $@ rtl/$(TOP).sv
 
+iverilog_gatelevel:
+	mkdir -p $(IVERILOG_BUILD_DIR)
+	$(IVERILOG) -g2012 -o $(IVERILOG_BUILD_DIR)/$(TOP)_gatelevel $(OR_DIR)/out/$(TOP).v $(PDK_ROOT)/$(PDK)/libs.ref/sg13g2_stdcell/verilog/sg13g2_stdcell.v $(IVERILOG_DIR)/stubs.v
+
 clean_iverilog:
 	rm -rf $(IVERILOG_BUILD_DIR)

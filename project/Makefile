@@ -16,6 +16,7 @@ all:
 
 # Schematic capture & Simulation
 include xschem/xschem.mk
+include xschem_gatelevel/xschem_gl.mk
 include iverilog/iverilog.mk
 
 # Synthesis & PNR
@@ -32,6 +33,7 @@ clean:
 	$(MAKE) clean_klayout
 	$(MAKE) clean_openroad
 	$(MAKE) clean_xschem
+	$(MAKE) clean_xschem_gatelevel
 	$(MAKE) clean_yosys
 
 .PHONY: all clean

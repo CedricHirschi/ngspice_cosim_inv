@@ -7,6 +7,10 @@ repo_url: https://github.com/CedricHirschi/ngspice_cosim_inv
 
 nav:
   - Home: index.md
+  - Setup:
+      - IIC-OSIC-TOOLS Image: setup/container.md
+      - OSEDA: setup/oseda.md
+      - XSCHEM: setup/xschem.md
   - XSCHEM:
       - PDK Examples: xschem/pdk_examples.md
       - Creating a New Design: xschem/creating_design.md
@@ -77,7 +81,7 @@ plugins:
   - exporter:
       formats:
         pdf:
-          enabled: !ENV [MKDOCS_EXPORTER_PDF, true]
+          enabled: !ENV [MKDOCS_EXPORTER_PDF, false]
           concurrency: 8
           aggregator:
             enabled: true

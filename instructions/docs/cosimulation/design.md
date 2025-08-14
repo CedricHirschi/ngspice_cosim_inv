@@ -161,12 +161,8 @@ Also add a waveform loader and two graphs.
 
 ## Simulation
 
-Currently, for the simulation to run successfully, some tweaks need to be made when you are using the IIC-OSIC-TOOLS container:
-```bash
-sudo mkdir -p /usr/local/lib/ngspice
-sudo cp /foss/tools/ngspice/lib/ngspice/ivlng.vpi /usr/local/lib/ngspice
-sudo cp /foss/tools/iverilog/lib/libvvp.so /foss/tools/ngspice/lib/ngspice
-```
+!!! warning
+    Make sure you set up XSCHEM as described in the [XSCHEM Setup](../setup/xschem.md) documentation. This is crucial for enabling cosimulation with ngspice.
 
 We can then run the simulation with the simulation launcher. You should see such an output:
 ```log
