@@ -98,7 +98,7 @@ Now, we first configure these properties by double-clicking the emtpy canvas. Th
 ```
 type=primitive
 format="@name [ @@clk_i @@rst_ni @@set_i[3..0] ] [ @@pwm_o ] @model"
-template="name=A1 model=pwm_dac"
+template="name=A1 model=pwm_dac device_model=\".model pwm_dac d_cosim simulation=\\\"ivlng\\\" sim_args=[\\\"pwm_dac\\\"]\""
 ```
 This defines:
 
@@ -108,9 +108,30 @@ This defines:
     2. `[ @@clk_i @@rst_ni @@set_i[3..0] ]`: The input ports of the instance
     3. `[ @@pwm_o ]`: The output ports of the instance
     4. `@model`: The model name of the instance (e.g., `pwm_dac`)
-- The template for the instance. This defines how the instance will be instantiated in the schematic. Here, the instance gets the name `A1` and the model `pwm_dac`, which we have built above.
+- The template for the instance. This defines how the instance will be instantiated in the schematic. 
+    1. `A1`: The name template the block will use in the schematic.
+    2. `pwm_dac`: The cosimulation model this block uses.
+    3. `device_model`: The device model for the block, including the simulation command/arguments.
 
-Now, we place the pins of the symbol in the schematic. Do this via `Symbol -> Place symbol pin` (`Alt + P`). Make sure to set the correct name and direction (`in`, `out` or `inout`) for each pin.
+!!! warning
+    The spaces in the input/output ports list are significant and **must be preserved**.
+
+    This is invalid and will not work:
+    ```
+    @name [@@clk_i @@rst_ni @@set_i[3..0]] [@@pwm_o] @model
+    ```
+    This will:
+    ```
+    @name [ @@clk_i @@rst_ni @@set_i[3..0] ] [ @@pwm_o ] @model
+    ```
+
+    **Also**, the order of the ports in each list must match the definition in the verilog module.
+
+
+<iframe>
+  <p>Now, we place the pins of the symbol in the schematic. Do this via `Symbol -> Place symbol pin` (`Alt + P`). Make sure to set the correct name and direction (`in`, `out` or `inout`) for each pin.</p>
+</iframe>
+
 
 ??? info "The resulting symbol might look something like this"
     ![PWM DAC Symbol](assets/pwm_dac_symbol.svg)
