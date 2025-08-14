@@ -504,7 +504,7 @@ Directly after opening, please save the symbol via <code>File -&gt; Save as symb
 <p>Now, we first configure these properties by double-clicking the emtpy canvas. This opens an empty text input where we enter:
 </p><div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>type=primitive
 </span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>format="@name [ @@clk_i @@rst_ni @@set_i[3..0] ] [ @@pwm_o ] @model"
-</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>template="name=A1 model=pwm_dac"
+</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>template="name=A1 model=pwm_dac device_model=\".model pwm_dac d_cosim simulation=\\\"ivlng\\\" sim_args=[\\\"pwm_dac\\\"]\""
 </span></code></pre></div>
 This defines:
 <ul>
@@ -516,20 +516,38 @@ This defines:
 <li><code>@model</code>: The model name of the instance (e.g., <code>pwm_dac</code>)</li>
 </ol>
 </li>
-<li>The template for the instance. This defines how the instance will be instantiated in the schematic. Here, the instance gets the name <code>A1</code> and the model <code>pwm_dac</code>, which we have built above.</li>
+<li>The template for the instance. This defines how the instance will be instantiated in the schematic. <ol>
+<li><code>A1</code>: The name template the block will use in the schematic.</li>
+<li><code>pwm_dac</code>: The cosimulation model this block uses.</li>
+<li><code>device_model</code>: The device model for the block, including the simulation command/arguments.</li>
+</ol>
+</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The spaces in the input/output ports list are significant and <strong>must be preserved</strong>.</p>
+<p>This is invalid and will not work:
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>@name [@@clk_i @@rst_ni @@set_i[3..0]] [@@pwm_o] @model
+</span></code></pre></div>
+This will:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>@name [ @@clk_i @@rst_ni @@set_i[3..0] ] [ @@pwm_o ] @model
+</span></code></pre></div>
+<p><strong>Also</strong>, the order of the ports in each list must match the definition in the verilog module.</p>
+</div>
 <p>Now, we place the pins of the symbol in the schematic. Do this via <code>Symbol -&gt; Place symbol pin</code> (<code>Alt + P</code>). Make sure to set the correct name and direction (<code>in</code>, <code>out</code> or <code>inout</code>) for each pin.</p>
 <details class="info">
 <summary>The resulting symbol might look something like this</summary>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../assets/pwm_dac_symbol.svg"><img alt="PWM DAC Symbol" src="../assets/pwm_dac_symbol.svg"/></a>
 The <code>@symname</code> and <code>@name</code> texts are placeholders that will be replaced with the actual symbol and instance names when the schematic is instantiated. You can leave them out.</p>
 </details>
+<p>I have written a small web tool to generate XSCHEM symbols from (System)Verilog modules. You can access it here:</p>
+<p><a class="md-button" href="./symbol_gen.html">XSCHEM Symbol Generator</a></p>
 <h2 id="testbench">Testbench<a class="headerlink" href="#testbench" title="Permanent link">¶</a></h2>
 <p>Now, we go back to the testbench
-</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>xschem<span class="w"> </span>pwm_dac_tb.sch
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>xschem<span class="w"> </span>pwm_dac_tb.sch
 </span></code></pre></div>
 <p>Place our <code>pwm_dac.sym</code> symbol into the schematic. Now, we need to specify the cosimulation model for the PWM DAC. We can do this in this symbols properties directly. When you open the symbols properties by double-clicking it, you should be able to see the name and model properties. On a new line, add the following:
-</p><div class="language-spice highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nx">device_model</span><span class="p">=</span><span class="s">".model pwm_dac d_cosim simulation=\"ivlng\" sim_args=[\"../pwm_dac\"]"</span>
+</p><div class="language-spice highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nx">device_model</span><span class="p">=</span><span class="s">".model pwm_dac d_cosim simulation=\"ivlng\" sim_args=[\"../pwm_dac\"]"</span>
 </span></code></pre></div>
 The <code>device_model</code> property specifies the model name and the simulation parameters for the PWM DAC. This tells ngspice to use the <code>ivlng</code> simulation method with the specified arguments.
 <p>Now we can hook up the output up to the lowpass filter. Also place voltage sources to input the clock and reset signals, as well as the control inputs. Single signals from a bus can be accessed via the <code>a0 up to a3</code> labels if you have a <code>a[3..0]</code> label.</p>
@@ -562,13 +580,13 @@ The <code>device_model</code> property specifies the model name and the simulati
 </table>
 <p>With this, we simulate a simple step from input code 0x03 to 0x07 at 15us, such that we can observe the behavior of the PWM DAC.</p>
 <p>Add the device models and simulation commands/launcher. For the simulation commands, we use the following:
-</p><div class="language-spice highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">.</span><span class="nx">include</span><span class="w"> </span><span class="nx">pwm_dac_tb</span><span class="p">.</span><span class="nx">save</span>
-</span><span id="__span-7-2"><a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="p">.</span><span class="nx">param</span><span class="w"> </span><span class="nx">temp</span><span class="p">=</span><span class="mi">27</span>
-</span><span id="__span-7-3"><a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="p">.</span><span class="nx">param</span><span class="w"> </span><span class="nx">VCC</span><span class="p">=</span><span class="m m-Double">1.5</span>
-</span><span id="__span-7-4"><a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="p">.</span><span class="nx">control</span>
-</span><span id="__span-7-5"><a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="nx">save</span><span class="w"> </span><span class="nx">all</span>
-</span><span id="__span-7-6"><a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="nx">tran</span><span class="w"> </span><span class="mi">10</span><span class="nx">n</span><span class="w"> </span><span class="mi">10u</span>
-</span><span id="__span-7-7"><a href="#__codelineno-7-7" id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="nx">write</span><span class="w"> </span><span class="nx">pwm_dac_tb</span><span class="p">.</span><span class="nx">raw</span>
+</p><div class="language-spice highlight"><pre><span></span><code><span id="__span-9-1"><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="p">.</span><span class="nx">include</span><span class="w"> </span><span class="nx">pwm_dac_tb</span><span class="p">.</span><span class="nx">save</span>
+</span><span id="__span-9-2"><a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="p">.</span><span class="nx">param</span><span class="w"> </span><span class="nx">temp</span><span class="p">=</span><span class="mi">27</span>
+</span><span id="__span-9-3"><a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="p">.</span><span class="nx">param</span><span class="w"> </span><span class="nx">VCC</span><span class="p">=</span><span class="m m-Double">1.5</span>
+</span><span id="__span-9-4"><a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="p">.</span><span class="nx">control</span>
+</span><span id="__span-9-5"><a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="nx">save</span><span class="w"> </span><span class="nx">all</span>
+</span><span id="__span-9-6"><a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="nx">tran</span><span class="w"> </span><span class="mi">10</span><span class="nx">n</span><span class="w"> </span><span class="mi">10u</span>
+</span><span id="__span-9-7"><a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="nx">write</span><span class="w"> </span><span class="nx">pwm_dac_tb</span><span class="p">.</span><span class="nx">raw</span>
 </span></code></pre></div>
 Here, the important part is <code>VCC</code>. This defines the logic levels for the digital-&gt;analog and analog-&gt;digital bridges. These bridges can be set up more sophisticated (See <a href="../bridges/">Bridges</a>), but for now we just set <code>VCC</code> to our vdd, 1.5V. Also, we set the simulation time to 10 microseconds with a timestep of 10 nanoseconds and to save all data to <code>pwm_dac_tb.raw</code>.
 <p>Also add a waveform loader and two graphs.</p>
@@ -582,59 +600,59 @@ Here, the important part is <code>VCC</code>. This defines the logic levels for 
 <p>Make sure you set up XSCHEM as described in the <a href="../../setup/xschem/">XSCHEM Setup</a> documentation. This is crucial for enabling cosimulation with ngspice.</p>
 </div>
 <p>We can then run the simulation with the simulation launcher. You should see such an output:
-</p><div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>******
-</span><span id="__span-8-2"><a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a>** ngspice-44.2 : Circuit level simulation program
-</span><span id="__span-8-3"><a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a>** Compiled with KLU Direct Linear Solver
-</span><span id="__span-8-4"><a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a>** The U. C. Berkeley CAD Group
-</span><span id="__span-8-5"><a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a>** Copyright 1985-1994, Regents of the University of California.
-</span><span id="__span-8-6"><a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a>** Copyright 2001-2024, The ngspice team.
-</span><span id="__span-8-7"><a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a>** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html
-</span><span id="__span-8-8"><a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a>** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html
-</span><span id="__span-8-9"><a href="#__codelineno-8-9" id="__codelineno-8-9" name="__codelineno-8-9"></a>** Creation Date: Tue Jul 29 08:21:22 UTC 2025
-</span><span id="__span-8-10"><a href="#__codelineno-8-10" id="__codelineno-8-10" name="__codelineno-8-10"></a>******
-</span><span id="__span-8-11"><a href="#__codelineno-8-11" id="__codelineno-8-11" name="__codelineno-8-11"></a>
-</span><span id="__span-8-12"><a href="#__codelineno-8-12" id="__codelineno-8-12" name="__codelineno-8-12"></a>Note: No compatibility mode selected!
-</span><span id="__span-8-13"><a href="#__codelineno-8-13" id="__codelineno-8-13" name="__codelineno-8-13"></a>
-</span><span id="__span-8-14"><a href="#__codelineno-8-14" id="__codelineno-8-14" name="__codelineno-8-14"></a>Circuit: ** sch_path: /workspaces/oscic-playground/cosim/pwm_dac_tb.sch
-</span><span id="__span-8-15"><a href="#__codelineno-8-15" id="__codelineno-8-15" name="__codelineno-8-15"></a>
-</span><span id="__span-8-16"><a href="#__codelineno-8-16" id="__codelineno-8-16" name="__codelineno-8-16"></a>Note: No compatibility mode selected!
-</span><span id="__span-8-17"><a href="#__codelineno-8-17" id="__codelineno-8-17" name="__codelineno-8-17"></a>
-</span><span id="__span-8-18"><a href="#__codelineno-8-18" id="__codelineno-8-18" name="__codelineno-8-18"></a>Reducing trtol to 1 for xspice 'A' devices
-</span><span id="__span-8-19"><a href="#__codelineno-8-19" id="__codelineno-8-19" name="__codelineno-8-19"></a>Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
-</span><span id="__span-8-20"><a href="#__codelineno-8-20" id="__codelineno-8-20" name="__codelineno-8-20"></a>
-</span><span id="__span-8-21"><a href="#__codelineno-8-21" id="__codelineno-8-21" name="__codelineno-8-21"></a>Using SPARSE 1.3 as Direct Linear Solver
-</span><span id="__span-8-22"><a href="#__codelineno-8-22" id="__codelineno-8-22" name="__codelineno-8-22"></a>
-</span><span id="__span-8-23"><a href="#__codelineno-8-23" id="__codelineno-8-23" name="__codelineno-8-23"></a>Initial Transient Solution
-</span><span id="__span-8-24"><a href="#__codelineno-8-24" id="__codelineno-8-24" name="__codelineno-8-24"></a>--------------------------
-</span><span id="__span-8-25"><a href="#__codelineno-8-25" id="__codelineno-8-25" name="__codelineno-8-25"></a>
-</span><span id="__span-8-26"><a href="#__codelineno-8-26" id="__codelineno-8-26" name="__codelineno-8-26"></a>Node                      Voltage
-</span><span id="__span-8-27"><a href="#__codelineno-8-27" id="__codelineno-8-27" name="__codelineno-8-27"></a>----                      -------
-</span><span id="__span-8-28"><a href="#__codelineno-8-28" id="__codelineno-8-28" name="__codelineno-8-28"></a>out                       0
-</span><span id="__span-8-29"><a href="#__codelineno-8-29" id="__codelineno-8-29" name="__codelineno-8-29"></a>unfilt                    0
-</span><span id="__span-8-30"><a href="#__codelineno-8-30" id="__codelineno-8-30" name="__codelineno-8-30"></a>clk                       0
-</span><span id="__span-8-31"><a href="#__codelineno-8-31" id="__codelineno-8-31" name="__codelineno-8-31"></a>rst                       1.5
-</span><span id="__span-8-32"><a href="#__codelineno-8-32" id="__codelineno-8-32" name="__codelineno-8-32"></a>vdd                       1.5
-</span><span id="__span-8-33"><a href="#__codelineno-8-33" id="__codelineno-8-33" name="__codelineno-8-33"></a>vss                       0
-</span><span id="__span-8-34"><a href="#__codelineno-8-34" id="__codelineno-8-34" name="__codelineno-8-34"></a>set0                      1.5
-</span><span id="__span-8-35"><a href="#__codelineno-8-35" id="__codelineno-8-35" name="__codelineno-8-35"></a>set1                      1.5
-</span><span id="__span-8-36"><a href="#__codelineno-8-36" id="__codelineno-8-36" name="__codelineno-8-36"></a>set2                      1.5
-</span><span id="__span-8-37"><a href="#__codelineno-8-37" id="__codelineno-8-37" name="__codelineno-8-37"></a>set3                      0
-</span><span id="__span-8-38"><a href="#__codelineno-8-38" id="__codelineno-8-38" name="__codelineno-8-38"></a>v#branch                  0
-</span><span id="__span-8-39"><a href="#__codelineno-8-39" id="__codelineno-8-39" name="__codelineno-8-39"></a>v7#branch                 0
-</span><span id="__span-8-40"><a href="#__codelineno-8-40" id="__codelineno-8-40" name="__codelineno-8-40"></a>v6#branch                 0
-</span><span id="__span-8-41"><a href="#__codelineno-8-41" id="__codelineno-8-41" name="__codelineno-8-41"></a>v5#branch                 0
-</span><span id="__span-8-42"><a href="#__codelineno-8-42" id="__codelineno-8-42" name="__codelineno-8-42"></a>v4#branch                 0
-</span><span id="__span-8-43"><a href="#__codelineno-8-43" id="__codelineno-8-43" name="__codelineno-8-43"></a>v3#branch                 0
-</span><span id="__span-8-44"><a href="#__codelineno-8-44" id="__codelineno-8-44" name="__codelineno-8-44"></a>v2#branch                 0
-</span><span id="__span-8-45"><a href="#__codelineno-8-45" id="__codelineno-8-45" name="__codelineno-8-45"></a>v1#branch                 0
-</span><span id="__span-8-46"><a href="#__codelineno-8-46" id="__codelineno-8-46" name="__codelineno-8-46"></a>auto_dac#branch_1_0       0
-</span><span id="__span-8-47"><a href="#__codelineno-8-47" id="__codelineno-8-47" name="__codelineno-8-47"></a>
-</span><span id="__span-8-48"><a href="#__codelineno-8-48" id="__codelineno-8-48" name="__codelineno-8-48"></a>PWM DAC digital part started
-</span><span id="__span-8-49"><a href="#__codelineno-8-49" id="__codelineno-8-49" name="__codelineno-8-49"></a>VCD info: dumpfile pwm_dac.vcd opened for output.
-</span><span id="__span-8-50"><a href="#__codelineno-8-50" id="__codelineno-8-50" name="__codelineno-8-50"></a> Reference value 9_95157e-06
-</span><span id="__span-8-51"><a href="#__codelineno-8-51" id="__codelineno-8-51" name="__codelineno-8-51"></a>No. of Data Rows : 205255
-</span><span id="__span-8-52"><a href="#__codelineno-8-52" id="__codelineno-8-52" name="__codelineno-8-52"></a>binary raw file "pwm_dac_tb.raw"
-</span><span id="__span-8-53"><a href="#__codelineno-8-53" id="__codelineno-8-53" name="__codelineno-8-53"></a>ngspice 1 -&gt;
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>******
+</span><span id="__span-10-2"><a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a>** ngspice-44.2 : Circuit level simulation program
+</span><span id="__span-10-3"><a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a>** Compiled with KLU Direct Linear Solver
+</span><span id="__span-10-4"><a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a>** The U. C. Berkeley CAD Group
+</span><span id="__span-10-5"><a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a>** Copyright 1985-1994, Regents of the University of California.
+</span><span id="__span-10-6"><a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a>** Copyright 2001-2024, The ngspice team.
+</span><span id="__span-10-7"><a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a>** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html
+</span><span id="__span-10-8"><a href="#__codelineno-10-8" id="__codelineno-10-8" name="__codelineno-10-8"></a>** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html
+</span><span id="__span-10-9"><a href="#__codelineno-10-9" id="__codelineno-10-9" name="__codelineno-10-9"></a>** Creation Date: Tue Jul 29 08:21:22 UTC 2025
+</span><span id="__span-10-10"><a href="#__codelineno-10-10" id="__codelineno-10-10" name="__codelineno-10-10"></a>******
+</span><span id="__span-10-11"><a href="#__codelineno-10-11" id="__codelineno-10-11" name="__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a href="#__codelineno-10-12" id="__codelineno-10-12" name="__codelineno-10-12"></a>Note: No compatibility mode selected!
+</span><span id="__span-10-13"><a href="#__codelineno-10-13" id="__codelineno-10-13" name="__codelineno-10-13"></a>
+</span><span id="__span-10-14"><a href="#__codelineno-10-14" id="__codelineno-10-14" name="__codelineno-10-14"></a>Circuit: ** sch_path: /workspaces/oscic-playground/cosim/pwm_dac_tb.sch
+</span><span id="__span-10-15"><a href="#__codelineno-10-15" id="__codelineno-10-15" name="__codelineno-10-15"></a>
+</span><span id="__span-10-16"><a href="#__codelineno-10-16" id="__codelineno-10-16" name="__codelineno-10-16"></a>Note: No compatibility mode selected!
+</span><span id="__span-10-17"><a href="#__codelineno-10-17" id="__codelineno-10-17" name="__codelineno-10-17"></a>
+</span><span id="__span-10-18"><a href="#__codelineno-10-18" id="__codelineno-10-18" name="__codelineno-10-18"></a>Reducing trtol to 1 for xspice 'A' devices
+</span><span id="__span-10-19"><a href="#__codelineno-10-19" id="__codelineno-10-19" name="__codelineno-10-19"></a>Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+</span><span id="__span-10-20"><a href="#__codelineno-10-20" id="__codelineno-10-20" name="__codelineno-10-20"></a>
+</span><span id="__span-10-21"><a href="#__codelineno-10-21" id="__codelineno-10-21" name="__codelineno-10-21"></a>Using SPARSE 1.3 as Direct Linear Solver
+</span><span id="__span-10-22"><a href="#__codelineno-10-22" id="__codelineno-10-22" name="__codelineno-10-22"></a>
+</span><span id="__span-10-23"><a href="#__codelineno-10-23" id="__codelineno-10-23" name="__codelineno-10-23"></a>Initial Transient Solution
+</span><span id="__span-10-24"><a href="#__codelineno-10-24" id="__codelineno-10-24" name="__codelineno-10-24"></a>--------------------------
+</span><span id="__span-10-25"><a href="#__codelineno-10-25" id="__codelineno-10-25" name="__codelineno-10-25"></a>
+</span><span id="__span-10-26"><a href="#__codelineno-10-26" id="__codelineno-10-26" name="__codelineno-10-26"></a>Node                      Voltage
+</span><span id="__span-10-27"><a href="#__codelineno-10-27" id="__codelineno-10-27" name="__codelineno-10-27"></a>----                      -------
+</span><span id="__span-10-28"><a href="#__codelineno-10-28" id="__codelineno-10-28" name="__codelineno-10-28"></a>out                       0
+</span><span id="__span-10-29"><a href="#__codelineno-10-29" id="__codelineno-10-29" name="__codelineno-10-29"></a>unfilt                    0
+</span><span id="__span-10-30"><a href="#__codelineno-10-30" id="__codelineno-10-30" name="__codelineno-10-30"></a>clk                       0
+</span><span id="__span-10-31"><a href="#__codelineno-10-31" id="__codelineno-10-31" name="__codelineno-10-31"></a>rst                       1.5
+</span><span id="__span-10-32"><a href="#__codelineno-10-32" id="__codelineno-10-32" name="__codelineno-10-32"></a>vdd                       1.5
+</span><span id="__span-10-33"><a href="#__codelineno-10-33" id="__codelineno-10-33" name="__codelineno-10-33"></a>vss                       0
+</span><span id="__span-10-34"><a href="#__codelineno-10-34" id="__codelineno-10-34" name="__codelineno-10-34"></a>set0                      1.5
+</span><span id="__span-10-35"><a href="#__codelineno-10-35" id="__codelineno-10-35" name="__codelineno-10-35"></a>set1                      1.5
+</span><span id="__span-10-36"><a href="#__codelineno-10-36" id="__codelineno-10-36" name="__codelineno-10-36"></a>set2                      1.5
+</span><span id="__span-10-37"><a href="#__codelineno-10-37" id="__codelineno-10-37" name="__codelineno-10-37"></a>set3                      0
+</span><span id="__span-10-38"><a href="#__codelineno-10-38" id="__codelineno-10-38" name="__codelineno-10-38"></a>v#branch                  0
+</span><span id="__span-10-39"><a href="#__codelineno-10-39" id="__codelineno-10-39" name="__codelineno-10-39"></a>v7#branch                 0
+</span><span id="__span-10-40"><a href="#__codelineno-10-40" id="__codelineno-10-40" name="__codelineno-10-40"></a>v6#branch                 0
+</span><span id="__span-10-41"><a href="#__codelineno-10-41" id="__codelineno-10-41" name="__codelineno-10-41"></a>v5#branch                 0
+</span><span id="__span-10-42"><a href="#__codelineno-10-42" id="__codelineno-10-42" name="__codelineno-10-42"></a>v4#branch                 0
+</span><span id="__span-10-43"><a href="#__codelineno-10-43" id="__codelineno-10-43" name="__codelineno-10-43"></a>v3#branch                 0
+</span><span id="__span-10-44"><a href="#__codelineno-10-44" id="__codelineno-10-44" name="__codelineno-10-44"></a>v2#branch                 0
+</span><span id="__span-10-45"><a href="#__codelineno-10-45" id="__codelineno-10-45" name="__codelineno-10-45"></a>v1#branch                 0
+</span><span id="__span-10-46"><a href="#__codelineno-10-46" id="__codelineno-10-46" name="__codelineno-10-46"></a>auto_dac#branch_1_0       0
+</span><span id="__span-10-47"><a href="#__codelineno-10-47" id="__codelineno-10-47" name="__codelineno-10-47"></a>
+</span><span id="__span-10-48"><a href="#__codelineno-10-48" id="__codelineno-10-48" name="__codelineno-10-48"></a>PWM DAC digital part started
+</span><span id="__span-10-49"><a href="#__codelineno-10-49" id="__codelineno-10-49" name="__codelineno-10-49"></a>VCD info: dumpfile pwm_dac.vcd opened for output.
+</span><span id="__span-10-50"><a href="#__codelineno-10-50" id="__codelineno-10-50" name="__codelineno-10-50"></a> Reference value 9_95157e-06
+</span><span id="__span-10-51"><a href="#__codelineno-10-51" id="__codelineno-10-51" name="__codelineno-10-51"></a>No. of Data Rows : 205255
+</span><span id="__span-10-52"><a href="#__codelineno-10-52" id="__codelineno-10-52" name="__codelineno-10-52"></a>binary raw file "pwm_dac_tb.raw"
+</span><span id="__span-10-53"><a href="#__codelineno-10-53" id="__codelineno-10-53" name="__codelineno-10-53"></a>ngspice 1 -&gt;
 </span></code></pre></div>
 You can see the <code>PWM DAC digital part started</code> and <code>VCD info: dumpfile pwm_dac.vcd opened for output.</code> which indicate that the digital part of the simulation is running properly!
 <h2 id="visualization">Visualization<a class="headerlink" href="#visualization" title="Permanent link">¶</a></h2>
