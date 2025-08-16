@@ -27,7 +27,7 @@
 
         textarea {
             width: 100%;
-            height: 160px;
+            min-height: 40px;
             font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
         }
 
@@ -36,8 +36,8 @@
             color: #cfe3ff;
             padding: 12px;
             overflow: auto;
-            min-height: 120px;
-            max-height: 120px;
+            min-height: 160px;
+            max-height: 160px;
         }
 
         .badge {
@@ -74,6 +74,13 @@
 
         button {
             padding: 6px 10px;
+        }
+
+        select {
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
         }
 
         code {
@@ -166,14 +173,20 @@
     </div>
 
     <div class="pad">
-        <label for="verilog"><b>Verilog source (saved as <code>top.v</code>)</b></label>
+        <div class="row">
+            <label for="verilog"><b>HDL source (saved as <code id="filename">top.v</code>)</b></label>
+            <select id="language-select">
+                <option value="verilog">Verilog (.v)</option>
+                <option value="systemverilog">SystemVerilog (.sv)</option>
+            </select>
+        </div>
         <div id="verilog" style="height: 300px"></div>
     </div>
 
     <div class="pad">
         <label for="passes"><b>Yosys passes (-p "...")</b></label>
         <textarea
-            id="passes">hierarchy -auto-top; proc; opt; stat; write_json out.json; write_verilog -noattr out.v</textarea>
+            id="passes">hierarchy -auto-top; proc; opt; techmap; opt; stat; write_json out.json; write_verilog -noattr out.v</textarea>
     </div>
 
     <div class="pad row">
@@ -212,6 +225,45 @@
   assign y = a & b;
 endmodule
 `, 'verilog'));
+
+        // Language selection handling
+        const $languageSelect = document.getElementById('language-select');
+        const $filename = document.getElementById('filename');
+
+        const examples = {
+            verilog: `module top(input a, input b, output y);
+  assign y = a & b;
+endmodule`,
+            systemverilog: `module top(
+    input logic a,
+    input logic b,
+    output logic y
+);
+    always_comb begin
+        y = a & b;
+    end
+endmodule`
+        };
+
+        function updateLanguage() {
+            const isSystemVerilog = $languageSelect.value === 'systemverilog';
+            const extension = isSystemVerilog ? '.sv' : '.v';
+            const language = isSystemVerilog ? 'systemverilog' : 'verilog';
+
+            $filename.textContent = `top${extension}`;
+
+            // Update Monaco editor language and example code
+            const currentValue = verilogEditor.getModel().getValue();
+            const isDefaultExample = Object.values(examples).includes(currentValue.trim());
+
+            const newCode = isDefaultExample ? examples[$languageSelect.value] : currentValue;
+            const newModel = monaco.editor.createModel(newCode, language);
+            const oldModel = verilogEditor.getModel();
+            verilogEditor.setModel(newModel);
+            oldModel.dispose();
+        }
+
+        $languageSelect.addEventListener('change', updateLanguage);
 
         // Create output editor for viewing generated files
         const outputEditor = monaco.editor.create(document.getElementById('output-editor'), {
@@ -342,7 +394,21 @@ endmodule
       import { runYosys, Exit } from '${CDN}';
       let busy = false;
       const decoder = new TextDecoder();
-      const collect = () => { const lines = []; const push = (b) => { if (b && b.length) lines.push(decoder.decode(b)); }; return { lines, push }; };
+      
+      // Real-time streaming output collectors
+      const createStreamingCollector = (prefix) => {
+        const lines = [];
+        const push = (b) => {
+          if (b && b.length) {
+            const text = decoder.decode(b);
+            lines.push(text);
+            // Send output immediately for real-time display
+            self.postMessage({ type: 'output', stream: prefix, data: text });
+          }
+        };
+        return { lines, push };
+      };
+      
       self.postMessage({ type: 'status', state: 'ready' });
 
       self.onmessage = async (e) => {
@@ -351,12 +417,20 @@ endmodule
         if (msg?.type === 'run') {
           if (busy) { self.postMessage({ type: 'status', state: 'busy' }); return; }
           busy = true; self.postMessage({ type: 'status', state: 'running' });
+          
+          let out, err;
           try {
-            const filesIn = { 'top.v': msg.verilog ?? 'module top(input a,b,output y); assign y=a&b; endmodule\\n' };
-            const passes = msg.passes ?? 'hierarchy -auto-top; proc; opt; stat; write_json out.json; write_verilog -noattr out.v';
-            const argv = ['-p', 'read_verilog top.v; ' + passes];
+            const isSystemVerilog = msg.language === 'systemverilog';
+            const filename = isSystemVerilog ? 'top.sv' : 'top.v';
+            const readCommand = isSystemVerilog ? 'read_verilog -sv' : 'read_verilog';
+            
+            const filesIn = { [filename]: msg.verilog ?? 'module top(input a,b,output y); assign y=a&b; endmodule\\n' };
+            const passes = msg.passes ?? 'hierarchy -auto-top; proc; opt; techmap; opt; stat; write_json out.json; write_verilog -noattr out.v';
+            const argv = ['-p', readCommand + ' ' + filename + '; ' + passes];
 
-            const out = collect(), err = collect();
+            out = createStreamingCollector('stdout');
+            err = createStreamingCollector('stderr');
+            
             const filesOut = await runYosys(argv, filesIn, { stdout: out.push, stderr: err.push, decodeASCII: false });
 
             const text = [
@@ -368,8 +442,22 @@ endmodule
             self.postMessage({ type: 'result', ok: true, data: text, filesOut });
             self.postMessage({ type: 'status', state: 'idle' });
           } catch (e) {
-            if (e instanceof Exit) self.postMessage({ type: 'result', ok: false, error: 'Yosys exited with code ' + e.code });
-            else self.postMessage({ type: 'result', ok: false, error: String(e?.message || e) });
+            let errorMsg = '';
+            if (e instanceof Exit) {
+              // Include stderr output in error message for better debugging
+              const stderrOutput = err ? err.lines.join('') : '';
+              const stdoutOutput = out ? out.lines.join('') : '';
+              errorMsg = 'Yosys exited with code ' + e.code;
+              if (stderrOutput.trim()) {
+                errorMsg += '\\n\\nStderr output:\\n' + stderrOutput;
+              }
+              if (stdoutOutput.trim()) {
+                errorMsg += '\\n\\nStdout output:\\n' + stdoutOutput;
+              }
+            } else {
+              errorMsg = String(e?.message || e);
+            }
+            self.postMessage({ type: 'result', ok: false, error: errorMsg });
             self.postMessage({ type: 'status', state: 'error' });
           } finally { busy = false; }
         }
@@ -414,12 +502,27 @@ endmodule
                     else if (state === 'error') setStatus('Error', 'err');
                     return;
                 }
+                if (type === 'output') {
+                    // Handle real-time streaming output
+                    const { stream, data } = e.data;
+                    if (data && data.trim()) {
+                        // Add stream prefix for clarity and log immediately
+                        const lines = data.split('\n');
+                        for (const line of lines) {
+                            if (line.trim()) {
+                                $log.textContent += `[${stream}] ${line}\n`;
+                            }
+                        }
+                        $log.scrollTop = $log.scrollHeight;
+                    }
+                    return;
+                }
                 if (type === 'result') {
                     if (e.data.ok) {
-                        log(e.data.data);
+                        log('\n--- Execution completed successfully ---');
                         renderFiles(e.data.filesOut);   // <-- show downloadable files
                     } else {
-                        log('! Error: ' + e.data.error);
+                        log('\n! Error: ' + e.data.error);
                     }
                     return;
                 }
@@ -449,8 +552,11 @@ endmodule
             const w = ensureWorker();
             const verilog = verilogEditor.getValue();
             const passes = document.getElementById('passes').value;
-            $log.textContent += '>> Running Yosys...\n';
-            w.postMessage({ type: 'run', verilog, passes });
+            const language = document.getElementById('language-select').value;
+            // Clear log for new run to see real-time output clearly
+            $log.textContent = '';
+            log('>> Running Yosys...');
+            w.postMessage({ type: 'run', verilog, passes, language });
         };
         document.getElementById('pingBtn').onclick = () => { const w = ensureWorker(); w.postMessage({ type: 'ping' }); };
         document.getElementById('stopBtn').onclick = () => { terminateWorker(); };
