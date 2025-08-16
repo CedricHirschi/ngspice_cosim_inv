@@ -6,3 +6,5 @@ rtl/patches/
 rtl/register_interface/
 
 verilator/obj_dir/
+
+scripts/figures/

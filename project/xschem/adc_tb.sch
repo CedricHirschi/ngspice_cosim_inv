@@ -7,26 +7,28 @@ E {}
 B 2 -400 -700 400 -300 {flags=graph
 y1=0
 y2=1.5
-ypos1=-0.099268447
-ypos2=1.7983155
+ypos1=-0.0043892459
+ypos2=1.8931947
 divy=5
 subdivy=1
 unity=1
-x1=-8.3247759e-08
-x2=2.3188255e-07
+x1=1.9324766e-06
+x2=2.2983361e-06
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
 node="clk_digital
+clk_sample
 start
 x1.compare
+x1.sample_en
 x1.sample
 ready_o
 result_o;result_o0,result_o1,result_o2,result_o3,result_o4,result_o5,result_o6,result_o7
 x1.dac_p;x1.dac_p0,x1.dac_p1,x1.dac_p2,x1.dac_p3,x1.dac_p4,x1.dac_p5,x1.dac_p6,x1.dac_p7
 x1.dac_n;x1.dac_n0,x1.dac_n1,x1.dac_n2,x1.dac_n3,x1.dac_n4,x1.dac_n5,x1.dac_n6,x1.dac_n7"
-color="4 5 6 7 8 9 10 11"
+color="4 5 6 7 8 9 10 11 4 4"
 dataset=-1
 unitx=1
 logx=0
@@ -41,8 +43,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-8.3247759e-08
-x2=2.3188255e-07
+x1=1.9324766e-06
+x2=2.2983361e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -65,8 +67,8 @@ ypos2=1.372239
 divy=5
 subdivy=1
 unity=1
-x1=-8.3247759e-08
-x2=2.3188255e-07
+x1=1.9324766e-06
+x2=2.2983361e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -89,8 +91,8 @@ ypos2=1.3054164
 divy=5
 subdivy=1
 unity=1
-x1=-8.3247759e-08
-x2=2.3188255e-07
+x1=1.9324766e-06
+x2=2.2983361e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -163,7 +165,7 @@ tclcommand="execute 1 sh -c \\"cd $netlist_dir; iverilog -g2012 -o adc [abs_sym_
 C {vsource.sym} -560 700 0 1 {name=Vclkdig value="pulse(\{vdd\}, \{vss\}, \{0.5/f\}, 1f, 1f, \{0.5/f\}, \{1/f\})" savecurrent=false}
 C {vsource.sym} -540 310 0 0 {name=Vrst value="pulse(\{vdd\}, \{vss\}, 0, 0, 0, \{1/f\})" savecurrent=false}
 C {vsource.sym} -580 310 0 1 {name=Vstart value="pulse(\{vss\}, \{vdd\}, \{1.4/f\}, 0, 0, \{1/f\}, \{9/f\})" savecurrent=false}
-C {vsource.sym} -580 110 0 1 {name=Vpos value="pwl(0 0.20 \{9/f\} 0.20 \{9/f\} 0.30 \{18/f\} 0.30 \{18/f\} 0.40 \{27/f\} 0.40 \{27/f\} 0.50 \{36/f\} 0.50 \{36/f\} 0.60 \{45/f\} 0.60 \{45/f\} 0.70 \{54/f\} 0.70 \{54/f\} 0.80 \{63/f\} 0.80 \{63/f\} 0.90 \{72/f\} 0.90 \{72/f\} 1.00 \{81/f\} 1.00 \{81/f\} 1.10 \{90/f\} 1.10 \{90/f\} 1.20 \{99/f\} 1.20 \{99/f\} 1.30 \{108/f\} 1.30)" savecurrent=true}
+C {vsource.sym} -580 110 0 1 {name=Vpos value="pwl(0 0.2345 \{8/f\} 0.2345 \{8/f\} 0.2992 \{17/f\} 0.2992 \{17/f\} 0.3639 \{26/f\} 0.3639 \{26/f\} 0.4286 \{35/f\} 0.4286 \{35/f\} 0.4933 \{44/f\} 0.4933 \{44/f\} 0.5580 \{53/f\} 0.5580 \{53/f\} 0.6227 \{62/f\} 0.6227 \{62/f\} 0.6875 \{71/f\} 0.6875 \{71/f\} 0.7522 \{80/f\} 0.7522 \{80/f\} 0.8169 \{89/f\} 0.8169 \{89/f\} 0.8816 \{98/f\} 0.8816 \{98/f\} 0.9463 \{107/f\} 0.9463 \{107/f\} 1.0110 \{116/f\} 1.0110 \{116/f\} 1.0757 \{125/f\} 1.0757 \{125/f\} 1.1404 \{134/f\} 1.1404 \{134/f\} 1.2051 \{143/f\} 1.2051 \{143/f\} 1.2698 \{152/f\} 1.2698)" savecurrent=true}
 C {gnd.sym} -560 730 0 1 {name=l1 lab=GND}
 C {gnd.sym} -540 340 0 0 {name=l2 lab=GND}
 C {gnd.sym} -580 340 0 1 {name=l3 lab=GND}
@@ -179,13 +181,16 @@ C {simulator_commands_shown.sym} 780 -40 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
-.options method=gear maxord=2
+*.options method=gear maxord=2
 *.options reltol=1e-3 abstol=1e-10 vntol=1e-6 chgtol=1e-14
-.options gmin=1e-10 rshunt=1e12
+.options gmin=1e-9 rshunt=1e12
 
-.save all
-.tran 1n \{120/f\}
-*.tran 1n 160n
+.control
+  save all
+  tran 1n 2.1u
+  * tran 1n 70n
+  write adc_tb.raw
+.endc
 "}
 C {simulator_commands_shown.sym} 780 230 0 0 {name=PARAMS
 only_toplevel=false 
@@ -298,7 +303,7 @@ C {lab_pin.sym} -520 870 1 0 {name=p7 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} -540 260 1 0 {name=p1 sig_type=std_logic lab=rst}
 C {lab_pin.sym} -580 260 3 1 {name=p2 sig_type=std_logic lab=start}
 C {lab_pin.sym} -580 60 1 0 {name=p3 sig_type=std_logic lab=pos}
-C {vsource.sym} -540 110 0 0 {name=Vneg value="pwl(0 1.30 \{9/f\} 1.30 \{9/f\} 1.20 \{18/f\} 1.20 \{18/f\} 1.10 \{27/f\} 1.10 \{27/f\} 1.00 \{36/f\} 1.00 \{36/f\} 0.90 \{45/f\} 0.90 \{45/f\} 0.80 \{54/f\} 0.80 \{54/f\} 0.70 \{63/f\} 0.70 \{63/f\} 0.60 \{72/f\} 0.60 \{72/f\} 0.50 \{81/f\} 0.50 \{81/f\} 0.40 \{90/f\} 0.40 \{90/f\} 0.30 \{99/f\} 0.30 \{99/f\} 0.20 \{108/f\} 0.20)" savecurrent=true}
+C {vsource.sym} -540 110 0 0 {name=Vneg value="pwl(0 1.2655 \{8/f\} 1.2655 \{8/f\} 1.2008 \{17/f\} 1.2008 \{17/f\} 1.1361 \{26/f\} 1.1361 \{26/f\} 1.0714 \{35/f\} 1.0714 \{35/f\} 1.0067 \{44/f\} 1.0067 \{44/f\} 0.9420 \{53/f\} 0.9420 \{53/f\} 0.8773 \{62/f\} 0.8773 \{62/f\} 0.8125 \{71/f\} 0.8125 \{71/f\} 0.7478 \{80/f\} 0.7478 \{80/f\} 0.6831 \{89/f\} 0.6831 \{89/f\} 0.6184 \{98/f\} 0.6184 \{98/f\} 0.5537 \{107/f\} 0.5537 \{107/f\} 0.4890 \{116/f\} 0.4890 \{116/f\} 0.4243 \{125/f\} 0.4243 \{125/f\} 0.3596 \{134/f\} 0.3596 \{134/f\} 0.2949 \{143/f\} 0.2949 \{143/f\} 0.2302 \{152/f\} 0.2302)" savecurrent=true}
 C {gnd.sym} -580 140 0 1 {name=Vneg1 lab=GND}
 C {lab_pin.sym} -540 60 3 1 {name=Vneg2 sig_type=std_logic lab=neg}
 C {lab_pin.sym} 310 10 0 1 {name=Vneg3 sig_type=std_logic lab=result_o[0..7]}

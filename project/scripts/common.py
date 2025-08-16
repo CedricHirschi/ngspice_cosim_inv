@@ -132,6 +132,17 @@ class NGSpiceRaw:
             self.plot[b'no. variables'] = str(len(self.plot['varnames']))
             self.plot[b'no. points'] = str(len(self.arr))
 
+def figure_setup():
+    plt.style.use(["science", "grid"])
+    plt.style.use({
+        'font.size': 14,                   # Slightly larger base font
+        'axes.labelsize': 14,
+        'axes.titlesize': 14,
+        'xtick.labelsize': 12,
+        'ytick.labelsize': 12,
+        'legend.fontsize': 12
+    })
+
 def figure_save(fig, filename, directory='./figures/'):
     try:
         os.mkdir(directory)
