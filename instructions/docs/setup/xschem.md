@@ -53,3 +53,4 @@ Then, source this script:
 ```bash
 source ./proot.sh
 ```
+And every time you want to run xschem with cosimulation support, use the `xschem-proot` wrapper instead of the regular `xschem` command.

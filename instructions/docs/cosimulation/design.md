@@ -127,15 +127,18 @@ This defines:
 
     **Also**, the order of the ports in each list must match the definition in the verilog module.
 
-
-<iframe>
-  <p>Now, we place the pins of the symbol in the schematic. Do this via `Symbol -> Place symbol pin` (`Alt + P`). Make sure to set the correct name and direction (`in`, `out` or `inout`) for each pin.</p>
-</iframe>
-
+Now, we place the pins of the symbol in the schematic. Do this via `Symbol -> Place symbol pin` (`Alt + P`). Make sure to set the correct name and direction (`in`, `out` or `inout`) for each pin.
 
 ??? info "The resulting symbol might look something like this"
     ![PWM DAC Symbol](assets/pwm_dac_symbol.svg)
     The `@symname` and `@name` texts are placeholders that will be replaced with the actual symbol and instance names when the schematic is instantiated. You can leave them out.
+
+
+I have written a small web tool to generate XSCHEM symbols from (System)Verilog modules. You can access it here:
+
+[XSCHEM Symbol Generator](./symbol_gen.html){ .md-button }
+
+[YOSYS Online Playground](./yosys_online.html){ .md-button }
 
 ## Testbench
 
